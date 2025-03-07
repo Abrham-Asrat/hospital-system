@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DLayoutComponent } from './Pages/DoctorRole/d-layout/d-layout.component';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DLayoutComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

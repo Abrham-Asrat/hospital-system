@@ -6,39 +6,46 @@ import { DChatComponent } from './Pages/DoctorRole/d-chat/d-chat.component';
 import { DContactComponent } from './Pages/DoctorRole/d-contact/d-contact.component';
 import { DNotificationComponent } from './Pages/DoctorRole/d-notification/d-notification.component';
 import { DProfileComponent } from './Pages/DoctorRole/d-profile/d-profile.component';
+import { DLayoutComponent } from './Pages/DoctorRole/d-layout/d-layout.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'DHome',
+    redirectTo: 'Doctor',
     pathMatch: 'full',
   },
   {
-    path: 'dHome',
-    component: DHomeComponent,
-  },
-  {
-    path: 'dAppointment',
-    component: DAppointmentComponent,
-  },
-  {
-    path: 'dBlog',
-    component: DBlogComponent,
-  },
-  {
-    path: 'dNotification',
-    component: DNotificationComponent,
-  },
-  {
-    path: 'dChat',
-    component: DChatComponent,
-  },
-  {
-    path: 'dContact',
-    component: DContactComponent,
-  },
-  {
-    path: 'dProfile', 
-    component: DProfileComponent,
+    path: 'Doctor',
+    component: DLayoutComponent,
+    children: [
+      {
+        path: 'dHome',
+        component: DHomeComponent,
+      },
+      {
+        path: 'dAppointment',
+        component: DAppointmentComponent,
+      },
+      {
+        path: 'dBlog',
+        component: DBlogComponent,
+      },
+      {
+        path: 'dNotification',
+        component: DNotificationComponent,
+      },
+      {
+        path: 'dChat',
+        component: DChatComponent,
+      },
+      {
+        path: 'dContact',
+        component: DContactComponent,
+      },
+      {
+        path: 'dProfile',
+        component: DProfileComponent,
+      },
+    ],
   },
 ];

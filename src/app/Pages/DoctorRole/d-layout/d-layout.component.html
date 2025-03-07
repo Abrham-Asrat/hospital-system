@@ -1,7 +1,7 @@
 <nav
   class="navbar navbar-expand-lg navbar-light bg-light sticky-top navMargin ps-5 pe-5"
 >
-  <a href="dHome" class="navbar-brand">
+  <div  class="navbar-brand">
     <img
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiVSHtxoIi9De-gEbgNj7MCmDd4D2ULQ-7oA&s"
       width="40"
@@ -9,7 +9,7 @@
       class="rounded-circle mb-2"
     />
     <span class="navbar-title p-1">E~Hospital</span>
-  </a>
+  </div>
   <button
     type="button"
     class="navbar-toggler"
@@ -69,6 +69,36 @@
             [ngClass]="{ 'text-warning': activeTab === 'chat' }"
           >
             <i class="bi bi-chat-dots-fill"></i>
+          </button>
+        </a>
+        <a href="#" target="_blank">
+          <button
+            type="button"
+            class="nav-item nav-link"
+            (click)="setActive('linkedin')"
+            [ngClass]="{ 'text-warning': activeTab === 'linkedin' }"
+          >
+           <i class="fa-brands fa-linkedin"></i>
+          </button>
+        </a>
+        <a href="#" target="_blank">
+          <button
+            type="button"
+            class="nav-item nav-link"
+            (click)="setActive('instagram')"
+            [ngClass]="{ 'text-warning': activeTab === 'instagram' }"
+          >
+           <i class="fa-brands fa-instagram"></i>
+          </button>
+        </a>
+        <a href="#" target="_blank">
+          <button
+            type="button"
+            class="nav-item nav-link"
+            (click)="setActive('youtube')"
+            [ngClass]="{ 'text-warning': activeTab === 'youtube' }"
+          >
+           <i class="fa-brands fa-youtube"></i>
           </button>
         </a>
       </div>
