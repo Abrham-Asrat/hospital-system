@@ -1,0 +1,101 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light sticky-top navMargin ps-5 pe-5"
+>
+  <a href="dHome" class="navbar-brand">
+    <img
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiVSHtxoIi9De-gEbgNj7MCmDd4D2ULQ-7oA&s"
+      width="40"
+      alt=""
+      class="rounded-circle mb-2"
+    />
+    <span class="navbar-title p-1">E~Hospital</span>
+  </a>
+  <button
+    type="button"
+    class="navbar-toggler"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarCollapse"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbarCollapse" class="collapse navbar-collapse">
+    <div class="d-flex justify-content-evenly w-100">
+      <div class="navbar-nav d-flex justify-content-center w-90 links">
+        <a
+          routerLink="dHome"
+          class="nav-item nav-link"
+          (click)="setActive('home')"
+          [ngClass]="{ 'text-warning': activeTab === 'home' }"
+          >Home</a
+        >
+        <a
+          routerLink="dAppointment"
+          class="nav-item nav-link"
+          (click)="setActive('appointment')"
+          [ngClass]="{ 'text-warning': activeTab === 'appointment' }"
+          >Appointment</a
+        >
+        <a
+          routerLink="dBlog"
+          class="nav-item nav-link"
+          (click)="setActive('blog')"
+          [ngClass]="{ 'text-warning': activeTab === 'blog' }"
+          >Blog</a
+        >
+        <a
+          routerLink="dContact"
+          class="nav-item nav-link"
+          (click)="setActive('contact')"
+          [ngClass]="{ 'text-warning': activeTab === 'contact' }"
+          >Contact Us</a
+        >
+      </div>
+      <div class="navbar-nav">
+        <a routerLink="dNotification">
+          <button
+            type="button"
+            class="nav-item nav-link"
+            (click)="setActive('notification')"
+            [ngClass]="{ 'text-warning': activeTab === 'notification' }"
+          >
+            <i class="fa-solid fa-bell"></i>
+          </button>
+        </a>
+        <a routerLink="dChat">
+          <button
+            type="button"
+            class="nav-item nav-link"
+            (click)="setActive('chat')"
+            [ngClass]="{ 'text-warning': activeTab === 'chat' }"
+          >
+            <i class="bi bi-chat-dots-fill"></i>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="nav-item ms-auto me-2 dropdown">
+      <a
+        href="#"
+        class="nav-link dropdown-toggle user-action"
+        data-bs-toggle="dropdown"
+      >
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLA994hpL3PMmq0scCuWOu0LGsjef49dyXVg&s"
+          width="50px"
+          alt="image"
+          class="rounded-circle"
+        />
+      </a>
+      <div class="dropdown-menu pe-3">
+        <a routerLink="dProfile" class="dropdown-item"
+          ><i class="fa-solid fa-user pe-1"></i> Profile</a
+        >
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item"
+          ><i class="fas fa-sign-out-alt pe-1"></i>Logout</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
