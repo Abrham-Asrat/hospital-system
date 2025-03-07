@@ -11,11 +11,11 @@ import { DLayoutComponent } from './Pages/DoctorRole/d-layout/d-layout.component
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'Doctor',
+    redirectTo: 'doctor/dHome',
     pathMatch: 'full',
   },
   {
-    path: 'Doctor',
+    path: 'doctor',
     component: DLayoutComponent,
     children: [
       {
