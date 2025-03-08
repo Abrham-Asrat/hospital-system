@@ -1,0 +1,39 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light sticky-top navMargin ps-5 pe-5 shadow-sm"
+>
+  <div class="navbar-brand">
+    <img
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiVSHtxoIi9De-gEbgNj7MCmDd4D2ULQ-7oA&s"
+      width="40"
+      alt=""
+      class="rounded-circle mb-2"
+    />
+    <span class="navbar-title p-1">E~Hospital</span>
+  </div>
+  <button
+    type="button"
+    class="navbar-toggler"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarCollapse"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbarCollapse" class="collapse navbar-collapse">
+    <div class="row w-100">
+      <div
+        class="navbar-nav links col-9 d-flex justify-content-evenly align-items-center"
+      >
+        @for (item of navLinks; track $index) {
+        <a
+          [routerLink]="item"
+          class="nav-item nav-link"
+          (click)="setActive(`${item}`)"
+          [ngClass]="{ 'text-warning': activeTab === item }"
+          >{{ item }}</a
+        >
+        }
+      </div>
+    </div>
+  </div>
+
+

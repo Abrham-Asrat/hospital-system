@@ -1,0 +1,10 @@
+.dropdown-menu {
+  margin: 0.5rem 0 10rem 0 !important;
+  padding-left: 1rem;
+}
+.dropdown-item:hover {
+  background-color: #d1803e;
+}
+.profile {
+  padding-right: 2rem;
+}
