@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PHomeComponent } from './p-home.component';
+import { PLayoutComponent } from './p-layout.component';
 
-describe('PHomeComponent', () => {
-  let component: PHomeComponent;
-  let fixture: ComponentFixture<PHomeComponent>;
+describe('PLayoutComponent', () => {
+  let component: PLayoutComponent;
+  let fixture: ComponentFixture<PLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PHomeComponent]
+      imports: [PLayoutComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PHomeComponent);
+    fixture = TestBed.createComponent(PLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

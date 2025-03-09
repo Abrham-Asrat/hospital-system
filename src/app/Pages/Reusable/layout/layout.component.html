@@ -27,16 +27,16 @@
         <a
           [routerLink]="item"
           class="nav-item nav-link"
-          (click)="setActive(`${item}`)"
+          (click)="setActive(item)"
           [ngClass]="{ 'text-warning': activeTab === item }"
-          >{{ item }}</a
-        >
+          >{{ item | uppercase }}
+        </a>
         }
       </div>
       <div
         class="navbar-nav col-3 d-flex justify-content-end align-items-center profile"
       >
-        @if(profileActive){
+        @if(showProfile){
         <a routerLink="dNotification">
           <button
             type="button"

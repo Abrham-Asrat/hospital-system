@@ -21,16 +21,25 @@ import { ChatComponent } from './Pages/Reusable/chat/chat.component';
 import { ContactComponent } from './Pages/Reusable/contact/contact.component';
 import { ProfileComponent } from './Pages/Reusable/profile/profile.component';
 import { LayoutComponent } from './Pages/Reusable/layout/layout.component';
+import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'lLayout',
+    redirectTo: 'LLayout',
     pathMatch: 'full',
   },
   {
-    path: 'lLayout',
+    path: 'PLayout',
+    component: PLayoutComponent,
+  },
+  {
+    path: 'LLayout',
     component: LLayoutComponent,
+  },
+  {
+    path: 'DLayout',
+    component: DLayoutComponent,
   },
   {
     path: '',
