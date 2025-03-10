@@ -22,16 +22,21 @@ import { ContactComponent } from './Pages/Reusable/contact/contact.component';
 import { ProfileComponent } from './Pages/Reusable/profile/profile.component';
 import { LayoutComponent } from './Pages/Reusable/layout/layout.component';
 import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
+import { LoginComponent } from './Pages/Landing/log-in/log-in.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'LLayout',
+    redirectTo: 'logIn',
     pathMatch: 'full',
   },
   {
     path: 'PLayout',
     component: PLayoutComponent,
+  },
+  {
+    path: 'logIn',
+    component:LoginComponent,
   },
   {
     path: 'LLayout',
