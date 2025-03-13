@@ -10,4 +10,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Hospital';
+  constructor() {
+    console.log('🔥 Constructor:', this.constructor.name);
+  }
+
+  ngOnInit() {
+    console.log('🚀 ngOnInit:', this.constructor.name);
+  }
 }

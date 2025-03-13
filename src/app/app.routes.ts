@@ -13,80 +13,81 @@ import { LContactComponent } from './Pages/Landing/l-contact/l-contact.component
 import { LFAQComponent } from './Pages/Landing/l-faq/l-faq.component';
 import { LAboutComponent } from './Pages/Landing/l-about/l-about.component';
 import { LBlogComponent } from './Pages/Landing/l-blog/l-blog.component';
-import { HomeComponent } from './Pages/Reusable/home/home.component';
-import { AppointmentComponent } from './Pages/Reusable/appointment/appointment.component';
-import { NotificationComponent } from './Pages/Reusable/notification/notification.component';
-import { BlogComponent } from './Pages/Reusable/blog/blog.component';
-import { ChatComponent } from './Pages/Reusable/chat/chat.component';
-import { ContactComponent } from './Pages/Reusable/contact/contact.component';
-import { ProfileComponent } from './Pages/Reusable/profile/profile.component';
-import { LayoutComponent } from './Pages/Reusable/layout/layout.component';
+
 import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
 import { LoginComponent } from './Pages/Landing/log-in/log-in.component';
+import { PHomeComponent } from './Pages/Patient/p-home/p-home.component';
+import { PAppointmentComponent } from './Pages/Patient/p-appointment/p-appointment.component';
+import { PBlogComponent } from './Pages/Patient/p-blog/p-blog.component';
+import { PChatComponent } from './Pages/Patient/p-chat/p-chat.component';
+
+import { PContactUsComponent } from './Pages/Patient/p-contact-us/p-contact-us.component';
+import { PNotificationComponent } from './Pages/Patient/p-notification/p-notification.component';
+import { PProfileComponent } from './Pages/Patient/p-profile/p-profile.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'logIn',
+    redirectTo: 'PHome',
     pathMatch: 'full',
   },
   {
-    path: 'PLayout',
-    component: PLayoutComponent,
-  },
-  {
-    path: 'logIn',
-    component:LoginComponent,
-  },
-  {
-    path: 'LLayout',
-    component: LLayoutComponent,
-  },
-  {
-    path: 'DLayout',
-    component: DLayoutComponent,
-  },
-  {
     path: '',
-    component: LayoutComponent,
+    component: LLayoutComponent,
     children: [
       {
-        path: 'Home',
-        component: HomeComponent,
+        path: 'LHome',
+        component: LHomeComponent,
       },
       {
-        path: 'Appointment',
-        component: AppointmentComponent,
+        path: 'LBlog',
+        component: LBlogComponent,
       },
       {
-        path: 'Notification',
-        component: NotificationComponent,
-      },
-      {
-        path: 'Blog',
-        component: BlogComponent,
-      },
-      {
-        path: 'Chat',
-        component: ChatComponent,
-      },
-      {
-        path: 'Contact',
-        component: ContactComponent,
-      },
-      {
-        path: 'Profile',
-        component: ProfileComponent,
-      },
-      {
-        path: 'FAQ',
-        component: LFAQComponent,
-      },
-
-      {
-        path: 'About',
+        path: 'LAbout',
         component: LAboutComponent,
       },
+      {
+        path: 'LContact',
+        component: LContactComponent,
+      },
+      {
+        path: 'LFAQ',
+        component: LFAQComponent,
+      },
+      {
+        path: 'logIn',
+        component: LoginComponent,
+      },
+    ],
+  },
+
+  {
+    path: '',
+    component: PLayoutComponent,
+    children: [
+      { path: 'PHome', component: PHomeComponent },
+      { path: 'PAppointment', component: PAppointmentComponent },
+      { path: 'PBlog', component: PBlogComponent },
+      { path: 'PChat', component: PChatComponent },
+      { path: 'PContact', component: PContactUsComponent },
+      { path: 'PNotification', component: PNotificationComponent},
+      { path: 'PProfile', component: PProfileComponent},
+     
+    ],
+  },
+
+  {
+    path: '',
+    component: DLayoutComponent,
+    children: [
+      { path: 'DHome', component: DHomeComponent },
+      { path: 'DAppointment', component: DAppointmentComponent },
+      { path: 'DBlog', component: DBlogComponent },
+      { path: 'DChat', component: DChatComponent },
+      { path: 'DContact', component: DContactComponent },
+      { path: 'DNotification', component: DNotificationComponent },
+      { path: 'DProfile', component: DProfileComponent },
     ],
   },
 ];

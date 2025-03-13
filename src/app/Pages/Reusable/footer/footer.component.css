@@ -1,0 +1,21 @@
+.footer {
+  background-color: #222;
+  color: white;
+  padding: 40px;
+  text-align: center;
+  height: 50vh;
+}
+
+.footer a {
+  color: #bb45b5;
+  text-decoration: none;
+}
+
+.footer .social-links {
+  margin: 20px 0;
+}
+
+.footer .social-links a {
+  margin: 0 10px;
+  font-size: 20px;
+}

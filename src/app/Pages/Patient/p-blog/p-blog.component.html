@@ -1,0 +1,31 @@
+<div class="container blog-page">
+  <!-- Header -->
+  <div class="header">
+    <h2>Health & Wellness Blog</h2>
+    <p>Stay informed with the latest health tips and medical insights.</p>
+  </div>
+
+  <!-- Featured Blog Post -->
+  <div class="featured-blog">
+    <img src="https://source.unsplash.com/800x400/?hospital,doctor" alt="Featured Blog Image" class="img-fluid">
+    <div class="featured-content">
+      <h3>{{ featuredBlog.title }}</h3>
+      <p>{{ featuredBlog.description }}</p>
+      <a href="#" class="btn btn-primary">Read More</a>
+    </div>
+  </div>
+
+  <!-- Recent Blog Posts -->
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let blog of blogs">
+      <div class="card blog-card">
+        <img [src]="blog.image" class="card-img-top" alt="Blog Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ blog.title }}</h5>
+          <p class="card-text">{{ blog.description }}</p>
+          <a href="#" class="btn btn-outline-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

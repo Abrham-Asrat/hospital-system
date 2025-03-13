@@ -1,1 +1,62 @@
-<p>d-home works!</p>
+<div class="container doctor-home mb-5">
+  <!-- Welcome Section -->
+  <div class="welcome-box">
+    <h2>Welcome, Dr. Workaba</h2>
+    <p>Manage your patients, appointments, and profile settings.</p>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="row stats-box">
+    <div class="col-md-3">
+      <div class="card stat-card">
+        <h4>Patients</h4>
+        <p class="text-warning">120</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card stat-card">
+        <h4>Appointments</h4>
+        <p class="text-warning">8 Today</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card stat-card">
+        <h4>Reviews</h4>
+        <p class="text-success">4.8 ★</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card stat-card">
+        <h4>Messages</h4>
+        <p class="text-danger">5 Unread</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="action-card">
+        <h5>Manage Appointments</h5>
+        <p>View and manage patient bookings.</p>
+        <button class="btn btn-primary"  (click)="Navigator('DAppointment')">Go to Appointments</button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="action-card">
+        <h5>View Patients</h5>
+        <p>See your patient list and medical history.</p>
+        <button class="btn btn-primary">Go to Patients</button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="action-card">
+        <h5>Profile Settings</h5>
+        <p>Update your details and availability.</p>
+        <button class="btn btn-primary" (click)="Navigator('DProfile')">
+          Go to Profile
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

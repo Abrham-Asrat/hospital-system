@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './d-appointment.component.css'
 })
 export class DAppointmentComponent {
-
+   appointmentAccepted(){alert("Appointment accepted")}
+   appointmentRejected(){alert("Appointment Rejected")}
 }

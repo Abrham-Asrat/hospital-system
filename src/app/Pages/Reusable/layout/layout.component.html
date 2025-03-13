@@ -1,5 +1,6 @@
 <nav
-  class="navbar navbar-expand-lg navbar-light bg-light sticky-top navMargin ps-5 pe-5 shadow-sm"
+  class="navbar navbar-expand-lg navMargin ps-5 pe-5"
+  [ngClass]="{ 'fixed-top shadow-sm bg-light': isScrolled }"
 >
   <div class="navbar-brand">
     <img
@@ -27,9 +28,10 @@
         <a
           [routerLink]="item"
           class="nav-item nav-link"
+          [ngStyle]="{ color: isScrolled ? '#010323' : '#fff' }"
           (click)="setActive(item)"
           [ngClass]="{ 'text-warning': activeTab === item }"
-          >{{ item | uppercase }}
+          >{{ item.slice(1) | uppercase }}
         </a>
         }
       </div>
@@ -37,24 +39,31 @@
         class="navbar-nav col-3 d-flex justify-content-end align-items-center profile"
       >
         @if(showProfile){
-        <a routerLink="dNotification">
+        <a [routerLink]="Notification">
           <button
             type="button"
             class="nav-item nav-link"
             (click)="setActive('notification')"
+            >
+            <i
             [ngClass]="{ 'text-warning': activeTab === 'notification' }"
-          >
-            <i class="fa-solid fa-bell"></i>
+            class="fa-solid fa-bell"
+            [ngStyle]="{ color: isScrolled ? '#010323' : '#f2f2f2' }"
+            ></i>
           </button>
         </a>
-        <a routerLink="dChat" class="pe-3">
+        <a [routerLink]="message" class="pe-3">
           <button
-            type="button"
-            class="nav-item nav-link"
-            (click)="setActive('chat')"
+          type="button"
+          class="nav-item nav-link"
+          (click)="setActive('chat')"
+          
+            >
+            <i
+            class="bi bi-chat-dots-fill"
             [ngClass]="{ 'text-warning': activeTab === 'chat' }"
-          >
-            <i class="bi bi-chat-dots-fill"></i>
+              [ngStyle]="{ color: isScrolled ? '#010323' : '#f2f2f2' }"
+            ></i>
           </button>
         </a>
         <div class="dropdown">
@@ -71,8 +80,8 @@
             />
           </a>
           <div class="dropdown-menu">
-            <a routerLink="dProfile" class="dropdown-item"
-              ><i class="fa-solid fa-user pe-1"></i> Profile</a
+            <a [routerLink]="profile" class="dropdown-item"
+              ><i class="fa-solid fa-user pe-1"  [ngClass]="{ 'text-warning': activeTab === 'profile' }"></i> Profile</a
             >
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item"
@@ -81,8 +90,8 @@
           </div>
         </div>
         } @else{
-        <a href="#" class="pe-5" data-bs-toggle="dropdown"> log in </a>
-        <a href="#" c data-bs-toggle="dropdown"> sign up </a>
+        <a class="pe-5" routerLink="logIn"> SignUp | logIn </a>
+
         }
       </div>
     </div>

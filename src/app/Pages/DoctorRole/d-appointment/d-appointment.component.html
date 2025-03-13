@@ -1,1 +1,81 @@
-<p>d-appointment works!</p>
+<div class="container appointment-page mb-5">
+  <!-- Header -->
+  <div class="header">
+    <h2>Appointments</h2>
+    <p>Manage your upcoming and past patient appointments.</p>
+  </div>
+
+  <!-- Tabs for Appointments -->
+  <ul class="nav nav-tabs" id="appointmentTabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#upcoming"
+        >Upcoming</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#past">Past</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <!-- Upcoming Appointments -->
+    <div class="tab-pane fade show active" id="upcoming">
+      <div class="appointment-card">
+        <div class="row">
+          <div class="col-md-8">
+            <h5>John Doe</h5>
+            <p>
+              <strong>Time:</strong> 10:30 AM | <strong>Date:</strong> March 10,
+              2024
+            </p>
+            <p><strong>Reason:</strong> General Checkup</p>
+          </div>
+          <div class="col-md-4 text-end">
+            <button class="btn btn-success" (click)="appointmentAccepted()">
+              Confirm
+            </button>
+            <button class="btn btn-danger" (click)="appointmentRejected()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="appointment-card">
+        <div class="row">
+          <div class="col-md-8">
+            <h5>Jane Smith</h5>
+            <p>
+              <strong>Time:</strong> 2:00 PM | <strong>Date:</strong> March 12,
+              2024
+            </p>
+            <p><strong>Reason:</strong> Follow-up Consultation</p>
+          </div>
+          <div class="col-md-4 text-end">
+            <button class="btn btn-success">Confirm</button>
+            <button class="btn btn-danger">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Past Appointments -->
+    <div class="tab-pane fade" id="past">
+      <div class="appointment-card past">
+        <h5>Mark Wilson</h5>
+        <p>
+          <strong>Date:</strong> Feb 20, 2024 |
+          <strong>Status:</strong> Completed
+        </p>
+      </div>
+
+      <div class="appointment-card past">
+        <h5>Susan Brown</h5>
+        <p>
+          <strong>Date:</strong> Feb 18, 2024 |
+          <strong>Status:</strong> Completed
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

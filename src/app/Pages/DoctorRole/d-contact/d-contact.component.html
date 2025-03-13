@@ -1,1 +1,43 @@
-<p>d-contact works!</p>
+<div class="container contact-page mb-5">
+  <!-- Header -->
+  <div class="header">
+    <h2>Contact Dr. Workaba</h2>
+    <p>Feel free to reach out for appointments or medical inquiries.</p>
+  </div>
+
+  <div class="row">
+    <!-- Contact Information -->
+    <div class="col-md-6 contact-info">
+      <h4>Contact Details</h4>
+      <p><strong>Phone:</strong> +251 912345678</p>
+      <p><strong>Email:</strong> dr.workabaexample.com</p>
+      <p><strong>Location:</strong> Addis Ababa, Ethiopia</p>
+      
+      <!-- Google Maps Embed (Optional) -->
+      <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q=addis%20ababa&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                width="100%" height="250" style="border:0;" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="col-md-6 contact-form">
+      <h4 class="text-center">Send a Message</h4>
+      <form (submit)="sendMessage()">
+        <div class="mb-3">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="contactForm.name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="contactForm.email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label>Message</label>
+          <textarea [(ngModel)]="contactForm.message" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </div>
+</div>

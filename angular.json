@@ -25,23 +25,16 @@
               }
             ],
             "styles": [
-<<<<<<< HEAD
               "./node_modules/bootstrap-icons/font/bootstrap-icons.css",
-              
+
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              
+
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
-=======
-              "./node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
-              "src/styles.css"
-            ],
-            "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
->>>>>>> bc7f0bdf18ff42bf9568d8b8fe8dc3f74c7d21d1
           },
           "configurations": {
             "production": {
