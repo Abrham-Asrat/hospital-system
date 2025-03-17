@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-blog',
+  selector: 'app-login',
   imports: [],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css',

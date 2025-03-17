@@ -1,5 +1,6 @@
 .notification-page {
   margin-top: 20px;
+  height: 80vh;
 }
 
 .header {
@@ -12,12 +13,15 @@
 }
 
 .notification-list {
-  max-width: 600px;
+  max-width: 800px;
   margin: auto;
+  height: 60vh;
+  overflow-y: scroll;
 }
 
 .notification-card {
   display: flex;
+  max-width: 700px;
   justify-content: space-between;
   align-items: center;
   background: #f8f9fa;

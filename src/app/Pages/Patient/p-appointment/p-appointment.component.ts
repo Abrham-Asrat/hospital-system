@@ -16,6 +16,7 @@ export class PAppointmentComponent {
       date: '2024-03-20',
       time: '10:30 AM',
       status: 'Confirmed',
+      reason: 'Ya man',
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ export class PAppointmentComponent {
       date: '2024-03-22',
       time: '2:00 PM',
       status: 'Pending',
+      reason: '',
     },
   ];
 
@@ -33,11 +35,12 @@ export class PAppointmentComponent {
       date: '2024-02-10',
       time: '1:00 PM',
       status: 'Completed',
+      reason: '',
     },
   ];
 
   doctors = ['Workaba', 'Abebe', 'Kebede', 'Meaza'];
-  newAppointment = { doctor: '', date: '', time: '' };
+  newAppointment = { doctor: '', date: '', time: '', reason: '' };
 
   getStatusClass(status: string) {
     return {
@@ -57,7 +60,8 @@ export class PAppointmentComponent {
     if (
       this.newAppointment.doctor &&
       this.newAppointment.date &&
-      this.newAppointment.time
+      this.newAppointment.time &&
+      this.newAppointment.reason
     ) {
       this.upcomingAppointments.push({
         id: this.upcomingAppointments.length + 1,
@@ -65,10 +69,11 @@ export class PAppointmentComponent {
         date: this.newAppointment.date,
         time: this.newAppointment.time,
         status: 'Pending',
+        reason: this.newAppointment.reason,
       });
 
       alert('Appointment booked successfully!');
-      this.newAppointment = { doctor: '', date: '', time: '' };
+      this.newAppointment = { doctor: '', date: '', time: '',reason:'' };
     }
   }
 }

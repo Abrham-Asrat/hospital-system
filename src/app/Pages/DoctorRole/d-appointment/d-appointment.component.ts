@@ -4,9 +4,13 @@ import { Component } from '@angular/core';
   selector: 'app-d-appointment',
   imports: [],
   templateUrl: './d-appointment.component.html',
-  styleUrl: './d-appointment.component.css'
+  styleUrl: './d-appointment.component.css',
 })
 export class DAppointmentComponent {
-   appointmentAccepted(){alert("Appointment accepted")}
-   appointmentRejected(){alert("Appointment Rejected")}
+  appointmentAccepted() {
+    alert('Appointment accepted');
+  }
+  appointmentRejected() {
+    alert('Appointment Rejected');
+  }
 }

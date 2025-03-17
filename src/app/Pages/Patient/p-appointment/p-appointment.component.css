@@ -52,3 +52,10 @@
 .btn-primary:hover {
   background-color: #5a32a3;
 }
+
+.booking{
+
+height: 20rem;
+padding: 3rem 0;
+margin-top: 4rem;
+}

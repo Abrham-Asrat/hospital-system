@@ -1,5 +1,6 @@
 .appointment-page {
   margin-top: 20px;
+  min-height: 60vh;
 }
 
 .header {
