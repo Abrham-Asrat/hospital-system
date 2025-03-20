@@ -14,6 +14,7 @@ import { LFAQComponent } from './Pages/Landing/l-faq/l-faq.component';
 import { LAboutComponent } from './Pages/Landing/l-about/l-about.component';
 import { LBlogComponent } from './Pages/Landing/l-blog/l-blog.component';
 
+
 import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
 import { LoginComponent } from './Pages/Landing/log-in/log-in.component';
 import { PHomeComponent } from './Pages/Patient/p-home/p-home.component';
@@ -28,7 +29,7 @@ import { PProfileComponent } from './Pages/Patient/p-profile/p-profile.component
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'PHome',
+    redirectTo: 'LHome',
     pathMatch: 'full',
   },
   {

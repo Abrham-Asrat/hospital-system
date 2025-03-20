@@ -24,7 +24,7 @@ body {
   height: 100%;
 }
 label {
-  color: #fff;
+  color: #c12de6;
   font-size: 2.3em;
   justify-content: center;
   display: flex;
@@ -78,11 +78,11 @@ button:hover {
 }
 
 #chk:checked ~ .login {
-  transform: translateY(-500px);
+  transform: translateY(-600px);
 }
 #chk:checked ~ .login label {
   transform: scale(1);
 }
 #chk:checked ~ .signup label {
-  transform: scale(0.6);
+  transform: scale(0.3);
 }

@@ -1,40 +1,60 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-login',
-  imports: [],
   templateUrl: './log-in.component.html',
-  styleUrl: './log-in.component.css',
+  styleUrls: ['./log-in.component.css'],
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  isSubmitted = false;
-  hasAccount: boolean = true;
+  signUpForm: FormGroup;
+  isSignupFormVisible: boolean = false; // Controls visibility of Signup form
 
   constructor(private fb: FormBuilder) {
+    // Initialize login form
     this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+
+    // Initialize signup form
+    this.signUpForm = this.fb.group({
+      username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  get formControls() {
+  // Getters for the form controls
+  get loginFormControls() {
     return this.loginForm.controls;
   }
 
+  get signUpFormControls() {
+    return this.signUpForm.controls;
+  }
+
+  // On Login submit
   onLogin() {
-    this.isSubmitted = true;
     if (this.loginForm.valid) {
-      console.log('Login Successful', this.loginForm.value);
-      // You can redirect the user or call an API here
+      console.log('Login Successful:', this.loginForm.value);
     } else {
-      console.log('Invalid form');
+      console.log('Invalid Login Form');
     }
   }
 
-  signUpUser() {
-    this.hasAccount = true;
+  // On SignUp submit
+  onSignUp() {
+    if (this.signUpForm.valid) {
+      console.log('Sign Up Successful:', this.signUpForm.value);
+    } else {
+      console.log('Invalid Sign Up Form');
+    }
+  }
+
+  // Toggle between Login and SignUp form
+  toggleForm() {
+    this.isSignupFormVisible = !this.isSignupFormVisible;
   }
 }
