@@ -172,25 +172,9 @@ export class BlogComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Check if content overflows after view initializes
     this.blogContentElements.forEach((el, index) => {
       const contentElement = el.nativeElement;
-      this.blogs[index].showMoreButton =
-        contentElement.scrollHeight > contentElement.clientHeight;
+      this.blogs[index].showMoreButton = contentElement.scrollHeight > contentElement.clientHeight;
     });
-    // Fallback to Masonry JS for better control
-
-  // if ('grid-template-rows' in document.body.style) {
-  //   // Use CSS grid if supported
-  //   document.querySelector('.blog-list').classList.add('grid-layout');
-  // } else {
-  //   // Use masonry for older browsers
-  //   new Masonry('.blog-list', {
-  //     itemSelector: '.blog-card',
-  //     columnWidth: 300,
-  //     gutter: 20
-  //   });
-  // }
-
   }
 }

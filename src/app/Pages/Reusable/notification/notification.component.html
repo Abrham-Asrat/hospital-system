@@ -1,1 +1,24 @@
-<p>notification works!</p>
+<div class="container notification-page mb-5">
+
+  <!-- Notifications List -->
+  <div class="notification-list">
+    <div
+      *ngFor="let notification of notifications"
+      class="notification-card row"
+      [ngClass]="{ unread: !notification.read }"
+    >
+      <div class="notification-content col-9">
+        <h5>{{ notification.title }}</h5>
+        <p>{{ notification.message }}</p>
+        <small>{{ notification.time }}</small>
+      </div>
+      <button class="btn btn-sm btn-success col-2" (click)="markAsRead(notification)">
+        Mark as Read
+      </button>
+      <button class="btn btn-sm col-1" (click)="remove(notification.id)">
+        <i class="bi bi-trash3 text-danger"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
