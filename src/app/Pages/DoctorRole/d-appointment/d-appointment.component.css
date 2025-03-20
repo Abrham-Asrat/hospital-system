@@ -3,23 +3,16 @@
   min-height: 60vh;
 }
 
-.header {
-  background: #45385e;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  margin-bottom: 20px;
-}
+
 
 .nav-tabs .nav-link {
-  color: #6f42c1;
+
   font-weight: bold;
+  color: white;
 }
 
 .nav-tabs .nav-link.active {
   background: #6f42c1;
-  color: white;
 }
 
 .appointment-card {

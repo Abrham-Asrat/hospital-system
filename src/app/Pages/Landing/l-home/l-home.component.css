@@ -1,8 +1,5 @@
-.main {
-  /* background: linear-gradient(rgba(0, 0, 0, 0.293), rgba(219, 219, 219, 0.427)),
-    url("../../../../Images/doc3.jpg") center/cover no-repeat fixed;
-  height: 100vh; */
-}
+
+
 /* Main Body */
 .content {
   text-align: center;
@@ -76,9 +73,8 @@ h1 {
 .specialty-item {
   background-color: #5d3fd3;
   color: #fff;
-  /* padding: 15px 30px;
   border-radius: 8px;
-  text-align: center; */
+  text-align: center; 
   cursor: pointer;
   transition: background 0.3s;
 }
@@ -139,9 +135,6 @@ h1 {
   margin-top: 20px;
 }
 
-
-
-
 /* Responsive Design */
 
 #cardContainer {
@@ -174,7 +167,6 @@ h1 {
 }
 .left,
 .right {
-
   background-color: rgb(28, 2, 2);
 }
 
@@ -190,15 +182,15 @@ h1 {
   font-size: 1.7rem;
   font-family: inherit;
   font-weight: 500;
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   border: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
   cursor: pointer;
   transition: all 0.3s;
-  margin-left:15%;
+  margin-left: 15%;
 }
 
-.slide{
- background-color: #f4f4f4;
+.slide {
+  background-color: #f4f4f4;
 }
