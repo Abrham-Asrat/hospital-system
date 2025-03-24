@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LFAQComponent } from './l-faq.component';
+import { FaqComponent } from './l-faq.component';
 
 describe('LFAQComponent', () => {
-  let component: LFAQComponent;
-  let fixture: ComponentFixture<LFAQComponent>;
+  let component: FaqComponent;
+  let fixture: ComponentFixture<FaqComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LFAQComponent]
+      imports: [FaqComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LFAQComponent);
+    fixture = TestBed.createComponent(FaqComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

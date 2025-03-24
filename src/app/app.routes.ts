@@ -10,9 +10,14 @@ import { DLayoutComponent } from './Pages/DoctorRole/d-layout/d-layout.component
 import { LLayoutComponent } from './Pages/Landing/l-layout/l-layout.component';
 import { LHomeComponent } from './Pages/Landing/l-home/l-home.component';
 import { LContactComponent } from './Pages/Landing/l-contact/l-contact.component';
-import { LFAQComponent } from './Pages/Landing/l-faq/l-faq.component';
+import { FaqComponent } from './Pages/Landing/l-faq/l-faq.component';
 import { LAboutComponent } from './Pages/Landing/l-about/l-about.component';
 import { LBlogComponent } from './Pages/Landing/l-blog/l-blog.component';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { AppComponent } from './app.component';
+
 
 
 import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
@@ -54,7 +59,7 @@ export const routes: Routes = [
       },
       {
         path: 'LFAQ',
-        component: LFAQComponent,
+        component: FaqComponent,
       },
       {
         path: 'logIn',

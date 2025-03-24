@@ -1,6 +1,6 @@
 /* FAQ Container */
 .faq-container {
-  max-width: 750px;
+  max-width: 900px;
   margin: 50px auto;
   background: #fff;
   padding: 35px;
@@ -18,7 +18,7 @@
 h2 {
   text-align: center;
   color: #4b0082; /* Deep Purple */
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: bold;
   margin-bottom: 25px;
   position: relative;
@@ -29,6 +29,7 @@ h2::after {
   display: block;
   width: 80px;
   height: 3px;
+  font-size: medium;
   background: #800080;
   margin: 10px auto 0;
   border-radius: 5px;
@@ -53,7 +54,7 @@ h2::after {
 
 /* Question */
 .faq-question {
-  font-size: 1.3em;
+  font-size: 1.4em;
   font-weight: 600;
   color: #800080; /* Purple */
   display: flex;
@@ -72,4 +73,13 @@ h2::after {
   font-weight: bold;
   color: #800080;
   transition: transform 
+}
+.faq-answer {
+  font-size: 1em;
+  font-weight: 400;
+  color: #0c050c; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s;
 }
