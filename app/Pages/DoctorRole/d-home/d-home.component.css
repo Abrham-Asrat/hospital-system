@@ -1,0 +1,44 @@
+.doctor-home {
+  margin-top: 20px;
+}
+
+.welcome-box {
+  background: #6f42c1;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stats-box .stat-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.action-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.action-card:hover {
+  background: #6f42c1;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #6f42c1;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #5a32a3;
+}

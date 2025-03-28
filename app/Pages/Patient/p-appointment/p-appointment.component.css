@@ -1,0 +1,61 @@
+.appointment-page {
+  margin-top: 20px;
+}
+
+.header {
+  background: #6f42c1;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link {
+
+  color: white;
+  font-weight: bold;
+}
+
+.nav-tabs .nav-link.active {
+  background: #6f42c1;
+}
+
+.appointment-card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-card.past {
+  background: #e9ecef;
+}
+
+.btn-danger {
+  background: #dc3545;
+}
+
+.book-appointment {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #6f42c1;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #5a32a3;
+}
+
+.booking{
+
+height: 20rem;
+padding: 3rem 0;
+margin-top: 4rem;
+}

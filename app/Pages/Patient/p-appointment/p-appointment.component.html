@@ -1,0 +1,130 @@
+<div class="container appointment-page mb-5">
+  <!-- Header -->
+ 
+  
+  <div class="row">
+   <div class="book-appointment col-5  booking">
+    <h3 class="text-center">Book a New Appointment</h3>
+    <form (submit)="bookAppointment()">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-md-6">
+          <label>Doctor</label>
+          <select
+            [(ngModel)]="newAppointment.doctor"
+            class="form-control"
+            required
+          >
+            <option *ngFor="let doctor of doctors" [value]="doctor">
+              {{ doctor }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label>Date</label>
+          <input
+            type="date"
+            [(ngModel)]="newAppointment.date"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-6">
+          <label>Reason</label>
+          <input
+            type="text"
+            [(ngModel)]="newAppointment.reason"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-6">
+          <label>Time</label>
+          <input
+            type="time"
+            [(ngModel)]="newAppointment.time"
+            class="form-control"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 col-5">
+          Book Appointment
+        </button>
+      </div>
+    
+    </div>
+    </form>
+  </div>
+  <div class="col-7">
+    <!-- Tabs for Upcoming & Past Appointments -->
+    <ul class="nav nav-tabs" id="appointmentTabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#upcoming"
+          >Upcoming</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#past">Past</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <!-- Upcoming Appointments -->
+      <div class="tab-pane fade show active" id="upcoming">
+        <div
+          *ngFor="let appointment of upcomingAppointments"
+          class="appointment-card"
+        >
+          <div class="row">
+            <div class="col-md-8">
+              <h5>Dr. {{ appointment.doctor }}</h5>
+              <p>
+                <strong>Date:</strong> {{ appointment.date }} |
+                <strong>Time:</strong> {{ appointment.time }}
+    
+              </p>
+              <p>
+                <strong>Reason: </strong>
+                <span [ngClass]="getStatusClass(appointment.reason)">{{
+                  appointment.reason
+                }}</span>
+              </p>
+              <p>
+                <strong>Status: </strong>
+                <span [ngClass]="getStatusClass(appointment.status)">{{
+                  appointment.status
+                }}</span>
+              </p>
+            </div>
+            <div class="col-md-4 text-end">
+              <button
+                *ngIf="appointment.status === 'Pending'"
+                class="btn btn-danger"
+                (click)="cancelAppointment(appointment.id)"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Past Appointments -->
+      <div class="tab-pane fade" id="past">
+        <div
+          *ngFor="let appointment of pastAppointments"
+          class="appointment-card past"
+        >
+          <h5>Dr. {{ appointment.doctor }}</h5>
+          <p>
+            <strong>Date:</strong> {{ appointment.date }} |
+            <strong>Status:</strong> Completed
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Book New Appointment -->
+ 
+  </div>
+
+</div>

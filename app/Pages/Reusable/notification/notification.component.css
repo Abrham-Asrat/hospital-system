@@ -1,0 +1,30 @@
+.notification-page {
+  margin-top: 20px;
+  min-height: 60vh;
+}
+
+.notification-card {
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.notification-card.unread {
+  background: #c1bca79a;
+}
+
+.notification-content h5 {
+  margin-bottom: 5px;
+}
+
+.btn-success {
+  padding: 5px 10px;
+  max-width: 8rem;
+}
