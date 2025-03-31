@@ -1,0 +1,37 @@
+.doctor-signup {
+    background-color: rgb(212, 200, 200);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .doctor-signup h2 {
+    margin-bottom: 20px;
+    color: #b03dc7;
+  }
+  
+  .doctor-signup form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .doctor-signup button {
+    background-color: #580963;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .doctor-signup button:hover {
+    background-color: #0056b3;
+  }
+  

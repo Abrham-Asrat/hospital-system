@@ -15,11 +15,9 @@ import { LAboutComponent } from './Pages/Landing/l-about/l-about.component';
 import { LBlogComponent } from './Pages/Landing/l-blog/l-blog.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common'; // Import CommonModule
-import { AppComponent } from './app.component';
-
-
-
+import { CommonModule } from '@angular/common'; // Import CommonModul
+import { ReactiveFormsModule } from '@angular/forms';
+import { DoctorSignupComponent } from './Pages/DoctorRole/d-signup/d-signup.component';
 import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
 import { LoginComponent } from './Pages/Landing/log-in/log-in.component';
 import { PHomeComponent } from './Pages/Patient/p-home/p-home.component';
@@ -65,6 +63,10 @@ export const routes: Routes = [
         path: 'logIn',
         component: LoginComponent,
       },
+      {
+        path:'SignUp',
+        component: DoctorSignupComponent
+      }
     ],
   },
 
@@ -79,7 +81,7 @@ export const routes: Routes = [
       { path: 'PContact', component: PContactUsComponent },
       { path: 'PNotification', component: PNotificationComponent},
       { path: 'PProfile', component: PProfileComponent},
-     
+    
     ],
   },
 
@@ -94,6 +96,7 @@ export const routes: Routes = [
       { path: 'DContact', component: DContactComponent },
       { path: 'DNotification', component: DNotificationComponent },
       { path: 'DProfile', component: DProfileComponent },
+      { path: 'DSignup', component: DoctorSignupComponent }, 
     ],
   },
 ];

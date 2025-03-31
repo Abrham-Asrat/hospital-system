@@ -65,6 +65,23 @@ button {
 button:hover {
   background: #9d44b8;
 }
+.doctor-links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
+  text-align: right ;
+}
+
+.doctor-link {
+  color: blue;
+  text-decoration: none;
+  margin-top: 0px;
+}
+
+.doctor-link:hover {
+  text-decoration: underline;
+}
+
 .login {
   height: 460px;
   background: #eee;

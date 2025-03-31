@@ -10,12 +10,15 @@
         <input type="email" name="email" placeholder="Email" required="" />
         <input type="password" name="password" placeholder="Password" required="" />
         <button>Sign Up</button>
-        <label for="chk">
-         
-        </label>
+
+        <!-- Link for Doctors -->
+        <div class="doctor-links">
+          <a class="pe-5" routerLink="../SignUp">Sign Up as Doctor</a>
+        </div>
       </form>
     </div>
 
+    <!-- Login Section -->
     <!-- Login Section -->
     <div class="login">
       <form>
@@ -23,11 +26,11 @@
         <input type="email" name="email" placeholder="Email" required="" />
         <input type="password" name="password" placeholder="Password" required="" />
         <button>Login</button>
-        <label for="chk">
-          
-          <button type="button" class="toggle-btn"> Sign Up</button>
-        </label>
-      </form>
-    </div>
-  </div>
-</div>
+        
+        
+              <label for="chk" aria-hidden="true">Sign Up</label>
+      
+
+   
+              <router-outlet></router-outlet>
+
