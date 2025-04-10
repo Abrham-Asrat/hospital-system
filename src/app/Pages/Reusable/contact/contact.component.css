@@ -86,7 +86,7 @@ h2 {
 }
 
 .contact-circle-sm{
-  background: #951095;;
+  background: #d836d8;;
   height: 70px;
   width: 70px;
   border-radius: 50%;
@@ -185,7 +185,7 @@ button[type="submit"] {
 }
 
 .socials i:hover {
-  color: #0077ff; /* Change color on hover */
+  color: #b5b9be; /* Change color on hover */
   transform: scale(1.2); /* Slight zoom effect */
 }
 
