@@ -1,0 +1,14 @@
+.container {
+    max-width: 1000px;
+  }
+  
+  table {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .badge {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+  

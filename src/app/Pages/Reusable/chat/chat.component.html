@@ -1,0 +1,69 @@
+<div class="container chat-page mb-4">
+  <!-- Header -->
+  
+  <!-- Chat Box -->
+  <div class="chat-box">
+    <div
+      *ngFor="let message of messages"
+      class="chat-message"
+      [ngClass]="{
+        sent: message.sender === 'doctor',
+        received: message.sender === 'patient'
+      }"
+      [ngStyle]="{
+        padding: message.fileUrl ? '0' : '10px'
+      }"
+    >
+      <!-- Text Message -->
+      <p *ngIf="message.type === 'text'" class="pb-0">{{ message.text }}</p>
+
+      <!-- Image Message -->
+      <img
+        *ngIf="message.type === 'image'"
+        [src]="message.fileUrl"
+        class="chat-image"
+      />
+
+      <!-- Audio Message -->
+      <audio *ngIf="message.type === 'audio'" controls class="p-2">
+        <source [src]="message.fileUrl" type="audio/mpeg" />
+      </audio>
+
+      <p class="text-end m-0 pe-2">{{ message.time }}</p>
+    </div>
+  </div>
+
+  <!-- Chat Input -->
+  <form class="chat-input" (submit)="sendMessage()">
+    <!-- File Upload -->
+    <label for="fileInput" class="file-upload-label">
+      <i class="bi bi-paperclip"></i>
+    </label>
+    <input
+      type="file"
+      id="fileInput"
+      accept="image/*"
+      (change)="sendImage($event)"
+      class="file-input"
+    />
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      placeholder="Type a message..."
+      class="form-control"
+    />
+    <button class="btn btn-primary"><i class="bi bi-send-fill"></i></button>
+
+    <!-- Voice Message -->
+    <button class="btn btn-secondary" (click)="startRecording()">
+      <i class="bi bi-mic"></i>
+    </button>
+    <button
+      class="btn btn-danger"
+      *ngIf="isRecording"
+      (click)="stopRecording()"
+    >
+      Stop
+    </button>
+  </form>
+</div>

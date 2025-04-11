@@ -1,0 +1,196 @@
+
+
+/* Main Body */
+.content {
+  text-align: center;
+  padding: 50px;
+}
+
+.content h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  position: relative;
+  color: rgb(149, 16, 149);
+  text-shadow: 2px 3px 5px rgba(255, 255, 255, 0.875);
+}
+
+.content input,
+.content span {
+  border-radius: 5px;
+  border: none;
+}
+
+.content input {
+  padding: 0.8rem;
+
+  width: 60%;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  border: 0.1px solid #eed8d8;
+}
+
+.search-doctors::after {
+  content: "Search";
+  background-color: #5d3fd3;
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+
+  cursor: pointer;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 45px;
+  color: rgb(149, 16, 149);
+  margin-top: 1rem;
+}
+
+.search-doctors:hover::after {
+  background-color: #9370db;
+}
+
+.content span {
+  position: absolute;
+  left: 70%;
+}
+
+.content span {
+  background: #fc9637;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Specialty List Section */
+.specialty-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.specialty-item {
+  background-color: #5d3fd3;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center; 
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.specialty-item:hover {
+  background-color: #9370db;
+}
+/* Signup Section */
+.signup-section {
+  margin-top: 10px;
+  padding: 20px;
+  /* text-align: center; */
+  display: grid;
+  justify-content: center;
+}
+
+.signup-section h2 {
+  color: rgb(235, 26, 26);
+  font-size: 36px;
+}
+
+.signup-section .btn-signup {
+  margin: auto;
+}
+
+/* Top Doctors Section */
+.top-doctors {
+  /* margin-top: 50px; */
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.top-doctors h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.doctor-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.doctor-card {
+  background-color: #9370db;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+}
+
+.doctor-card img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.doctor-card h3 {
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+
+#cardContainer {
+  display: flex;
+  /* overflow: hidden; */
+  transition: transform 0.5s ease-in-out;
+  white-space: nowrap;
+}
+
+.doctor-card {
+  flex: 0 0 auto;
+  width: 220px; /* ✅ Ensure fixed width */
+  margin: 5px;
+}
+
+/* ✅ Make Navigation Buttons More Visible */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+.bi-chevron-left,
+.bi-chevron-right {
+  width: 4rem;
+  height: 4rem;
+  color: white;
+  background-color: rgb(149, 16, 149);
+  font-size: 2.5rem;
+  border-radius: 60%;
+}
+.left,
+.right {
+  background-color: rgb(28, 2, 2);
+}
+
+/* ✅ Dim the button when disabled */
+.carousel-control-prev:disabled,
+.carousel-control-next:disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.btn--text {
+  display: inline-block;
+  background: none;
+  font-size: 1.7rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-left: 15%;
+}
+
+.slide {
+  background-color: #f4f4f4;
+}

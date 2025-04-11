@@ -1,0 +1,82 @@
+<div class="doctor-blog-page">
+  <!-- Blog Post Form -->
+  <!-- <div class="blog-form container">
+    <h3>Write a New Blog</h3>
+    <input type="text" class="form-control" placeholder="Blog Title" [(ngModel)]="newBlog.title" required>
+    <textarea class="form-control mt-2" placeholder="Write your blog..." [(ngModel)]="newBlog.content" required></textarea>
+    
+    <select class="form-control mt-2" [(ngModel)]="newBlog.category">
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+
+    <button class="btn btn-primary mt-3" (click)="postBlog()">Post Blog</button>
+  </div> -->
+
+  <!-- Blog List -->
+  <div class="blog-list mb-5">
+    <div *ngFor="let blog of filteredBlogs; let i = index" class="blog-card">
+      <!-- Blog Header -->
+      <div class="blog-header">
+        <p>
+          <strong>{{ blog.author }}</strong> ({{ blog.specialty }}) |
+          {{ blog.date }}
+        </p>
+        <img
+          *ngIf="blog.Image"
+          [src]="blog.Image"
+          alt="Blog Image"
+          class="blog-img"
+        />
+        <h4>{{ blog.title }}</h4>
+      </div>
+      <div
+        #blogContent
+        class="blog-content"
+        [ngClass]="{ expanded: blog.expanded }"
+      >
+        <p>{{ blog.content }}</p>
+      </div>
+
+      <button
+        *ngIf="blog.showMoreButton"
+        class="show-more-btn"
+        (click)="toggleExpand(blog)"
+      >
+        {{ blog.expanded ? "Show Less" : "Show More" }}
+      </button>
+
+      <!-- Blog Footer -->
+      <div class="blog-footer">
+        <button class="btn btn-outline-danger" (click)="likeBlog(blog)">
+          <i class="fa-solid fa-thumbs-up"></i> {{ blog.likes }}
+        </button>
+        <button
+          class="btn btn-outline-secondary"
+          (click)="toggleComments(blog)"
+        >
+          💬 Comments {{ blog.comments.length }}
+        </button>
+      </div>
+
+      <!-- Comments Section -->
+      <div *ngIf="blog.showComments" class="comments-section">
+        <div *ngFor="let comment of blog.comments" class="comment">
+          <strong>{{ comment.author }}</strong
+          >:
+          {{ comment.text }}
+        </div>
+        <input
+          type="text"
+          [(ngModel)]="blog.newComment"
+          placeholder="Write a comment..."
+          class="form-control mt-2"
+        />
+        <button class="btn btn-sm btn-success mt-2" (click)="postComment(blog)">
+          Post Comment
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
