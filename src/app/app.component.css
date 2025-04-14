@@ -1,8 +1,232 @@
-body {
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+   margin: 0;
+  padding: 0;
+  font-family: 'Jost', sans-serif;
+  /* background-image: url(); */
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the background image */
+  background-attachment: fixed; /* Keeps the background image fixed when scrolling */
+  height: 100vh; /* Make sure the body takes full height */
+  color: white;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* Header Section */
+.navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
+  background: #222;
+  padding: 15px 50px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #ff5233;
+}
+
+.menu ul {
+  display: flex;
+  list-style: none;
+}
+
+.menu ul li {
+  margin: 0 15px;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.menu ul li a:hover {
+  color: #a35da5;
+}
+
+/* Main Body */
+.content {
+  text-align: center;
+  padding: 50px;
+  background-color: #fff;
+}
+
+.content h1 {
+  font-size: 45px;
+  margin-bottom: 20px;
+}
+
+.content .search-doctors {
+  margin-top: 30px;
+}
+
+.content input,
+.content button {
+  padding: 12px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.content input {
+  width: 60%;
+}
+
+.content button {
+  background: #fc9637;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.content button:hover {
+  background: #f8ac3b;
+}
+
+/* Specialty List Section */
+.specialty-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.specialty-item {
+  background-color: #f1f1f1;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.specialty-item:hover {
+  background-color: #ffa733;
+  color: white;
+}
+
+/* Signup Section */
+.signup-section {
+  margin-top: 10px;
+  background-color: #ffa733;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.signup-section h2 {
+  font-size: 36px;
+}
+
+.signup-section .btn-signup {
+  background: #fff;
+  color: #ee33ff;
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.signup-section .btn-signup:hover {
+  background: #e04e2c;
+  color: white;
+}
+
+/* Top Doctors Section */
+.top-doctors {
+  margin-top: 50px;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.top-doctors h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.doctor-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.doctor-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+}
+
+.doctor-card img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.doctor-card h3 {
+  margin-top: 20px;
+}
+
+/* Footer Section */
+.footer {
+  background-color: #222;
+  color: white;
+  padding: 40px;
+  text-align: center;
+}
+
+.footer a {
+  color: #bb45b5;
+  text-decoration: none;
+}
+
+.footer .social-links {
+  margin: 20px 0;
+}
+
+.footer .social-links a {
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .content input,
+  .content button {
+    width: 80%;
+  }
+
+  .specialty-list {
+    flex-direction: column;
+  }
+
+  .specialty-item {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .top-doctors .doctor-list {
+    flex-direction: column;
+  }
+
+  .doctor-card {
+    margin-bottom: 20px;
+    width: 80%;
+  }
 }
