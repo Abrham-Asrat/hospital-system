@@ -3,7 +3,9 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-l-home',
-  imports: [NgFor],
+  imports: [
+    
+  ],
   templateUrl: './l-home.component.html',
   styleUrl: './l-home.component.css',
 })
