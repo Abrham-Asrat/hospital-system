@@ -116,7 +116,7 @@
 
    width: 350px;
   height: 350px;
-  background-color: red;
+  background-color:#a79c9c;
 
 
 }
@@ -168,7 +168,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(134, 121, 121, 0.08);
 
 }
 .qualify{
@@ -181,7 +181,7 @@
 .info-box .label {
   font-weight: 600;
   font-size: 14px;
-  color: #333;
+  color: #382a2a;
   padding: 8px;
   border-radius: 50%;
   font-size: 16px;
@@ -189,19 +189,21 @@
 }
 
 .top-left {
-  top: 20px;
-  left: -80px;
+  top: 5px;
+  left: -180px;
 }
 
 .middle-left {
   top: 130px;
   left: -100px;
+   
 }
 
 .bottom-right {
   bottom: 30px;
   right: -100px;
   padding-top: 10px;
+
 }
 
 .search-box {
@@ -619,9 +621,9 @@
 
    position: absolute;
    bottom: 60%;
-   right: -5%;
+   right: -35%;
    z-index: 4;
-   background-color: red;
+   background-color: rgb(196, 175, 175);
    width: 15rem;
    height: 5rem;
 }
