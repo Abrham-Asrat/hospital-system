@@ -1,3 +1,6 @@
+
+
+
 .footer {
   background-color: #9c27b0 !important;
   padding: 40px 60px;
@@ -11,8 +14,6 @@
   color: white;
   text-align: center;
 
-
-
   
 }
 .footer-buttons{
@@ -21,7 +22,6 @@
   margin: 0 auto;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-
 }
 
 .footer-buttons button {
