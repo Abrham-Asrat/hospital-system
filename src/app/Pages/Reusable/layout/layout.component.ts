@@ -1,16 +1,20 @@
-import { NgClass, NgStyle, UpperCasePipe } from '@angular/common';
+import { NgClass, UpperCasePipe } from '@angular/common';
 import {
   Component,
   Input,
   Output,
   EventEmitter,
   HostListener,
+  OnInit,
 } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { SignUpComponent } from "../../Landing/sign-up/sign-up.component";
+import { LoginComponent } from "../../Landing/log-in/log-in.component";
+import { OTPComponent } from "../../Landing/otp/otp.component";
 
 @Component({
   selector: 'app-layout',
-  imports: [NgClass, RouterLink, RouterOutlet, UpperCasePipe, NgStyle],
+  imports: [NgClass, RouterLink, RouterOutlet, UpperCasePipe, SignUpComponent, LoginComponent, OTPComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
 })
@@ -40,4 +44,7 @@ export class LayoutComponent {
     // Check if the user has scrolled 10% of the page
     this.isScrolled = scrollPosition > scrollHeight * 0.1;
   }
+
+
+
 }
