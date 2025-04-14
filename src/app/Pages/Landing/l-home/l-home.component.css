@@ -14,11 +14,15 @@
 }
 
 .hero-content h1 {
-  font-size: 36px;
+  font-size: 40px;
   margin-bottom: 15px;
-  color: #980aaf;
-}
+  color: #9b10c5;
 
+}
+.hero-left h1{
+  color: #980aaf;
+  font-weight: bold;
+}
 .hero-content h1 span {
   color: #980aaf;
 }
@@ -196,7 +200,7 @@
 .middle-left {
   top: 130px;
   left: -100px;
-   
+
 }
 
 .bottom-right {
