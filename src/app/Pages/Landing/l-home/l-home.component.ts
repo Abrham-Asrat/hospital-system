@@ -3,13 +3,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-l-home',
-<<<<<<< HEAD
   imports: [],
-=======
-  imports: [
-    
-  ],
->>>>>>> e1864f685bd5c66377c30d794d8094b7ea2fcf58
   templateUrl: './l-home.component.html',
   styleUrl: './l-home.component.css',
 })
