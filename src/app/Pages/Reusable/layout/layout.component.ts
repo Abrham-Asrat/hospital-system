@@ -7,14 +7,22 @@ import {
   HostListener,
   OnInit,
 } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { SignUpComponent } from "../../Landing/sign-up/sign-up.component";
-import { LoginComponent } from "../../Landing/log-in/log-in.component";
-import { OTPComponent } from "../../Landing/otp/otp.component";
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { SignUpComponent } from '../../Landing/sign-up/sign-up.component';
+import { LoginComponent } from '../../Landing/log-in/log-in.component';
+import { OTPComponent } from '../../Landing/otp/otp.component';
 
 @Component({
   selector: 'app-layout',
-  imports: [NgClass, RouterLink, RouterOutlet, UpperCasePipe, SignUpComponent, LoginComponent, OTPComponent],
+  imports: [
+    NgClass,
+    RouterLink,
+    RouterOutlet,
+    UpperCasePipe,
+    SignUpComponent,
+    LoginComponent,
+    OTPComponent,
+  ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
 })
@@ -34,6 +42,7 @@ export class LayoutComponent {
   }
 
   isScrolled = false; // Default state
+  constructor(private route: Router) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -42,9 +51,11 @@ export class LayoutComponent {
     const scrollPosition = window.scrollY;
 
     // Check if the user has scrolled 10% of the page
-    this.isScrolled = scrollPosition > scrollHeight * 0.1;
+    this.isScrolled = scrollPosition > scrollHeight * 0.03;
   }
-
-
-
+  logOut() {
+    setTimeout(() => {
+      this.route.navigate(['Dashboard']);
+    }, 500);
+  }
 }

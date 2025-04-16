@@ -11,11 +11,11 @@ import { FooterComponent } from "../../Reusable/footer/footer.component";
   styleUrl: './d-layout.component.css',
 })
 export class DLayoutComponent {
-  Links: string[] = ['DHome', 'DAppointment', 'DBlog', 'DContact'];
-  Chat: string = 'DChat';
-  Notification: string = 'DNotification';
-  profile: string = 'DProfile';
-  activeTab = 'DHome';
+  Links: string[] = ['Home', 'Appointment', 'Blog', 'Contact'];
+  Chat: string = 'Chat';
+  Notification: string = 'Notification';
+  profile: string = 'Profile';
+  activeTab = 'Home';
   setActive(link: string) {
     this.activeTab = link;
   }

@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-otp',
@@ -15,6 +16,8 @@ import {
   styleUrl: './otp.component.css',
 })
 export class OTPComponent {
+  @Input() Logged: string = '';
+  constructor(private router: Router) {}
   otpControls = ['d1', 'd2', 'd3', 'd4'];
 
   otpForm = new FormGroup({
@@ -47,5 +50,24 @@ export class OTPComponent {
       .join('');
     console.log('Entered OTP:', otp);
     // Handle OTP verification here
+  }
+
+  navigatePage() {
+    // Hide the modal
+    const modal = document.getElementById('verifyModal');
+    if (modal) {
+      (modal as any).classList.remove('show');
+      (modal as any).style.display = 'none';
+    }
+
+    // Remove backdrop and modal-open class
+    document.body.classList.remove('modal-open');
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+    setTimeout(() => {
+      this.router.navigate([this.Logged]);
+    }, 300);
   }
 }

@@ -1,21 +1,36 @@
 .chat-page {
   margin-top: 20px;
-  max-width: 600px;
-  margin: auto;
+  max-width: 1000px;
+  height: 80vh;
+  margin: 0 auto;
+  border-radius: 1rem;
+  box-shadow: 2px 1px 3px #0000001e;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #9510953e;
 }
 
 .header {
-  background: #6f42c1;
+  background:#951095;
   color: white;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
   margin-bottom: 20px;
 }
+.sendBtn {
+  color: #951095;
+  border: none;
+  padding: 2rem;
+  font-size: 1.4rem;
+  position: absolute;
+  cursor: pointer;
+  background-color: transparent;
+  right: 6%;
+}
 
 .chat-box {
-  background: #f8f9fa;
-  padding: 15px;
+  /* padding: 15px; */
   border-radius: 10px;
   height: 350px;
   overflow-y: auto;
@@ -26,11 +41,11 @@
 .chat-message {
   max-width: 70%;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin: 12px 10px;
 }
 
 .chat-message.sent {
-  background: #6f42c1;
+  background: #951095;
   color: white;
   align-self: flex-end;
 }
@@ -49,8 +64,13 @@
 
 .chat-input {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  background-color: rgba(149, 16, 149, 20%);
+  height: 100px;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
 }
 
 .chat-input input {
@@ -70,10 +90,96 @@
 .file-upload-label {
   cursor: pointer;
   font-size: 24px;
-  color: #6f42c1;
+  color:#951095;;
   margin: 0 10px;
 }
 
 .file-upload-label:hover {
-  color: #5a32a3;
+  color: #951095b0;;
+}
+
+.chater-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.chater-status {
+  width: 15px;
+  height: 15px;
+  background-color: #0f0;
+  border-radius: 50%;
+}
+.unread {
+  width: 15px;
+  height: 15px;
+  background-color: #951095;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  color: #fff;
+  text-align: center;
+}
+.line {
+  background-color: #000;
+  width: 85%;
+  border-radius: 1rem;
+  margin: 0 auto;
+  height: 0.024rem;
+}
+.users-list {
+  height: 350px;
+  overflow-y: auto;
+}
+.users-list > .row {
+  cursor: pointer;
+  width: 100%;
+}
+.users-list:hover > .row {
+  background-color: rgba(149, 16, 149, 10%);
+}
+
+.user-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.chat-left {
+  background-color: rgba(149, 16, 149, 10%);
+}
+.chat-right {
+  background-color: #fff;
+
+  padding: 0;
+}
+
+.user-name {
+  font-size: 1.2rem;
+  color: #951095;
+  margin-bottom: 0;
+}
+.user-speciality {
+  font-size: 0.8rem;
+  color: #00000079;
+ 
+}
+.search-bar {
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 80%;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  margin: 0 auto;
+  box-shadow: 4px 3px 3px #0000001e;
+  margin-bottom: 1rem;
+}
+input {
+  border: none;
+  outline: none;
+}
+
+.search-bar input {
+  width: 90%;
+  height: 100%;
 }

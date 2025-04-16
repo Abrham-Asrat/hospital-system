@@ -13,13 +13,10 @@ import { LContactComponent } from './Pages/Landing/l-contact/l-contact.component
 import { FaqComponent } from './Pages/Landing/l-faq/l-faq.component';
 import { LAboutComponent } from './Pages/Landing/l-about/l-about.component';
 import { LBlogComponent } from './Pages/Landing/l-blog/l-blog.component';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common'; // Import CommonModul
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { DoctorSignupComponent } from './Pages/DoctorRole/d-signup/d-signup.component';
 import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
-import { LoginComponent } from './Pages/Landing/log-in/log-in.component';
+
 import { PHomeComponent } from './Pages/Patient/p-home/p-home.component';
 import { PAppointmentComponent } from './Pages/Patient/p-appointment/p-appointment.component';
 import { PBlogComponent } from './Pages/Patient/p-blog/p-blog.component';
@@ -28,35 +25,41 @@ import { PChatComponent } from './Pages/Patient/p-chat/p-chat.component';
 import { PContactUsComponent } from './Pages/Patient/p-contact-us/p-contact-us.component';
 import { PNotificationComponent } from './Pages/Patient/p-notification/p-notification.component';
 import { PProfileComponent } from './Pages/Patient/p-profile/p-profile.component';
+import { LoginComponent } from './Pages/Landing/log-in/log-in.component';
+import { SignUpComponent } from './Pages/Landing/sign-up/sign-up.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'LHome',
+    redirectTo: 'Dashboard',
     pathMatch: 'full',
   },
   {
-    path: '',
+    path: 'Dashboard',
     component: LLayoutComponent,
     children: [
       {
-        path: 'LHome',
+        path: '',
+        redirectTo: 'Home',
+      },
+      {
+        path: 'Home',
         component: LHomeComponent,
       },
       {
-        path: 'LBlog',
+        path: 'Blog',
         component: LBlogComponent,
       },
       {
-        path: 'LAbout',
+        path: 'About',
         component: LAboutComponent,
       },
       {
-        path: 'LContact',
+        path: 'Contact',
         component: LContactComponent,
       },
       {
-        path: 'LFAQ',
+        path: 'FAQ',
         component: FaqComponent,
       },
       {
@@ -64,39 +67,44 @@ export const routes: Routes = [
         component: LoginComponent,
       },
       {
-        path:'SignUp',
-        component: DoctorSignupComponent
-      }
+        path: 'SignUp',
+        component: SignUpComponent,
+      },
     ],
   },
 
   {
-    path: '',
+    path: 'Patient',
     component: PLayoutComponent,
     children: [
-      { path: 'PHome', component: PHomeComponent },
-      { path: 'PAppointment', component: PAppointmentComponent },
-      { path: 'PBlog', component: PBlogComponent },
-      { path: 'PChat', component: PChatComponent },
-      { path: 'PContact', component: PContactUsComponent },
-      { path: 'PNotification', component: PNotificationComponent},
-      { path: 'PProfile', component: PProfileComponent},
-    
+      {
+        path: '',
+        redirectTo: 'Home',
+      },
+      { path: 'Home', component: PHomeComponent },
+      { path: 'Appointment', component: PAppointmentComponent },
+      { path: 'Blog', component: PBlogComponent },
+      { path: 'Chat', component: PChatComponent },
+      { path: 'Contact', component: PContactUsComponent },
+      { path: 'Notification', component: PNotificationComponent },
+      { path: 'Profile', component: PProfileComponent },
     ],
   },
-
   {
-    path: '',
+    path: 'Doctor',
     component: DLayoutComponent,
     children: [
-      { path: 'DHome', component: DHomeComponent },
-      { path: 'DAppointment', component: DAppointmentComponent },
-      { path: 'DBlog', component: DBlogComponent },
-      { path: 'DChat', component: DChatComponent },
-      { path: 'DContact', component: DContactComponent },
-      { path: 'DNotification', component: DNotificationComponent },
-      { path: 'DProfile', component: DProfileComponent },
-      { path: 'DSignup', component: DoctorSignupComponent }, 
+      {
+        path: '',
+        redirectTo: 'Home',
+      },
+      { path: 'Home', component: DHomeComponent },
+      { path: 'Appointment', component: DAppointmentComponent },
+      { path: 'Blog', component: DBlogComponent },
+      { path: 'Chat', component: DChatComponent },
+      { path: 'Contact', component: DContactComponent },
+      { path: 'Notification', component: DNotificationComponent },
+      { path: 'Profile', component: DProfileComponent },
     ],
   },
 ];

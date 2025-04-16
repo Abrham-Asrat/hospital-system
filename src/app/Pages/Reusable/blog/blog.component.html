@@ -1,19 +1,40 @@
-<div class="doctor-blog-page">
+<div class="blog-page">
   <!-- Blog Post Form -->
-  <!-- <div class="blog-form container">
+  <button
+    class="btn fixed-top blogWriting btn-primary"
+    (click)="toggleBlogForm()"
+    *ngIf="btnFromDoctor"
+  >
+    {{ isBlogForm ? "new" : "show" }} blog
+  </button>
+
+  <div class="blog-form container" *ngIf="btnFromDoctor && !isBlogForm">
     <h3>Write a New Blog</h3>
-    <input type="text" class="form-control" placeholder="Blog Title" [(ngModel)]="newBlog.title" required>
-    <textarea class="form-control mt-2" placeholder="Write your blog..." [(ngModel)]="newBlog.content" required></textarea>
-    
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Blog Title"
+      [(ngModel)]="newBlog.title"
+      required
+    />
+    <textarea
+      class="form-control mt-2"
+      placeholder="Write your blog..."
+      [(ngModel)]="newBlog.content"
+      required
+    ></textarea>
+
     <select class="form-control mt-2" [(ngModel)]="newBlog.category">
-      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      @for (category of blogs; track $index) {
+      <option [value]="category">{{ category }}</option>
+      }
     </select>
 
     <button class="btn btn-primary mt-3" (click)="postBlog()">Post Blog</button>
-  </div> -->
+  </div>
 
   <!-- Blog List -->
-  <div class="blog-list mb-5">
+  <div class="blog-list mb-5" *ngIf="isBlogForm">
     <div *ngFor="let blog of filteredBlogs; let i = index" class="blog-card">
       <!-- Blog Header -->
       <div class="blog-header">

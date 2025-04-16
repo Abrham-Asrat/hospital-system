@@ -3,7 +3,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-l-home',
-  imports: [NgFor],
+  imports: [],
   templateUrl: './l-home.component.html',
   styleUrl: './l-home.component.css',
 })
@@ -195,10 +195,12 @@ export class LHomeComponent implements AfterViewInit {
     updateButtonStates();
   }
 
+
+
   // scroll InTo view
   @ViewChild('section1') section1!: ElementRef;
 
-  scrollToSection() {
+ scrollToSection() {
     this.section1.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 }

@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Input,
   QueryList,
   ViewChildren,
 } from '@angular/core';
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './blog.component.css',
 })
 export class BlogComponent implements AfterViewInit {
+  @Input () btnFromDoctor: boolean = false; 
   @ViewChildren('blogContent') blogContentElements!: QueryList<ElementRef>;
 
   newBlog = {
@@ -174,7 +176,14 @@ export class BlogComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.blogContentElements.forEach((el, index) => {
       const contentElement = el.nativeElement;
-      this.blogs[index].showMoreButton = contentElement.scrollHeight > contentElement.clientHeight;
+      this.blogs[index].showMoreButton =
+        contentElement.scrollHeight > contentElement.clientHeight;
     });
+  }
+
+  // blog toggler show and hidder
+  isBlogForm: boolean = true;
+  toggleBlogForm() {
+    this.isBlogForm = !this.isBlogForm;
   }
 }

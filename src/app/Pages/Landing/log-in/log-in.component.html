@@ -1,4 +1,4 @@
-<!-- Modal  for logIn-->
+<!-- Modal for logIn -->
 <div
   class="modal fade"
   id="LogInModal"
@@ -21,8 +21,7 @@
             alt=""
             class="loginPhoto1"
           />
-
-          }@else {
+          } @else {
           <img
             src="../../../../assets/images/p2.png"
             alt=""
@@ -48,38 +47,40 @@
             <span class="changer">{{ toggler }}</span> LogIn🎈
           </h4>
           <div class="row">
-            <div class="col-12 emailContainer">
-              <i class="bi bi-envelope-fill p-2"></i>
-              <input type="email" class="formControl p-2" placeholder="Email" />
-            </div>
-            <div class="col-12 passwordContainer mt-3">
-              <i class="bi bi-lock-fill p-2"></i>
-              <input
-                type="password"
-                class="formControl p-2"
-                placeholder="password"
-              />
-              <i
-                class="bi"
-                [className]="hider ? 'bi-eye-slash show' : 'bi-eye show'"
-                (click)="hide()"
-              ></i>
-            </div>
-            <div
-              class="col-12 ModalBtn d-flex justify-content-center mt-3"
-              data-bs-toggle="modal"
-              data-bs-target="#otpForget"
-            >
-              <p class="forget">forget your password?</p>
-            </div>
-
-            <div
-              class="col-12 ModalBtn loginBtn pt-2"
+            <!-- Log Inputs -->
+            <form [formGroup]="loginForm">
+              <div class="col-12 emailContainer">
+                <i class="bi bi-envelope-fill p-2"></i>
+                <input
+                  type="email"
+                  class="formControl p-2"
+                  formControlName="EmailId"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="col-12 passwordContainer mt-3">
+                <i class="bi bi-lock-fill p-2"></i>
+                <input
+                  type="password"
+                  class="formControl"
+                  formControlName="Password"
+                  placeholder="Password"
+                  [type]="hider ? 'password' : 'text'"
+                />
+                <i
+                  class="bi"
+                  [className]="hider ? 'bi-eye-slash show' : 'bi-eye show'"
+                  (click)="hide()"
+                ></i>
+              </div>
+               <div
+              class="col-12 mt-4 d-flex justify-content-center ModalBtn"
               data-bs-toggle="modal"
               data-bs-target="#OtpModal"
             >
-              <p class="text-white w-100 h-100">Log In</p>
+              <p class="loginBtn btn btn-center">Login</p>
             </div>
+            </form>
           </div>
         </div>
         <div class="col-6 d-flex justify-content-center">
@@ -100,4 +101,5 @@
     </div>
   </div>
 </div>
-<app-otp></app-otp>
+
+<app-otp [Logged]="toggler"></app-otp>

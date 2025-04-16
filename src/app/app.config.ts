@@ -4,11 +4,13 @@ import { provideZoneChangeDetection } from '@angular/core';
 import { importProvidersFrom } from '@angular/core';
 import { routes } from './app.routes';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), // ✅ Enables efficient change detection
     provideRouter(routes), // ✅ Provides the application routes
-    importProvidersFrom(ReactiveFormsModule) // ✅ Enables reactive forms
+    provideHttpClient(),
+    importProvidersFrom(ReactiveFormsModule), // ✅ Enables reactive forms
   ],
 };
