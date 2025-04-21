@@ -1,0 +1,131 @@
+<div
+  class="modal fade"
+  id="OtpModal"
+  tabindex="-1"
+  aria-labelledby="otpModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-sm">
+    <div class="modal-content">
+      <div class="modal-body row">
+        <div
+          class="col-4 p-5 ps-2 d-flex justify-content-center align-items-center arrow"
+        >
+          <i class="bi bi-arrow-left-circle-fill fs-3 btn"></i>
+        </div>
+        <div class="col-12 otpInfo">
+          <h5 class="otp-title">Verification Code</h5>
+          <p class="otp-info">
+            We have sent the verification code to your email address
+          </p>
+          <div class="" [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+            <h4 class="otp-title pb-1">Enter OTP</h4>
+            <div class="row otpForm row m-auto">
+              @for (ctrl of otpControls; track $index) {
+              <div class="col-3">
+                <input
+                  type="text"
+                  [formControlName]="ctrl"
+                  name=""
+                  id=""
+                  (input)="onInput($event, $index)"
+                  (keydown.backspace)="onBackspace($event, $index)"
+                  [id]="'otp' + $index"
+                  autocomplete="off"
+                  class="inputs"
+                />
+              </div>
+
+              }
+              <div
+                class="col-12 ModalBtn mt-4 pt-2"
+                data-bs-toggle="modal"
+                data-bs-target="#verifyModal"
+              >
+                <p class="text-white w-100 h-100">verify Otp</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+// otp forgot
+<div
+  class="modal fade"
+  id="otpForget"
+  tabindex="-1"
+  aria-labelledby="otpModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-sm">
+    <div class="modal-content">
+      <div class="modal-body row">
+        <div
+          class="col-2 p-5 ps-2 arrow"
+        >
+          <i class="bi bi-arrow-left-circle-fill fs-3 btn"></i>
+        </div>
+        <div
+          class="col-8"
+        >
+          <img src="../../../../assets/images/otp1.png" class="otpImg" alt="">
+        </div>
+        <div class="col-12 otpInfo">
+          <h5 class="otp-title">OTP Verification</h5>
+          <p class="otp-info">Enter email to send ont time password</p>
+
+          <div class="row otpForm row m-auto">
+            <div class="col-12 forgetInput">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="form-control"
+                formControlName="email"
+              />
+            </div>
+
+            
+            <div
+              class="col-12 ModalBtn mt-4 pt-2"
+              data-bs-toggle="modal"
+              data-bs-target="#OtpModal"
+            >
+              <p class="text-white w-100 h-100">continue</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>     
+</div>
+
+<!-- Otp Success -->
+<div
+  class="modal fade"
+  id="verifyModal"
+  tabindex="-1"
+  aria-labelledby="otpModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-sm">
+    <div class="modal-content">
+      <div
+        class="modal-body d-flex flex-column justify-content-center align-items-center"
+      >
+        <div class="circle">
+          <i class="bi bi-check-lg"></i>
+        </div>
+        <div class="text-center">
+          <h3>Success!</h3>
+          <p>Congratulation! you have been successfully authenticated</p>
+        </div>
+        <div class="ModalBtn">
+          <p class="text-white w-100 pt-2">continue</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

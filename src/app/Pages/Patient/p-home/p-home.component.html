@@ -1,0 +1,37 @@
+<div class="container patient-home">
+  <!-- Welcome Section -->
+  <div class="welcome-box">
+    <h2>Welcome, {{ patientName }}</h2>
+    <p>Manage your health, appointments, and prescriptions easily.</p>
+  </div>
+
+  <!-- Quick Access Cards -->
+  <div class="row quick-access">
+    <div class="col-md-4">
+      <div class="card access-card" (click)="navigateTo('appointments')">
+        <h5>📅 Appointments</h5>
+        <p>View or book an appointment with your doctor.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card access-card" (click)="navigateTo('prescriptions')">
+        <h5>💊 Prescriptions</h5>
+        <p>Access your medical prescriptions and dosage instructions.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card access-card" (click)="navigateTo('chat')">
+        <h5>💬 Chat with Doctor</h5>
+        <p>Ask questions and get medical advice from your doctor.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Health Tips Section -->
+  <div class="health-tips">
+    <h3>🏥 Health Tips</h3>
+    <ul>
+      <li *ngFor="let tip of healthTips">{{ tip }}</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>Admin Payment Management</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Doctor</th>
+        <th>Patient</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment.paymentDate }}</td>
+        <td>{{ payment.doctor }}</td>
+        <td>{{ payment.patient }}</td>
+        <td>{{ payment.amount | currency }}</td>
+        <td>
+          <span class="badge"
+                [ngClass]="{
+                  'badge-success': payment.status === 'Paid',
+                  'badge-warning': payment.status === 'Pending',
+                  'badge-danger': payment.status === 'Rejected'
+                }">
+            {{ payment.status }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-success" (click)="approvePayment(payment)" *ngIf="payment.status === 'Pending'">
+            Approve
+          </button>
+          <button class="btn btn-danger" (click)="rejectPayment(payment)" *ngIf="payment.status === 'Pending'">
+            Reject
+          </button>
+          <button class="btn btn-info" (click)="viewPaymentHistory(payment)">
+            View History
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

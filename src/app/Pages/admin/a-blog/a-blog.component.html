@@ -1,0 +1,40 @@
+<div class="container">
+  <h3>Blog Moderation Panel</h3>
+
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let blog of blogs">
+        <td>{{ blog.title }}</td>
+        <td>{{ blog.author }}</td>
+        <td>
+          <span
+            class="status-badge"
+            [ngClass]="{
+              'status-pending': blog.status === 'Pending',
+              'status-approved': blog.status === 'Approved',
+              'status-rejected': blog.status === 'Rejected'
+            }"
+          >
+            {{ blog.status }}
+          </span>
+        </td>
+        <td>
+          <ng-container *ngIf="blog.status === 'Pending'">
+            <button (click)="approveBlog(blog.id)" class="btn btn-success">Approve</button>
+            <button (click)="rejectBlog(blog.id)" class="btn btn-danger">Reject</button>
+          </ng-container>
+          <button (click)="deleteBlog(blog.id)" class="btn btn-warning">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
