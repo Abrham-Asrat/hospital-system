@@ -28,7 +28,7 @@ import { PProfileComponent } from './Pages/Patient/p-profile/p-profile.component
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'PHome',
+    redirectTo: 'LAbout',
     pathMatch: 'full',
   },
   {
