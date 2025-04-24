@@ -1,31 +1,63 @@
-<div class="container doctor-profile">
-  <div class="card">
-    <div class="row g-0">
-      <!-- Doctor Image -->
-      <div class="col-md-4 d-flex align-items-center">
-        <img src="https://www.ethiopianmedicalass.org/wp-content/uploads/2021/02/workabeba.png"
-             alt="Doctor Image"
-             class="img-fluid rounded-start doctor-img">
-      </div>
+<div class="container">
 
-      <!-- Doctor Details -->
-      <div class="col-md-8">
-        <div class="card-body">
-          <h3 class="card-title">Dr. Workaba</h3>
-          <p class="text-muted">Pharmacologist</p>
-          <p><strong>Experience:</strong> 10+ Years</p>
-          <p><strong>Contact:</strong> +251 912345678</p>
-          <p><strong>Email:</strong> dr.workaba example com</p>
-          <p><strong>Availability:</strong> Mon - Fri (9 AM - 5 PM)</p>
-          
-          <!-- Buttons -->
-          <div class="mt-3">
-            <button class="btn btn-primary">Book Appointment</button>
-            <button class="btn btn-outline-secondary">View Reviews</button>
+  <div class="sidebar">
+    <div class="avatar-upload">
+      <label for="avatarInput">
+        <i class="bi bi-person"></i>
+        <input type="file" accept="image/jpeg, image/png, image/jpg">
+      </label>
+      <input type="file" id="avatarInput" accept="image/*" hidden>
+    </div>
+    <p class="welcome">Welcome, Doctor</p>
+    <ul class="nav-links">
+      <li (click)="goToDhome()">Dashboard</li>
+  
+      <li>New Translation</li>
+    </ul>
+    
+    <button type="logout" class="logout-btn" (click)="logout()">Log Out</button>
+  </div>
+  
+  
+  
+    <div class="profile-content">
+      <h2>Your personal profile info</h2>
+  
+      <form class="profile-form">
+        <section class="profile-section">
+          <h3>1. Profile</h3>
+          <div class="form-row">
+            <input type="text" placeholder="First name">
+            <input type="text" placeholder="Personal phone number">
           </div>
-        </div>
-      </div>
+          <div class="form-row">
+            <input type="text" placeholder="Last name">
+            <input type="number" placeholder="Work phone number">
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Username (not your email)">
+            <input type="text" placeholder="Country, City">
+          </div>
+          <div class="form-row">
+            <input type="text"name="email" class="form-control2" placeholder="Email" required="required">
+            <input type="text" placeholder="Organization">
+          </div>
+        </section>
+  
+        <section class="password-section">
+          <h3>2. Password</h3>
+          <div class="form-row">
+            <input type="password" placeholder="Old password *">
+          </div>
+          <div class="form-row">
+            <input type="password" placeholder="New password *">
+          </div>
+          <div class="form-row">
+            <input type="password" placeholder="Confirm new password *">
+          </div>
+          <button type="submit" class="save-btn">Save info</button>
+        </section>
+      </form>
     </div>
   </div>
-</div>
-
+  
