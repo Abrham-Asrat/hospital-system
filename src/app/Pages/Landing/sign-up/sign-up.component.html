@@ -1,4 +1,4 @@
-<!-- Modal  for signUp-->
+<!-- Modal for signUp -->
 <div
   class="modal fade"
   id="SignUpModal"
@@ -9,6 +9,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-body row">
+        <!-- Left Section: Logo and Images -->
         <div class="signUp-front col-4">
           <div class="navbar-brand pt-5 ps-4">
             <img
@@ -20,13 +21,13 @@
             <span class="navbar-titleSign p-1">E~Hospital</span>
           </div>
           <div class="signUp-img">
-            @if(!isDoctor){
+            @if (!isDoctor) {
             <img
               src="../../../../assets/images/PatientSignUp.png"
               class="w-100"
               alt="Image"
             />
-            }@else {
+            } @else {
             <img
               src="../../../../assets/images/signUpDoctor.png"
               class="w-100 DoctorImage mt-5 mb-0"
@@ -35,12 +36,16 @@
             }
           </div>
         </div>
+
+        <!-- Middle Gradient Section -->
         <div class="gradient-color col-4"></div>
+
+        <!-- Right Section: Form -->
         <div class="signUp-info col-8 p-3 pe-5">
           <div class="row pt-3">
             <div class="col-10">
               <h2 class="signUp-title">
-                Sign Up For <span class="signUp-changer">{{ toggler }}</span>
+                Sign Up For <span class="signUp-changer">{{ SignToggler }}</span>
               </h2>
             </div>
             <div class="col-2 d-flex justify-content-end">
@@ -52,91 +57,118 @@
               ></button>
             </div>
           </div>
-          <div class="row me-5">
-            <div class="col-6">
-              <label for="firstName" class="form-label">First Name</label>
-              <input
-                type="text"
-                class="form-control text muted"
-                id="firstName"
-                placeholder="Your First Name"
-              />
+
+          <!-- Reactive Form -->
+          <form>
+            <div class="row me-5">
+              <!-- First Name -->
+              <div class="col-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control text-muted"
+                  id="firstName"
+                  placeholder="Your First Name"
+                />
+              </div>
+
+              <!-- Last Name -->
+              <div class="col-6">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control text-muted"
+                  id="lastName"
+               
+                  placeholder="Your Father Name"
+                />
+              </div>
+
+              <!-- Email Address -->
+              <div [className]="isDoctor ? 'col-6 mt-4' : 'col-12 mt-4'">
+                <label for="email" class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  class="form-control text-muted"
+                  id="email"
+                 
+                  placeholder="Enter your email address"
+                />
+              </div>
+
+              <!-- CV Upload (Conditional for Doctors) -->
+              @if (isDoctor) {
+              <div class="col-6 mt-4">
+                <label for="cv" class="form-label">Submit Your CV</label>
+                <input
+                  type="file"
+                  class="form-control text-muted"
+                  id="cv"
+                  placeholder="Upload your CV"
+                />
+              </div>
+              }
+
+              <!-- Password -->
+              <div class="col-6 mt-4">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control text-muted"
+                  id="password"
+                  placeholder="Enter new password"
+                />
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="col-6 mt-4">
+                <label for="confirmPassword" class="form-label"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control text-muted"
+                  id="confirmPassword"
+                  placeholder="Confirm your password"
+                />
+              </div>
+
+              <!-- Terms and Conditions -->
+              <div class="col-12 mt-4">
+                <input type="checkbox" class="navUser" name="terms" id="" />
+                <span>
+                  I accept all
+                  <span style="color: #951095">terms and conditions</span>
+                </span>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="col-12 mt-4 d-flex justify-content-center ModalBtn">
+                <button type="submit" class="signUpBtn btn btn-center">
+                  Sign Up
+                </button>
+              </div>
             </div>
-            <div class="col-6">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input
-                type="text"
-                class="form-control text muted"
-                id="lastName"
-                placeholder="Your Father Name"
-              />
-            </div>
-            <div [className]="isDoctor ? 'col-6  mt-4' : 'col-12  mt-4'">
-              <label for="email" class="form-label">Email Address</label>
-              <input
-                type="email"
-                class="form-control text muted"
-                id="email"
-                placeholder="Enter your email address"
-              />
-            </div>
-            @if(isDoctor){
-            <div class="col-6 mt-4">
-              <label for="email" class="form-label">Submit Your CV</label>
-              <input
-                type="file"
-                class="form-control text muted"
-                id="email"
-                placeholder="Enter your email address"
-              />
-            </div>
-            }
-            <div class="col-6 mt-4">
-              <label for="password" class="form-label">password</label>
-              <input
-                type="password"
-                class="form-control text muted"
-                id="password"
-                placeholder="enter new password"
-              />
-            </div>
-            <div class="col-6 mt-4">
-              <label for="password" class="form-label">password</label>
-              <input
-                type="password"
-                class="form-control text muted"
-                id="password"
-                placeholder="confirm your password password"
-              />
-            </div>
-            <div class="col-12 mt-4">
-              <input type="checkbox" class="navUser" name="terms" id="" />
-              <span>
-                I accept all
-                <span style="color: #951095">terms and conditions</span></span
-              >
-            </div>
-            <div
-              class="col-12 mt-4 d-flex justify-content-center ModalBtn"
-              data-bs-toggle="modal"
-              data-bs-target="#OtpModal"
-            >
-              <p class="signUpBtn btn btn-center">sign up</p>
-            </div>
-          </div>
+          </form>
+
+          <!-- Login Link -->
           <div
             class="navLogin d-flex justify-content-center mt-3 pe-5 navUser ModalBtn text-muted"
             data-bs-toggle="modal"
             data-bs-target="#LogInModal"
           >
-            already have an account<span style="color: #951095">? login</span>
+            Already have an account<span style="color: #951095">? Login</span>
           </div>
+
+          <!-- Toggle Between Patient and Doctor -->
           <p class="navUser mt-4" (click)="signUpChanger(!isDoctor)">
-            sign up For <span class="signUp-changer">{{ signToggler }}</span>
+            Sign up For <span class="signUp-changer">{{ signUpToggler }}</span>
           </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-otp [Logged]="toggler"></app-otp>
+
+<!-- OTP Component -->
+<!-- <app-otp *ngIf="otpVisible" [Logged]="SignToggler"></app-otp> -->

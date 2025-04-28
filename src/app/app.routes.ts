@@ -74,23 +74,6 @@ export const routes: Routes = [
   },
 
   {
-    path: 'Patient',
-    component: PLayoutComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'Home',
-      },
-      { path: 'Home', component: PHomeComponent },
-      { path: 'Appointment', component: PAppointmentComponent },
-      { path: 'Blog', component: PBlogComponent },
-      { path: 'Chat', component: PChatComponent },
-      { path: 'Contact', component: PContactUsComponent },
-      { path: 'Notification', component: PNotificationComponent },
-      { path: 'Profile', component: PProfileComponent },
-    ],
-  },
-  {
     path: 'Doctor',
     component: DLayoutComponent,
     children: [
@@ -105,6 +88,23 @@ export const routes: Routes = [
       { path: 'Contact', component: DContactComponent },
       { path: 'Notification', component: DNotificationComponent },
       { path: 'Profile', component: DProfileComponent },
+    ],
+  },
+  {
+    path: 'Patient',
+    component: PLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'Home',
+      },
+      { path: 'Home', component: PHomeComponent },
+      { path: 'Appointment', component: PAppointmentComponent },
+      { path: 'Blog', component: PBlogComponent },
+      { path: 'Chat', component: PChatComponent },
+      { path: 'Contact', component: PContactUsComponent },
+      { path: 'Notification', component: PNotificationComponent },
+      { path: 'Profile', component: PProfileComponent },
     ],
   },
 ];

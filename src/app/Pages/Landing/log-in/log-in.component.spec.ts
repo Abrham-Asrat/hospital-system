@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './log-in.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -8,8 +9,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoginComponent],
-      imports: [ReactiveFormsModule], // Import ReactiveFormsModule for form testing
+      imports: [LoginComponent, FormsModule, CommonModule],
     }).compileComponents();
   });
 
@@ -23,42 +23,37 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a login form with email and password fields', () => {
-    expect(component.loginForm.contains('email')).toBeTrue();
-    expect(component.loginForm.contains('password')).toBeTrue();
+  it('should initialize default values correctly', () => {
+    expect(component.isPatient).toBeFalse();
+    expect(component.toggle).toBe('Patient');
+    expect(component.loginToggler).toBe('Doctor');
   });
 
-  it('should make the email field required', () => {
-    let emailControl = component.loginForm.controls['email'];
-    emailControl.setValue('');
-    expect(emailControl.valid).toBeFalse();
-    expect(emailControl.errors?.['required']).toBeTrue();
+  it('should toggle roles when signUpChanger is called', () => {
+    component.signUpChanger(true);
+    expect(component.isPatient).toBeTrue();
+    expect(component.toggle).toBe('Doctor');
+    expect(component.loginToggler).toBe('Patient');
   });
 
-  it('should make the password field required and at least 6 characters', () => {
-    let passwordControl = component.loginForm.controls['password'];
-
-    passwordControl.setValue('');
-    expect(passwordControl.valid).toBeFalse();
-    expect(passwordControl.errors?.['required']).toBeTrue();
-
-    passwordControl.setValue('123');
-    expect(passwordControl.valid).toBeFalse();
-    expect(passwordControl.errors?.['minlength']).toBeTruthy();
+  it('should validate empty email or password', () => {
+    spyOn(window, 'alert');
+    component.loginData.email = '';
+    component.loginData.password = '';
+    component.onSubmit();
+    expect(window.alert).toHaveBeenCalledWith(
+      'Please enter both email and password.'
+    );
   });
 
-  it('should mark form as valid when valid email and password are provided', () => {
-    component.loginForm.setValue({
-      email: 'test@example.com',
-      password: '123456',
-    });
-    expect(component.loginForm.valid).toBeTrue();
-  });
-
-  it('should call onLogin() method when form is submitted', () => {
-    spyOn(component, 'onLogin');
-    let button = fixture.nativeElement.querySelector('button');
-    button.click();
-    expect(component.onLogin).toHaveBeenCalled();
+  it('should open OTP modal if login credentials are valid', () => {
+    component.loginData.email = 'ab@gmail.com';
+    component.loginData.password = '123';
+    const modalSpy = spyOn(window as any, 'bootstrap').and.callFake(() => ({
+      hide: () => {},
+      show: () => {},
+    }));
+    component.onSubmit();
+    expect(modalSpy).toHaveBeenCalled();
   });
 });

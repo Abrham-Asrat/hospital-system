@@ -79,3 +79,11 @@
 .otpImg {
   width: 180px;
 }
+.loginBtn{
+  background-color: #951095;
+  color: #fff;
+  border-radius: 3rem;
+  margin: 0 auto;
+  width: 80%;
+  cursor: pointer;
+}
