@@ -2,7 +2,7 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideZoneChangeDetection } from '@angular/core';
 import { importProvidersFrom } from '@angular/core';
-import { routes } from './app.routes';
+import { routes } from './routes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 
