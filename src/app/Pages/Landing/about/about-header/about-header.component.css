@@ -1,0 +1,60 @@
+
+@media only screen and (max-width: 768px) { 
+    .cont {
+      flex-direction: column;
+      text-align: center;
+      display: flex;
+      width: 100%;
+      padding-bottom: 30px;
+    }
+    }
+    .title {
+      font-size: 60px;
+      font-weight: bold;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: white;
+      margin-bottom: auto;
+      margin-top: 150px;
+      }
+  
+    
+    .welcome-about {
+     
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      background-image: url("../../../../../assets/imagess/ahead.jpg");
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      flex-direction: column;
+      height: 90vh;
+    }
+    
+    
+    .description {
+      margin-top: 1rem;
+      font-size: 1.8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: white;
+    }
+    
+    
+    .btn {
+      display: inline-block;
+      margin-bottom: auto;
+      padding:auto;
+      background-color: #990099;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: all 0.3s;
+      
+    }
