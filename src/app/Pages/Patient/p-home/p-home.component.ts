@@ -1,27 +1,68 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-p-home',
-  imports: [NgFor],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './p-home.component.html',
-  styleUrl: './p-home.component.css',
+  styleUrls: ['./p-home.component.css'],
 })
-export class PHomeComponent {
-  patientName = 'John Doe'; // Replace with dynamic user data
 
-  healthTips = [
-    'Drink plenty of water to stay hydrated.',
-    'Get at least 7-8 hours of sleep every night.',
-    'Exercise regularly for at least 30 minutes a day.',
-    'Eat a balanced diet rich in fruits and vegetables.',
-    'Manage stress with meditation and deep breathing.',
+export class PHomeComponent {
+  searchName: string = '';
+  searchSpeciality: string = '';
+  availableOnly: boolean = false;
+
+  appointments = [
+    {
+      doctor: 'Dr. Robert Henry',
+      speciality: 'Cardiologist',
+      date: '2025-05-03',
+      time: '10:00 AM',
+    },
+    {
+      doctor: 'Dr. Sharina Khan',
+      speciality: 'Gynecologist',
+      date: '2025-05-10',
+      time: '01:00 PM',
+    },
   ];
 
-  constructor(private router: Router) {}
+  doctors = [
+    {
+      name: 'Dr. Robert Henry',
+      speciality: 'Cardiologist',
+      image: '../../../../assets/Images/doctor1.png',
+      reviews: 102,
+    },
+    {
+      name: 'Dr. Sharina Khan',
+      speciality: 'Gynecologist',
+      image: '../../../../assets/Images/image3.png',
+      reviews: 115,
+    },
+    {
+      name: 'Dr. Sanjeev Kapoor',
+      speciality: 'Child Specialist',
+      image: '../../../../assets/Images/image4.png',
+      reviews: 73,
+    },
+  ];
 
-  navigateTo(page: string) {
-    this.router.navigate([page]);
+  filteredDoctors = [...this.doctors];
+
+  searchDoctor() {
+    this.filteredDoctors = this.doctors.filter((doc) => {
+      return (
+        (!this.searchName ||
+          doc.name.toLowerCase().includes(this.searchName.toLowerCase())) &&
+        (!this.searchSpeciality ||
+          doc.speciality
+            .toLowerCase()
+            .includes(this.searchSpeciality.toLowerCase()))
+      );
+    });
   }
 }
