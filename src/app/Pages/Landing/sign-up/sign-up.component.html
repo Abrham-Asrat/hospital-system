@@ -45,7 +45,8 @@
           <div class="row pt-3">
             <div class="col-10">
               <h2 class="signUp-title">
-                Sign Up For <span class="signUp-changer">{{ SignToggler }}</span>
+                Sign Up For
+                <span class="signUp-changer">{{ SignToggler }}</span>
               </h2>
             </div>
             <div class="col-2 d-flex justify-content-end">
@@ -59,7 +60,7 @@
           </div>
 
           <!-- Reactive Form -->
-          <form>
+          <form #signUpForm="ngForm" (ngSubmit)="onSignUp()">
             <div class="row me-5">
               <!-- First Name -->
               <div class="col-6">
@@ -68,6 +69,8 @@
                   type="text"
                   class="form-control text-muted"
                   id="firstName"
+                  name="firstName"
+                  [(ngModel)]="signUpData.firstName"
                   placeholder="Your First Name"
                 />
               </div>
@@ -79,7 +82,8 @@
                   type="text"
                   class="form-control text-muted"
                   id="lastName"
-               
+                  name="lastName"
+                  [(ngModel)]="signUpData.lastName"
                   placeholder="Your Father Name"
                 />
               </div>
@@ -91,23 +95,25 @@
                   type="email"
                   class="form-control text-muted"
                   id="email"
-                 
+                  name="email"
+                  [(ngModel)]="signUpData.email"
                   placeholder="Enter your email address"
                 />
               </div>
 
               <!-- CV Upload (Conditional for Doctors) -->
-              @if (isDoctor) {
-              <div class="col-6 mt-4">
+
+              <div class="col-6 mt-4" *ngIf="isDoctor">
                 <label for="cv" class="form-label">Submit Your CV</label>
                 <input
                   type="file"
                   class="form-control text-muted"
+                  (change)="onFileSelected($event)"
+                  accept=".pdf,.doc,.docx"
                   id="cv"
                   placeholder="Upload your CV"
                 />
               </div>
-              }
 
               <!-- Password -->
               <div class="col-6 mt-4">
@@ -116,6 +122,8 @@
                   type="password"
                   class="form-control text-muted"
                   id="password"
+                  name="password"
+                  [(ngModel)]="signUpData.password"
                   placeholder="Enter new password"
                 />
               </div>
@@ -129,13 +137,22 @@
                   type="password"
                   class="form-control text-muted"
                   id="confirmPassword"
+                  name="confirmPassword"
+                  [(ngModel)]="signUpData.confirmPassword"
                   placeholder="Confirm your password"
                 />
               </div>
 
               <!-- Terms and Conditions -->
               <div class="col-12 mt-4">
-                <input type="checkbox" class="navUser" name="terms" id="" />
+                <input
+                  type="checkbox"
+                  class="navUser"
+                  name="terms"
+                  id=""
+                  name="terms"
+                  [(ngModel)]="signUpData.termsAccepted"
+                />
                 <span>
                   I accept all
                   <span style="color: #951095">terms and conditions</span>
@@ -144,7 +161,11 @@
 
               <!-- Submit Button -->
               <div class="col-12 mt-4 d-flex justify-content-center ModalBtn">
-                <button type="submit" class="signUpBtn btn btn-center">
+                <button
+                  type="submit"
+                  class="signUpBtn btn btn-center"
+                  [disabled]="!signUpForm.valid"
+                >
                   Sign Up
                 </button>
               </div>
