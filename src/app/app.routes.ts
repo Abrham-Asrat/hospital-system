@@ -31,7 +31,11 @@ import { SignUpComponent } from './Pages/Landing/sign-up/sign-up.component';
 export const routes: Routes = [
   {
     path: '',
+<<<<<<< HEAD
     redirectTo: 'Dashboard',
+=======
+    redirectTo: 'LAbout',
+>>>>>>> 9e0b14455c2edbbbd90ecbd1a1d904e918d2f5d6
     pathMatch: 'full',
   },
   {

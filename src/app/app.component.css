@@ -6,3 +6,24 @@ body {
   align-items: center;
   min-height: 100vh;
 }
+.responsive-box {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	padding: 20px;
+  }
+  
+  .left, .right {
+	flex: 1;
+	padding: 20px;
+	background-color: #f0f0f0;
+	text-align: center;
+  }
+  
+  /* 📱 Small screens: stack the content vertically */
+  @media (max-width: 768px) {
+	.responsive-box {
+	  flex-direction: column;
+	}
+  }
+  

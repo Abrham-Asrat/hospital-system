@@ -1,0 +1,83 @@
+
+@media (max-width: 768px) {
+  .cont {
+    flex-direction: column;
+    text-align: center;
+    
+  }}
+
+
+.why-section {
+    margin-top: 80px;
+
+  }
+  .doc {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 50px 10px 10px;
+  }
+  
+  .under {
+   padding-left: 25rem;
+   margin-bottom: 50px;
+   margin-top: 20px;
+
+  }
+  
+  
+  
+  .features {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 40px;
+  }
+  
+  .feature {
+    width: 200px;
+  }
+  
+  .feature img {
+    height: 50px;
+    margin-bottom: 15px;
+  }
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px; /* spacing between icons */
+    padding: 40px;
+    background-color: #fff;
+  }
+  
+  .icon {
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  
+  /* Replace these URLs with your actual images or icons */
+  .icon-1 {
+    background-image: url('../../../../../assets/images/work1.jpg'); /* geometric shapes on pink blob */
+  }
+  
+  .icon-2 {
+    background-image: url('../../../../../assets/images/work2.jpg'); /* building on green blob */
+  }
+  
+  .icon-3 {
+    background-image: url('../../../../../assets/images/work3.jpg'); /* bar chart on orange blob */
+  }
+  
+  .feature h4 {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  
+  .feature p {
+    font-size: 0.9em;
+    color: #444;
+  }

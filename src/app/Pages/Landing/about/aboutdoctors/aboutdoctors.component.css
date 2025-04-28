@@ -1,0 +1,50 @@
+@media (max-width: 768px) {
+  .cont {
+    flex-direction: column;
+    text-align: center;
+    
+  }}
+  
+.doc {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 50px 10px 10px;
+  }
+  
+  .under {
+   padding-left: 19rem;
+   margin-bottom: 50px;
+   margin-top: 20px;
+
+  }
+
+  
+  .doctors-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+  
+  .doctor-card {
+    position: relative;
+    width: 180px;
+  }
+  
+  .doctor-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .doctor-name {
+    background-color: purple;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    transform: skewY(-5deg);
+  }
