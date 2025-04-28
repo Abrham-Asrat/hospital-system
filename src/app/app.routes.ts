@@ -11,7 +11,7 @@ import { LLayoutComponent } from './Pages/Landing/l-layout/l-layout.component';
 import { LHomeComponent } from './Pages/Landing/l-home/l-home.component';
 import { LContactComponent } from './Pages/Landing/l-contact/l-contact.component';
 import { FaqComponent } from './Pages/Landing/l-faq/l-faq.component';
-import { LAboutComponent } from './Pages/Landing/l-about/l-about.component';
+import { LAboutComponent } from './Pages/Landing/about/l-about/l-about.component';
 import { LBlogComponent } from './Pages/Landing/l-blog/l-blog.component';
 
 import { DoctorSignupComponent } from './Pages/DoctorRole/d-signup/d-signup.component';
