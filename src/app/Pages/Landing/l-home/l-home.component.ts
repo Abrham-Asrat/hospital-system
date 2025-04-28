@@ -3,204 +3,128 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-l-home',
-  imports: [],
+  imports: [NgFor],
   templateUrl: './l-home.component.html',
   styleUrl: './l-home.component.css',
 })
-export class LHomeComponent{
-//   doctors = [
-//     {
-//       name: 'Dr. Workaba',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://www.ethiopianmedicalass.org/wp-content/uploads/2021/02/workabeba.png',
-//     },
-//     {
-//       name: 'Dr. Abebe',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdh7IM7gcS_y0y4avsGifXcUa-P0mGH7ihQ&s',
-//     },
-//     {
-//       name: 'Dr. Workaba',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://www.ethiopianmedicalass.org/wp-content/uploads/2021/02/workabeba.png',
-//     },
-//     {
-//       name: 'Dr. Abebe',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdh7IM7gcS_y0y4avsGifXcUa-P0mGH7ihQ&s',
-//     },
-//     {
-//       name: 'Dr. Workaba',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://www.ethiopianmedicalass.org/wp-content/uploads/2021/02/workabeba.png',
-//     },
-//     {
-//       name: 'Dr. Abebe',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdh7IM7gcS_y0y4avsGifXcUa-P0mGH7ihQ&s',
-//     },
-//     {
-//       name: 'Dr. Workaba',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://www.ethiopianmedicalass.org/wp-content/uploads/2021/02/workabeba.png',
-//     },
-//     {
-//       name: 'Dr. Abebe',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdh7IM7gcS_y0y4avsGifXcUa-P0mGH7ihQ&s',
-//     },
-//     {
-//       name: 'Dr. Workaba',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://www.ethiopianmedicalass.org/wp-content/uploads/2021/02/workabeba.png',
-//     },
-//     {
-//       name: 'Dr. Abebe',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdh7IM7gcS_y0y4avsGifXcUa-P0mGH7ihQ&s',
-//     },
-//     {
-//       name: 'Dr. Workaba 2',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://www.ethiopianmedicalass.org/wp-content/uploads/2021/02/workabeba.png',
-//     },
-//     {
-//       name: 'Dr. Abebe',
-//       specialty: 'Pharmacologist',
-//       image:
-//         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdh7IM7gcS_y0y4avsGifXcUa-P0mGH7ihQ&s',
-//     },
-//   ];
-//   specialties = [
-//     'Cardiology',
-//     'Dermatology',
-//     'Neurology',
-//     'Orthopedics',
-//     'Pediatrics',
-//     'Radiology',
-//     'Surgery',
-//     'Urology',
-//     'Oncology',
-//     'Gastroenterology',
-//     'Endocrinology',
-//     'Urology',
-//     'Oncology',
-//     'Gastroenterology',
-//     'Endocrinology',
-//   ];
-//   // ngAfterViewInit() {
-//   //   this.enableSingleCardScroll();
-//   // }
-//   enableSingleCardScroll() {
-//     const container = document.getElementById('cardContainer') as HTMLElement;
-//     // for card navigation
-//     const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
-//     const prevBtn = document.getElementById('prevBtn') as HTMLButtonElement;
+export class LHomeComponent {
+  // services
+  services = [
+    {
+      icon: 'assets/icons/laboratory-microscope.svg',
+      title: 'Well equipped lab',
+    },
+    {
+      icon: 'assets/icons/ambulance.svg',
+      title: 'Emergency Ambulance',
+    },
+    {
+      icon: 'assets/icons/appointment.svg',
+      title: 'Online Appointment',
+    },
+    { icon: 'assets/icons/call-center.svg', title: 'Call Center' },
+  ];
 
-//     // for speciailty navigation
-//     const nextSpecial = document.getElementById('next') as HTMLButtonElement;
-//     const prevSpecial = document.getElementById('prev') as HTMLButtonElement;
+  activeCardIndex: number = 1;
 
-//     let scrollAmountSpecial = 0;
-//     let scrollAmountCard = 0;
-//     const cardWidth =
-//       document.querySelector('.doctor-card')?.clientWidth || 220; // Get card width
-//     const gap = 10; // Gap between cards
-//     const visibleWidth = container.clientWidth; // Width of visible container
-//     const totalScrollableWidth = container.scrollWidth; // Total width of all cards
+  setActiveCard(index: number): void {
+    this.activeCardIndex = index;
+  }
 
-//     // ✅ Function to update button states
-//     function updateButtonStates() {
-//       // for top doctor
-//       prevBtn.disabled = scrollAmountCard <= 0;
-//       // ✅ Ensure last card is fully visible before disabling next
-//       nextBtn.disabled =
-//         scrollAmountCard + visibleWidth >= totalScrollableWidth;
+  // doctors render
+  doctors = [
+    {
+      image: 'assets/images/doctor1.png',
+      name: 'Dr. Robert Henry',
+      specialty: 'Cardiologist',
+      ratings: '★★★★★',
+      reviews: '(102)',
+    },
+    {
+      image: 'assets/images/image2.png',
+      name: 'Dr. Harry Littleton',
+      specialty: 'Neurologist',
+      ratings: '★★★★★',
+      reviews: '(97)',
+    },
+    {
+      image: 'assets/images/image3.png',
+      name: 'Dr. Sharina Khan',
+      specialty: 'Gynecologist',
+      ratings: '★★★★★',
+      reviews: '(115)',
+    },
+    {
+      image: 'assets/images/image4.png',
+      name: 'Dr. Sanjeev Kapoor',
+      specialty: 'Child Specialist',
+      ratings: '★★★★★',
+      reviews: '(73)',
+    },
+    {
+      image: 'assets/images/image3.png',
+      name: 'Dr. Emily Watson',
+      specialty: 'Dermatologist',
+      ratings: '★★★★☆',
+      reviews: '(85)',
+    },
+    {
+      image: 'assets/images/image4.png',
+      name: 'Dr. Michael Johnson',
+      specialty: 'Orthopedic Surgeon',
+      ratings: '★★★★★',
+      reviews: '(120)',
+    },
+  ];
+  // Track whether to show all cards or just the first 4
+  showAllCards: boolean = false;
 
-//       // for specialty
-//       prevSpecial.disabled = scrollAmountSpecial <= 0;
-//       // ✅ Ensure last card is fully visible before disabling next
-//       nextSpecial.disabled =
-//         scrollAmountSpecial + visibleWidth >= totalScrollableWidth;
-//     }
+  // Method to toggle between showing limited and all cards
+  toggleShowAllCards(): void {
+    this.showAllCards = !this.showAllCards; // Toggle the state
+  }
 
-//     // doctor Navigation
-//     nextBtn?.addEventListener('click', () => {
-//       if (
-//         scrollAmountCard + cardWidth + gap <
-//         totalScrollableWidth - visibleWidth
-//       ) {
-//         // Prevent hiding last card
-//         scrollAmountCard += cardWidth + gap; // Adjust for margin
-//       } else {
-//         scrollAmountCard = totalScrollableWidth - visibleWidth; // Ensure last card is visible
-//       }
-//       container.style.transform = `translateX(-${scrollAmountCard}px)`;
-//       updateButtonStates();
-//     });
+  // Get the visible doctors based on the current state
+  get visibleDoctors(): any[] {
+    return this.showAllCards ? this.doctors : this.doctors.slice(0, 4);
+  }
 
-//     prevBtn?.addEventListener('click', () => {
-//       console.log(`⬅️ Before Prev Click: scrollAmount = ${scrollAmountCard}`);
-//       scrollAmountCard -= cardWidth + gap;
-//       if (scrollAmountCard < 0) scrollAmountCard = 0; // Prevent scrolling back too far
-//       container.style.transform = `translateX(-${scrollAmountCard}px)`;
-//       console.log(`⬅️ After Prev Click: scrollAmount = ${scrollAmountCard}`);
-//       updateButtonStates();
-//     });
-//     const specialContainer = document.getElementById(
-//       'specialtyContainer'
-//     ) as HTMLElement;
-
-//     const visibleWidthSpecial = specialContainer.clientWidth; // Width of visible container
-//     const totalScrollableWidthSpecial = specialContainer.scrollWidth; // Total width of all cards
-
-//     // specialty
-//     nextSpecial?.addEventListener('click', () => {
-//       console.log(
-//         `➡️ Before Next Click: scrollAmount = ${scrollAmountSpecial}`
-//       );
-//       if (
-//         scrollAmountSpecial + cardWidth + gap <
-//         totalScrollableWidthSpecial - visibleWidthSpecial
-//       ) {
-//         // Prevent hiding last card
-//         scrollAmountSpecial += cardWidth + gap; // Adjust for margin
-//       } else {
-//         scrollAmountSpecial = totalScrollableWidthSpecial - visibleWidthSpecial; // Ensure last card is visible
-//       }
-//       specialContainer.style.transform = `translateX(-${scrollAmountSpecial}px)`;
-
-//       updateButtonStates();
-//     });
-
-//     prevSpecial?.addEventListener('click', () => {
-//       scrollAmountSpecial -= cardWidth + gap;
-//       if (scrollAmountSpecial < 0) scrollAmountSpecial = 0; // Prevent scrolling back too far
-//       specialContainer.style.transform = `translateX(-${scrollAmountSpecial}px)`;
-//       updateButtonStates();
-//     });
-
-//     // ✅ Initial button state update
-//     updateButtonStates();
-//   }
-
-
-
-//   // scroll InTo view
-//   @ViewChild('section1') section1!: ElementRef;
-
-//  scrollToSection() {
-//     this.section1.nativeElement.scrollIntoView({ behavior: 'smooth' });
-//   }
+  // Array of testimonials
+  testimonials = [
+    {
+      image: 'assets/images/image2.png',
+      name: 'Sara Ali Khan',
+      type: 'Cardiologist Patient',
+      rating: '★★★★★',
+      message: 'Thanks for all the services, no doubt it is the best hospital.',
+    },
+    {
+      image: 'assets/images/image.png',
+      name: 'Simon Targett',
+      type: 'Neurologist Patient',
+      rating: '★★★★★',
+      message: 'Thanks for all the services, no doubt it is the best hospital.',
+    },
+    {
+      image: 'assets/images/image4.png',
+      name: 'Sara Ali Khan',
+      type: 'Cardiologist Patient',
+      rating: '★★★★★',
+      message: 'Thanks for all the services, no doubt it is the best hospital.',
+    },
+    {
+      image: 'assets/images/image2.png',
+      name: 'John Doe',
+      type: 'Orthopedic Patient',
+      rating: '★★★★☆',
+      message: 'Great experience with the staff and doctors!',
+    },
+    {
+      image: 'assets/images/image4.png',
+      name: 'Jane Smith',
+      type: 'Dermatology Patient',
+      rating: '★★★★★',
+      message: 'Highly recommend this hospital for skin treatments.',
+    },
+  ];
 }
