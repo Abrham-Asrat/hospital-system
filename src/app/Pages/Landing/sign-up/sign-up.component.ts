@@ -11,7 +11,7 @@ import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [FormsModule,NgIf],
+  imports: [FormsModule, NgIf],
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
   SignToggler!: string;
   signUpToggler!: string;
   otpVisible: boolean = false;
-  
+
   ngOnInit(): void {
     this.isDoctor = false;
     this.SignToggler = 'Patient';

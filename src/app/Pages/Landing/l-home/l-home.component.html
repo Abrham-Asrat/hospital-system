@@ -19,18 +19,18 @@
       <p class="signup-text">
         Become member of our hospital community? <a href="#">Sign up</a>
       </p>
-      
+
       <!-- <button class="btn--text"  (click)="scrollToSection()">show More <i class="bi bi-arrow-down"></i></button> -->
     </div>
 
     <!-- Right Side -->
-    <div class="hero-right"  >
+    <div class="hero-right">
       <div class="hero-image">
         <div class="circle-big"></div>
         <div class="circle-mid"></div>
         <div class="circle-hero">
           <img
-            src="assets/images/homeInside.png"
+            src="./assets/images/homeInside.png"
             alt="Doctors"
             class="heroImage"
           />
@@ -86,114 +86,70 @@
   </p>
 
   <div class="services-grid">
-    <div class="service-card">
-      <img
-        src="../../../../assets/images/laboratory-microscope.svg"
-        alt="Lab"
-      />
-      <p>Well equipped lab</p>
-    </div>
-    <div class="service-card active">
-      <img src="../../../../assets/images/ambulance.svg" alt="Ambulance" />
-      <p>Emergency Ambulance</p>
-    </div>
-    <div class="service-card">
-      <img src="../../../../assets/images/appointment.svg" alt="Appointment" />
-      <p>Online Appointment</p>
-    </div>
-    <div class="service-card">
-      <img src="../../../../assets/images/call-center.svg" alt="Call Center" />
-      <p>Call Center</p>
+    <div
+      *ngFor="let service of services; let i = index"
+      class="service-card"
+      [class.active]="activeCardIndex === i"
+      (click)="setActiveCard(i)"
+    >
+      <img [src]="service.icon" [alt]="service.title" />
+      <p>{{ service.title }}</p>
     </div>
   </div>
 </section>
+
+<!-- Doctor section -->
 <section class="doctors">
   <h2 class="doctors-title">Meet our Doctors</h2>
   <p class="doctors-subtitle">Well qualified doctors are ready to serve you</p>
 
   <div class="doctors-grid">
-    <div class="doctor-card">
-      <img src="../../../../assets/images/doctor1.png" alt="Dr. Robert Henry" />
-      <h3>Dr. Robert Henry</h3>
-      <p>Cardiologist</p>
-      <div class="ratings">★★★★★ <span>(102)</span></div>
-      <button class="btn small">Book an Appointment</button>
-    </div>
-
-    <div class="doctor-card">
-      <img
-        src="../../../../assets/images/image2.png"
-        alt="Dr. Harry Littleton"
-      />
-      <h3>Dr. Harry Littleton</h3>
-      <p>Neurologist</p>
-      <div class="ratings">★★★★★ <span>(97)</span></div>
-      <button class="btn small">Book an Appointment</button>
-    </div>
-
-    <div class="doctor-card">
-      <img src="../../../../assets/images/image3.png" alt="Dr. Sharina Khan" />
-      <h3>Dr. Sharina Khan</h3>
-      <p>Gynecologist</p>
-      <div class="ratings">★★★★★ <span>(115)</span></div>
-      <button class="btn small">Book an Appointment</button>
-    </div>
-
-    <div class="doctor-card">
-      <img
-        src="../../../../assets/images/image4.png"
-        alt="Dr. Sanjeev Kapoor"
-      />
-      <h3>Dr. Sanjeev Kapoor</h3>
-      <p>Child Specialist</p>
-      <div class="ratings">★★★★★ <span>(73)</span></div>
+    <!-- Loop through visible doctors -->
+    <div class="doctor-card" *ngFor="let doctor of visibleDoctors">
+      <img [src]="doctor.image" [alt]="doctor.name" />
+      <h3>{{ doctor.name }}</h3>
+      <p>{{ doctor.specialty }}</p>
+      <div class="ratings">
+        {{ doctor.ratings }} <span>{{ doctor.reviews }}</span>
+      </div>
       <button class="btn small">Book an Appointment</button>
     </div>
   </div>
-  <button class="btn primary see-more">See more</button>
+
+  <!-- See More / Show Less Button -->
+  <button class="btn primary see-more" (click)="toggleShowAllCards()">
+    {{ showAllCards ? "Show Less" : "See More" }}
+  </button>
 </section>
 <!-- Testimonials Section -->
 <section class="testimonials-section">
   <h2>Patients Testimonial</h2>
-  <p>Let’s see what our happy patients says</p>
-  <div class="testimonial-wrapper">
-    <button class="arrow left">&#8249;</button>
-    <div class="testimonial-carousel">
-      <div class="testimonial-card">
-        <img src="../../../../assets/images/image2.png" alt="Sara Ali Khan" />
+  <p>Let’s see what our happy patients say</p>
+
+  <!-- Horizontal Carousel -->
+  <div class="testimonial-carousel">
+    <div class="testimonial-track">
+      <!-- Original testimonials -->
+      <div *ngFor="let testimonial of testimonials" class="testimonial-card">
+        <img [src]="testimonial.image" [alt]="testimonial.name" />
         <div>
-          <h4>Sara Ali Khan</h4>
-          <small>Cardiologist Patient</small>
-          <div class="stars">★★★★★</div>
-          <p>
-            Thanks for all the services,<br />no doubt it is the best hospital.
-          </p>
+          <h4>{{ testimonial.name }}</h4>
+          <small>{{ testimonial.type }}</small>
+          <div class="stars">{{ testimonial.rating }}</div>
+          <p>{{ testimonial.message }}</p>
         </div>
       </div>
-      <div class="testimonial-card">
-        <img src="../../../../assets/images/image.png" alt="Sara Ali Khan" />
+      <!-- Duplicate first few testimonials for seamless loop -->
+      <div *ngFor="let testimonial of testimonials.slice(0, 3)" class="testimonial-card">
+        <img [src]="testimonial.image" [alt]="testimonial.name" />
         <div>
-          <h4>Simon Targett</h4>
-          <small>Neurologist Patient</small>
-          <div class="stars">★★★★★</div>
-          <p>
-            Thanks for all the services,<br />no doubt it is the best hospital.
-          </p>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <img src="../../../../assets/images/image4.png" alt="Sara Ali Khan" />
-        <div>
-          <h4>Sara Ali Khan</h4>
-          <small>Cardiologist Patient</small>
-          <div class="stars">★★★★★</div>
-          <p>
-            Thanks for all the services,<br />no doubt it is the best hospital.
-          </p>
+          <h4>{{ testimonial.name }}</h4>
+          <small>{{ testimonial.type }}</small>
+          <div class="stars">{{ testimonial.rating }}</div>
+          <p>{{ testimonial.message }}</p>
         </div>
       </div>
     </div>
-    <button class="arrow right">&#8250;</button>
   </div>
 </section>
 <!-- Latest Articles Section -->
@@ -203,7 +159,7 @@
   <div class="articles">
     <div class="article-card featured">
       <div class="img-wrapper">
-        <img src="../../../../assets/images/homeUpper.png" alt="Article 1" />
+        <img src="assets/images/homeUpper.png" alt="Article 1" />
       </div>
       <div class="text">
         <h4>Card title</h4>
@@ -217,7 +173,7 @@
     <div class="article-side">
       <div class="article-card">
         <div class="img-wrapper">
-          <img src="../../../../assets/images/image10.png" alt="Article 2" />
+          <img src="assets/images/image10.png" alt="Article 2" />
         </div>
         <div class="text">
           <h4>Card title</h4>
@@ -230,7 +186,7 @@
       </div>
       <div class="article-card">
         <div class="img-wrapper">
-          <img src="../../../../assets/images/image11.png" alt="Article 3" />
+          <img src="assets/images/image11.png" alt="Article 3" />
         </div>
         <div class="text">
           <h4>Card title</h4>
