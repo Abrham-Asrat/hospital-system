@@ -9,7 +9,7 @@
           <h3>Contact Information</h3>
           <p>Say something to start a live chat!</p>
           <ul class="info-list">
-            <li><i class="bi bi-telephone-fill">   +251 999 999 999</i></li>
+            <li><i class="bi bi-telephone-fill"></i>   +251 999 999 999</li>
             <li><i class="bi bi-envelope"></i>   meee&#64;gmail.com</li>
           </ul>
           <div class="contact-bubbles-social">
@@ -35,24 +35,26 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <div class="form-group">
-          <input type="text" placeholder="First Name" />
-          <input type="text" placeholder="Last Name" />
+          <input type="text" placeholder="First Name" name="firstName" ngModel />
+          <input type="text" placeholder="Last Name" name="lastName" ngModel />
         </div>
         <div class="form-group">
-          <input type="email" placeholder="Email" required />
-          <input type="number" placeholder="Enter your Phone Number" />
+          <input type="email" placeholder="Email" name="email"
+           ngModel
+            required
+           #emailRef="ngModel" />
+          <input type="number" placeholder="Enter your Phone Number" name="phone" ngModel />
         </div>
-        <textarea placeholder="Write your message.."></textarea>
-        <button type="submit" id="submitButton">Send Message</button>
+        <textarea placeholder="Write your message.." name="message" ngModel></textarea>
+        <button type="submit">Send Message</button>
       </form>
-      <!-- Placeholder for success ng smessage -->
-      <div class="successMessage" style="display: none; color: green; margin-top: 10px;">
-        Message submitted successfully!
-      </div>
-    </div>
-  </section>
-</main>
-
-
+      
+      @if (messageDelivered) {
+        <div class="message-container" >
+         <p>Message submitted successfully !</p> 
+        </div>
+      }
+      
+      

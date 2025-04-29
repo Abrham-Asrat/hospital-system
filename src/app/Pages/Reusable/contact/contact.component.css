@@ -106,7 +106,6 @@ h2 {
   right: -5rem;
   
 }
-
 .contact-info h3 {
   margin-bottom: 10px;
 }
@@ -163,9 +162,6 @@ button[type="submit"] {
   
   
 }
-
-
-
 .bubbles a {
   text-decoration: none; /* Remove underline from links */
 }
@@ -223,17 +219,26 @@ button[type="submit"] {
   border-radius: 8px;
   cursor: pointer;
 }
-.success-message {
-  color: green;
-  font-size: 18px;
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid green;
-  border-radius: 5px;
-  background-color: #e6ffe6;
-  text-align: center;
-}
-
+.message-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #7e19a7;
+    padding: 24px 32px;
+    border: 2px solid #ffffff57;
+    
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    z-index: 2000;
+    min-width: 300px;
+    background: #e4b1e4;;
+    position: absolute;
+   
+  }
+  
 footer {
   background: #7b1fa2;
   color: white;
