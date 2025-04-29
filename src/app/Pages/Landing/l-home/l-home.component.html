@@ -10,14 +10,27 @@
       </p>
 
       <div class="hero-buttons">
-        <a href="#" class="btn primary">Book an appointment</a>
-        <a href="#" class="video-button">
+        <button class="btn primary" (click)="book()">
+          Book an appointment
+        </button>
+        <button
+          class="video-button"
+          data-bs-toggle="modal"
+          data-bs-target="#videoModal"
+        >
           <span class="play-icon">▶</span> Watch videos
-        </a>
+        </button>
       </div>
 
       <p class="signup-text">
-        Become member of our hospital community? <a href="#">Sign up</a>
+        Become member of our hospital community?
+        <a
+          type="button"
+          class="ModalBtn"
+          data-bs-toggle="modal"
+          data-bs-target="#SignUpModal"
+          >Sign up</a
+        >
       </p>
 
       <!-- <button class="btn--text"  (click)="scrollToSection()">show More <i class="bi bi-arrow-down"></i></button> -->
@@ -43,35 +56,25 @@
         />
 
         <div class="info-box top-left">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png"
-            alt=""
-          />
-          <div>
-            <p class="label">Well Qualified doctors</p>
-            <small>Treat with care</small>
+          <i class="bi bi-search-heart"></i>
+          <div class="text-inf">
+            <h6 class="">Well Qualified doctors</h6>
+            <span>Treat with care</span>
           </div>
         </div>
-
         <div class="info-box qualify middle-left">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3208/3208713.png"
-            alt=""
-          />
-          <div>
-            <p class="label">Book an appointment</p>
+          <i class="bi bi-journal-check"></i>
+          <div class="text-inf">
+            <h6 class="">Book an appointment</h6>
           </div>
         </div>
 
-        <div class="info-box contact bottom-right">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/597/597177.png"
-            alt=""
-          />
-          <div>
-            <p class="label">Contact no</p>
-            <small>+2519•••••••••</small>
+        <div class="info-box contact">
+          <div class="text-inf">
+            <h6>ContactNo</h6>
+            <small>+2519********</small>
           </div>
+          <i class="bi bi-telephone-fill"></i>
         </div>
       </div>
     </div>
@@ -79,6 +82,7 @@
   </div>
 </section>
 
+<!-- Our medical service -->
 <section class="services">
   <h2 class="services-title">Our Medical Services</h2>
   <p class="services-subtitle">
@@ -105,14 +109,14 @@
 
   <div class="doctors-grid">
     <!-- Loop through visible doctors -->
-    <div class="doctor-card" *ngFor="let doctor of visibleDoctors">
+    <div class="doctor-card bg-light" *ngFor="let doctor of visibleDoctors">
       <img [src]="doctor.image" [alt]="doctor.name" />
       <h3>{{ doctor.name }}</h3>
       <p>{{ doctor.specialty }}</p>
       <div class="ratings">
         {{ doctor.ratings }} <span>{{ doctor.reviews }}</span>
       </div>
-      <button class="btn small">Book an Appointment</button>
+      <button class="btn small" (click)="book()">Book an Appointment</button>
     </div>
   </div>
 
@@ -130,17 +134,27 @@
   <div class="testimonial-carousel">
     <div class="testimonial-track">
       <!-- Original testimonials -->
-      <div *ngFor="let testimonial of testimonials" class="testimonial-card">
-        <img [src]="testimonial.image" [alt]="testimonial.name" />
-        <div>
+      <div
+        *ngFor="let testimonial of testimonials"
+        class="testimonial-card bg-light"
+      >
+        <img
+          [src]="testimonial.image"
+          [alt]="testimonial.name"
+          class="testimonialImage"
+        />
+        <div class="testimonial-info">
           <h4>{{ testimonial.name }}</h4>
           <small>{{ testimonial.type }}</small>
-          <div class="stars">{{ testimonial.rating }}</div>
+          <small class="stars">{{ testimonial.rating }}</small>
           <p>{{ testimonial.message }}</p>
         </div>
       </div>
       <!-- Duplicate first few testimonials for seamless loop -->
-      <div *ngFor="let testimonial of testimonials.slice(0, 3)" class="testimonial-card">
+      <div
+        *ngFor="let testimonial of testimonials.slice(0, 3)"
+        class="testimonial-card"
+      >
         <img [src]="testimonial.image" [alt]="testimonial.name" />
         <div>
           <h4>{{ testimonial.name }}</h4>
@@ -152,51 +166,60 @@
     </div>
   </div>
 </section>
-<!-- Latest Articles Section -->
+<!-- Latest blogs Section -->
 <section class="articles-section">
   <h2>Our Latest Blog</h2>
   <p class="sub-text">Written by our doctors</p>
-  <div class="articles">
-    <div class="article-card featured">
+
+  <!-- Grid Container -->
+  <div class="blogs-grid">
+    @for (blog of blogs; track $index) {
+    <div
+      class="article-card"
+      [ngClass]="{
+        'blog-a p-3': $index === 0,
+        'blog-b': $index === 1,
+        'blog-c': $index === 2
+      }"
+    >
       <div class="img-wrapper">
-        <img src="assets/images/homeUpper.png" alt="Article 1" />
+        <img [src]="blog.image" [alt]="blog.title" class="blogImg" />
+        <div class="imgRelative" *ngIf=" $index === 0"></div>
+        <div class="imgRelative2" *ngIf=" $index === 1"></div>
+        <div class="imgRelative3" *ngIf=" $index === 2"></div>
       </div>
       <div class="text">
-        <h4>Card title</h4>
-        <p>
-          Card description. Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Sit rhoncus imperdiet nisl.
-        </p>
-        <a href="#">See more</a>
+        <h4>{{ blog.title }}</h4>
+        <p>{{ blog.description }}</p>
+        <a [href]="blog.link">See more</a>
       </div>
     </div>
-    <div class="article-side">
-      <div class="article-card">
-        <div class="img-wrapper">
-          <img src="assets/images/image10.png" alt="Article 2" />
-        </div>
-        <div class="text">
-          <h4>Card title</h4>
-          <p>
-            Card description. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Sit rhoncus imperdiet nisl.
-          </p>
-          <a href="#">See more</a>
-        </div>
-      </div>
-      <div class="article-card">
-        <div class="img-wrapper">
-          <img src="assets/images/image11.png" alt="Article 3" />
-        </div>
-        <div class="text">
-          <h4>Card title</h4>
-          <p>
-            Card description. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Sit rhoncus imperdiet nisl.
-          </p>
-          <a href="#">See more</a>
+    }
+  </div>
+</section>
+<app-sign-up></app-sign-up>
+
+<!-- Video Modal -->
+<div
+  class="modal fade"
+  id="videoModal"
+  tabindex="-1"
+  aria-labelledby="videoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="ratio ratio-16x9">
+          <iframe
+            src="https://www.youtube.com/embed/SEne5-lQTAY"
+            title="YouTube video player"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>

@@ -1,13 +1,21 @@
-import { NgFor } from '@angular/common';
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { NgFor, NgClass, NgIf } from '@angular/common';
+import { Component } from '@angular/core';
+import { SignUpComponent } from '../sign-up/sign-up.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-l-home',
-  imports: [NgFor],
+  imports: [NgFor, SignUpComponent, NgClass, NgIf],
   templateUrl: './l-home.component.html',
   styleUrl: './l-home.component.css',
 })
 export class LHomeComponent {
+  constructor(private router: Router) {}
+  book() {
+    setTimeout(() => {
+      this.router.navigate(['Patient/Appointment']);
+    }, 1000);
+  }
   // services
   services = [
     {
@@ -127,4 +135,33 @@ export class LHomeComponent {
       message: 'Highly recommend this hospital for skin treatments.',
     },
   ];
+
+  // latest blog
+
+  blogs = [
+    {
+      image: 'assets/images/image10.png',
+      title: 'Card title',
+      description:
+        'Card description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit rhoncus imperdiet nisl.',
+      link: '#',
+    },
+    {
+      image: 'assets/images/image10.png',
+      title: 'Card title',
+      description:
+        'Card description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit rhoncus imperdiet nisl.',
+      link: '#',
+    },
+    {
+      image: 'assets/images/image11.png',
+      title: 'Card title',
+      description:
+        'Card description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit rhoncus imperdiet nisl.',
+      link: '#',
+    },
+  ];
+
+  // Track which article is featured
+  featuredArticleIndex: number = 0;
 }
