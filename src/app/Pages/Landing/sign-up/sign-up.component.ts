@@ -7,11 +7,11 @@ import {
 } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [FormsModule],
+  imports: [FormsModule,NgIf],
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
