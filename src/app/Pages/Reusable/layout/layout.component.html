@@ -30,7 +30,7 @@
           class="nav-item nav-link"
           (click)="setActive(item)"
           [ngClass]="{ 'text-warning': activeTab === item }"
-          >{{ item.slice(1) | uppercase }}
+          >{{ item | uppercase }}
         </a>
         }
       </div>
@@ -85,7 +85,7 @@
             >
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item"
-              ><i class="fas fa-sign-out-alt pe-1"></i>Logout</a
+              ><i class="fas fa-sign-out-alt pe-1" (click)="logOut()"></i>Logout</a
             >
           </div>
         </div>
@@ -113,6 +113,7 @@
     </div>
   </div>
 </nav>
+
 <router-outlet></router-outlet>
 
 <app-sign-up></app-sign-up>
