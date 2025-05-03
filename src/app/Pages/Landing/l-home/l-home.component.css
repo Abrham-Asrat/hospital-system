@@ -334,7 +334,12 @@
   padding: 4rem 2rem;
   text-align: center;
 }
-
+.DoctorActive{
+ border-radius: 50%;
+ background-color: #0f0;
+ width:1rem;
+ height: 1rem;
+}
 .doctors-title {
   font-size: 2rem;
   font-weight: 600;
@@ -358,9 +363,10 @@
   border-radius: 16px;
   overflow: hidden;
   text-align: center;
-  background: #d4d4d4;
+  background: #fff;
   padding-bottom: 1.5rem;
   border: 0.03px solid #00000022;
+  box-shadow: 0 4px 4px#00000022;
 }
 
 .doctor-card img {
@@ -527,14 +533,14 @@
   grid-template-areas:
     "A B"
     "A C";
-  gap:1rem;
+  gap: 1rem;
   justify-content: center;
   height: 400px;
 }
 
 /* Styling for all articles */
 .blog-a {
-  grid-area: A; 
+  grid-area: A;
   margin-right: 3rem;
 }
 .blog-b {
@@ -573,15 +579,15 @@
   height: 12rem;
 }
 
-.blog-b .img-wrapper .blogImg{
+.blog-b .img-wrapper .blogImg {
   height: 70%;
   width: 100%;
 }
-.blog-c .img-wrapper .blogImg{
+.blog-c .img-wrapper .blogImg {
   height: 70%;
   width: 100%;
 }
-.img-wrapper{
+.img-wrapper {
   position: relative;
 }
 .imgRelative {
@@ -591,19 +597,20 @@
   z-index: -4;
   border-radius: 1rem;
   width: 100%;
-  height:30%;
+  height: 30%;
   margin-bottom: 0.5rem;
 }
-.imgRelative3, .imgRelative2 {
+.imgRelative3,
+.imgRelative2 {
   position: absolute;
   background: #9b00b4;
-  bottom:10%;
+  bottom: 10%;
   z-index: -4;
   border-radius: 1rem;
   width: 110%;
-  height:35%;
+  height: 35%;
   margin-bottom: 1rem;
-  margin-left:-0.5rem;
+  margin-left: -0.5rem;
 }
 
 .text {
@@ -622,7 +629,7 @@
   color: #666;
   align-self: flex-start;
   text-align: start;
-  margin-bottom:0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .text a {
@@ -630,7 +637,6 @@
   font-weight: bold;
   text-align: end;
 }
-
 
 .text a:hover {
   text-decoration: none;

@@ -37,9 +37,17 @@ export class PAppointmentComponent {
       status: 'Completed',
       reason: '',
     },
+    {
+      id: 2,
+      doctor: 'Alemu',
+      date: '2024-02-10',
+      time: '1:00 PM',
+      status: 'Completed',
+      reason: '',
+    },
   ];
 
-  doctors = ['Workaba', 'Abebe', 'Kebede', 'Meaza'];
+  doctors = ['Workaba', 'Abebe', 'Kebede', 'Meaza','Alemu'];
   newAppointment = { doctor: '', date: '', time: '', reason: '' };
 
   getStatusClass(status: string) {

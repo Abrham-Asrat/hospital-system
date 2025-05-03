@@ -1,75 +1,77 @@
 <div class="container appointment-page mb-5">
- 
-
   <!-- Tabs for Appointments -->
-  <ul class="nav nav-tabs" id="appointmentTabs">
+  <!-- Tabs -->
+  <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" data-bs-toggle="tab" href="#upcoming"
+      <a
+        class="nav-link"
+        [class.active]="activeTab === 'upcoming'"
+        (click)="activeTab = 'upcoming'"
         >Upcoming</a
       >
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" href="#past">Past</a>
+      <a
+        class="nav-link"
+        [class.active]="activeTab === 'past'"
+        (click)="activeTab = 'past'"
+        >Past</a
+      >
     </li>
   </ul>
-
-  <div class="tab-content">
+  <!-- Tab Content -->
+  <div class="tab-content mt-3">
     <!-- Upcoming Appointments -->
-    <div class="tab-pane fade show active" id="upcoming">
-      <div class="appointment-card">
+    <div
+      class="tab-pane fade"
+      [class.show]="activeTab === 'upcoming'"
+      [class.active]="activeTab === 'upcoming'"
+    >
+      <div
+        class="appointment-card"
+        *ngFor="let appointment of upcomingAppointments"
+      >
         <div class="row">
           <div class="col-md-8">
-            <h5>John Doe</h5>
+            <h5>{{ appointment.name }}</h5>
             <p>
-              <strong>Time:</strong> 10:30 AM | <strong>Date:</strong> March 10,
-              2024
+              <strong>Time:</strong> {{ appointment.time }} |
+              <strong>Date:</strong> {{ appointment.date }}
             </p>
-            <p><strong>Reason:</strong> General Checkup</p>
+            <p><strong>Reason:</strong> {{ appointment.reason }}</p>
           </div>
           <div class="col-md-4 text-end">
-            <button class="btn btn-success" (click)="appointmentAccepted()">
+            <button
+              class="btn btn-success"
+              (click)="appointmentAccepted(appointment)"
+            >
               Confirm
             </button>
-            <button class="btn btn-danger" (click)="appointmentRejected()">
+            <button
+              class="btn btn-danger"
+              (click)="appointmentRejected(appointment)"
+            >
               Cancel
             </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="appointment-card">
-        <div class="row">
-          <div class="col-md-8">
-            <h5>Jane Smith</h5>
-            <p>
-              <strong>Time:</strong> 2:00 PM | <strong>Date:</strong> March 12,
-              2024
-            </p>
-            <p><strong>Reason:</strong> Follow-up Consultation</p>
-          </div>
-          <div class="col-md-4 text-end">
-            <button class="btn btn-success">Confirm</button>
-            <button class="btn btn-danger">Cancel</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Past Appointments -->
-    <div class="tab-pane fade" id="past">
-      <div class="appointment-card past">
-        <h5>Mark Wilson</h5>
+    <div
+      class="tab-pane fade"
+      [class.show]="activeTab === 'past'"
+      [class.active]="activeTab === 'past'"
+    >
+      <div
+        class="appointment-card past"
+        *ngFor="let appointment of pastAppointments"
+      >
+        <h5>{{ appointment.name }}</h5>
         <p>
-          <strong>Date:</strong> Feb 20, 2024 |
-          <strong>Status:</strong> Completed
-        </p>
-      </div>
-
-      <div class="appointment-card past">
-        <h5>Susan Brown</h5>
-        <p>
-          <strong>Date:</strong> Feb 18, 2024 |
-          <strong>Status:</strong> Completed
+          <strong>Date:</strong> {{ appointment.date }} |
+          <strong>Status:</strong> {{ appointment.status }}
         </p>
       </div>
     </div>

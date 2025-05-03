@@ -11,10 +11,9 @@ import { LLayoutComponent } from './Pages/Landing/l-layout/l-layout.component';
 import { LHomeComponent } from './Pages/Landing/l-home/l-home.component';
 import { LContactComponent } from './Pages/Landing/l-contact/l-contact.component';
 import { FaqComponent } from './Pages/Landing/l-faq/l-faq.component';
-import { LAboutComponent } from './Pages/Landing/l-about/l-about.component';
 import { LBlogComponent } from './Pages/Landing/l-blog/l-blog.component';
 
-import { DoctorSignupComponent } from './Pages/DoctorRole/d-signup/d-signup.component';
+
 import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
 
 import { PHomeComponent } from './Pages/Patient/p-home/p-home.component';
@@ -27,6 +26,8 @@ import { PNotificationComponent } from './Pages/Patient/p-notification/p-notific
 import { PProfileComponent } from './Pages/Patient/p-profile/p-profile.component';
 import { LoginComponent } from './Pages/Landing/log-in/log-in.component';
 import { SignUpComponent } from './Pages/Landing/sign-up/sign-up.component';
+import { LAboutComponent } from './Pages/Landing/about/l-about/l-about.component';
+import { PaymentComponent } from './Pages/Reusable/payment/payment.component';
 
 export const routes: Routes = [
   {
@@ -61,6 +62,10 @@ export const routes: Routes = [
       {
         path: 'FAQ',
         component: FaqComponent,
+      },
+      {
+        path: 'payment',
+        component: PaymentComponent,
       },
       {
         path: 'logIn',

@@ -1,4 +1,4 @@
-<!-- Hero Section -->
+<!-- Home Section -->
 <section class="hero">
   <div class="hero-wrapper">
     <!-- Left Side -->
@@ -8,7 +8,6 @@
         Good health is the state of mental, physical and social well-being<br />and
         it does not just mean absence of diseases.
       </p>
-
       <div class="hero-buttons">
         <button class="btn primary" (click)="book()">
           Book an appointment
@@ -33,7 +32,7 @@
         >
       </p>
 
-      <!-- <button class="btn--text"  (click)="scrollToSection()">show More <i class="bi bi-arrow-down"></i></button> -->
+      <button class="btn--text"  (click)="scrollToSection()">show More <i class="bi bi-arrow-down"></i></button>
     </div>
 
     <!-- Right Side -->
@@ -109,7 +108,11 @@
 
   <div class="doctors-grid">
     <!-- Loop through visible doctors -->
-    <div class="doctor-card bg-light" *ngFor="let doctor of visibleDoctors">
+    <div class="doctor-card" *ngFor="let doctor of visibleDoctors">
+      <div class="available p-3 d-flex align-items-center">
+      <p class="DoctorActive me-2"></p>
+       <p class="">available</p>
+     </div>
       <img [src]="doctor.image" [alt]="doctor.name" />
       <h3>{{ doctor.name }}</h3>
       <p>{{ doctor.specialty }}</p>
@@ -223,3 +226,4 @@
     </div>
   </div>
 </div>
+

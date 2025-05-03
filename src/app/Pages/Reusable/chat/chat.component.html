@@ -1,155 +1,127 @@
-<div class="container chat-page mb-4 row">
+<div class="container chat-page mb-4 row mt-2">
+  <!-- Left Side: Users List -->
   <div class="chat-left col-4 p-3">
     <div class="row">
+      <!-- Logged-in User Profile -->
       <div class="user-profile col-8 d-flex">
-        <img
-          src="../../../../assets/images/PatientLogin.png"
-          alt=""
-          class="user-img me-2"
-        />
+        <img [src]="userImage" alt="User" class="user-img me-2" />
         <div class="user-info">
-          <h3 class="user-name me-2">Dr. Abebe</h3>
-          <p class="user-speciality">dentist</p>
+          <h3 class="user-name">{{ userName }}</h3>
+          <p class="user-speciality">{{ userRole }}</p>
         </div>
+        
       </div>
       <div class="editer col-4 d-flex justify-content-end">
         <i class="bi bi-pen"></i>
       </div>
-      <div class="search-bar col-12">
-        <i class="bi bi-search"></i>
-        <input type="search" name="" id="" placeholder="search here" />
-      </div>
     </div>
     <div class="line"></div>
+
+    <!-- Static Users List -->
     <div class="users-list">
-      <div class="row mt-3">
+      <div class="row mt-3" *ngFor="let contact of contacts" (click)="selectContact(contact)">
         <div class="user-profile col-8 d-flex align-items-center">
-          <img
-            src="../../../../assets/images/Logo.jpg"
-            alt=""
-            class="user-img"
-          />
+          <img [src]="contact.image" alt="" class="user-img" />
           <div class="user-info ps-2">
-            <h3 class="user-name">Dr. Bini</h3>
-            <p class="user-speciality">lab</p>
+            <h3 class="user-name">{{ contact.name }}</h3>
+            <p class="user-speciality">{{ contact.specialty }}</p>
           </div>
         </div>
         <div class="editer col-4 d-flex justify-content-end align-items-center">
-          <h4 class="unread">2</h4>
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="user-profile col-8 d-flex align-items-center">
-          <img
-            src="../../../../assets/images/PatientLogin.png"
-            alt=""
-            class="user-img"
-          />
-          <div class="user-info ps-2">
-            <h3 class="user-name">Dr. samson</h3>
-            <p class="user-speciality">optics</p>
-          </div>
-        </div>
-        <div class="editer col-4 d-flex justify-content-end align-items-center">
-          <h4 class="unread">5</h4>
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="user-profile col-8 d-flex align-items-center">
-          <img
-            src="../../../../assets/images/otp1.png"
-            alt=""
-            class="user-img"
-          />
-          <div class="user-info ps-2">
-            <h3 class="user-name">Dr. Tariku</h3>
-            <p class="user-speciality">optics</p>
-          </div>
-        </div>
-        <div class="editer col-4 d-flex justify-content-end align-items-center">
-          <h4 class="unread">3</h4>
+          <h4 class="unread">{{ contact.unread }}</h4>
         </div>
       </div>
     </div>
   </div>
+  <!-- Right Side: Chat Box -->
   <div class="chat-right col-8">
-    <div class="chat-header row p-3">
+    <!-- Header -->
+      <div class="chat-header row p-3 pb-0">
       <div class="col-6 d-flex align-items-center">
-        <img
-          src="../../../../assets/images/PatientSignUp.png"
-          alt=""
-          class="chater-img me-2"
-        />
-        <h4 class="chater-name me-2">kinfe</h4>
-        <p class="chater-status me-2 d-flex align-items-center mt-3"></p>
+        <img [src]="peerImage" alt="Peer Image" class="chater-img me-2" />
+        <div>
+          <h4 class="chater-name m-0">{{ peerName }}</h4>
+          <small class="text-muted">
+            {{ userRole === "doctor" ? "Patient" : "Doctor" }}
+          </small>
+        </div>
       </div>
-      <div class="col-6 d-flex align-items-center justify-content-end pe-5">
-        <i class="bi bi-search"></i>
-      </div>
-    </div>
-    <div class="line"></div>
-    <!-- Chat Box -->
-    <div class="chat-box">
+       <!-- Review Modal Trigger (only for patient) -->
       <div
-        *ngFor="let message of messages"
-        class="chat-message"
-        [ngClass]="{
-          sent: message.sender === 'doctor',
-          received: message.sender === 'patient'
-        }"
-        [ngStyle]="{
-          padding: message.fileUrl ? '0' : '10px'
-        }"
+        class="col-6 d-flex justify-content-end mt-2"
+        *ngIf="userRole === 'patient'"
       >
-        <!-- Text Message -->
-        <p *ngIf="message.type === 'text'" class="pb-0">{{ message.text }}</p>
-        <!-- Image Message -->
-        <img
-          *ngIf="message.type === 'image'"
-          [src]="message.fileUrl"
-          class="chat-image"
+        <button class="btn me-5  mb-2" (click)="openReviewModal()" title="endChat and give Review">
+          <!-- <i class="bi bi-star"></i>  -->
+          <!-- <i class="bi bi-pencil"></i>  -->
+          <i class="bi bi-hand-thumbs-up"></i> 
+        </button>
+      </div>
+      <div class="line mt-2"></div>
+    </div>
+      <!-- Chat Messages -->
+      <div class="chat-box">
+        <div
+          *ngFor="let message of messages"
+          class="chat-message"
+          [ngClass]="{
+            sent: message.sender === userRole,
+            received: message.sender !== userRole
+          }"
+          [ngStyle]="{ padding: message.fileUrl ? '0' : '10px' }"
+        >
+          <!-- Text -->
+          <p *ngIf="message.type === 'text'" class="p-0 m-0">{{ message.text }}</p>
+
+          <!-- Image -->
+          <img
+            *ngIf="message.type === 'image'"
+            [src]="message.fileUrl"
+            class="chat-image"
+          />
+
+          <!-- Audio -->
+          <audio *ngIf="message.type === 'audio'" controls class="chat-audio">
+            <source [src]="message.fileUrl" type="audio/mpeg" />
+          </audio>
+
+          <p class="text-end m-0 pe-2">{{ message.time }}</p>
+        </div>
+      </div>
+      <!-- Chat Input -->
+      <form class="chat-input m-0 p-0">
+        <button
+          class="btn"
+          (click)="isRecording ? stopRecording() : startRecording()"
+          type="button"
+        >
+          <i
+            [ngClass]="isRecording ? 'bi bi-stop-fill fs-3' : 'bi bi-mic fs-3'"
+          ></i>
+        </button>
+
+        <input
+          type="text"
+          [(ngModel)]="newMessage"
+          placeholder="Type a message..."
+          class="form-control"
+          name="chat"
         />
 
-        <!-- Audio Message -->
-        <audio *ngIf="message.type === 'audio'" controls class="p-2">
-          <source [src]="message.fileUrl" type="audio/mpeg" />
-        </audio>
+        <button class="sendBtn" (click)="sendMessage()">
+          <i class="bi bi-send-fill"></i>
+        </button>
 
-        <p class="text-end m-0 pe-2">{{ message.time }}</p>
-      </div>
-    </div>
-    <!-- Chat Input -->
-    <form class="chat-input" (submit)="sendMessage()">
-      <!-- File Upload -->
-      <!-- Voice Message -->
-      <button class="btn" (click)="startRecording()">
-        <i class="bi bi-mic fs-3"></i>
-      </button>
-      <input
-        type="text"
-        [(ngModel)]="newMessage"
-        placeholder="Type a message..."
-        class="form-control"
-      />
-      <button class="sendBtn"><i class="bi bi-send-fill"></i></button>
-
-      <label for="fileInput" class="file-upload-label">
-        <i class="bi bi-paperclip"></i>
-      </label>
-      <input
-        type="file"
-        id="fileInput"
-        accept="image/*"
-        (change)="sendImage($event)"
-        class="file-input"
-      />
-      <button
-        class="btn btn-danger"
-        *ngIf="isRecording"
-        (click)="stopRecording()"
-      >
-        Stop
-      </button>
-    </form>
+        <label for="fileInput" class="file-upload-label">
+          <i class="bi bi-paperclip"></i>
+        </label>
+        <input
+          type="file"
+          id="fileInput"
+          accept="image/*"
+          (change)="sendImage($event)"
+          class="file-input"
+        />
+      </form>    
   </div>
 </div>

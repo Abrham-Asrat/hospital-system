@@ -1,7 +1,8 @@
 import { NgFor, NgClass, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-l-home',
@@ -10,11 +11,17 @@ import { Router } from '@angular/router';
   styleUrl: './l-home.component.css',
 })
 export class LHomeComponent {
+  @ViewChild('section1') section1!: ElementRef;
   constructor(private router: Router) {}
   book() {
     setTimeout(() => {
       this.router.navigate(['Patient/Appointment']);
     }, 1000);
+  }
+
+  //
+  scrollToSection(): void {
+    this.section1.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
   // services
   services = [
