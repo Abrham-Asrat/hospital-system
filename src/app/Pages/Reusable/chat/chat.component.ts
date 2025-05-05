@@ -40,6 +40,9 @@ export class ChatComponent implements AfterViewChecked {
   // Local state
   newMessage = '';
   isRecording = false;
+  private timerInterval: any;
+  recordingTime = '00:00';
+  private startTime: number | null = null;
   mediaRecorder: MediaRecorder | null = null;
   audioChunks: BlobPart[] = [];
 
@@ -89,35 +92,51 @@ export class ChatComponent implements AfterViewChecked {
     }
   }
 
-  // In chat.component.ts
-
   startRecording(): void {
     if (this.isRecording) return;
+
+    this.recordingTime = '00:00';
+    this.startTime = Date.now();
+
+    this.timerInterval = setInterval(() => {
+      if (this.isRecording && this.startTime) {
+        const elapsed = Math.floor((Date.now() - this.startTime!) / 1000);
+        const minutes = Math.floor(elapsed / 60)
+          .toString()
+          .padStart(2, '0');
+        const seconds = (elapsed % 60).toString().padStart(2, '0');
+        this.recordingTime = `${minutes}:${seconds}`;
+      }
+    }, 1000);
 
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then((stream) => {
         this.isRecording = true;
-        this.audioChunks = []; // Reset chunks
+        this.audioChunks = [];
         this.mediaRecorder = new MediaRecorder(stream);
 
-        this.mediaRecorder.ondataavailable = (event: BlobEvent) => {
-          if (event.data.size > 0) {
-            this.audioChunks.push(event.data); // Collect audio chunks
+        this.mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) {
+            this.audioChunks.push(e.data);
           }
         };
 
         this.mediaRecorder.onstop = () => {
-          const audioBlob = new Blob(this.audioChunks, { type: 'audio/mpeg' });
-          const audioUrl = URL.createObjectURL(audioBlob);
+          const blob = new Blob(this.audioChunks, { type: 'audio/webm' });
+          if (blob.size === 0) {
+            console.warn('Empty audio blob. Recording may have failed.');
+            return;
+          }
+
+          const url = URL.createObjectURL(blob);
           const currentTime = new Date().toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
           });
-
           const message: ChatMessage = {
             sender: this.userRole,
-            fileUrl: audioUrl,
+            fileUrl: url,
             time: currentTime,
             type: 'audio',
           };
@@ -126,38 +145,32 @@ export class ChatComponent implements AfterViewChecked {
           this.audioSent.emit(message);
           this.scrollToBottom();
 
-          // Clean up
           stream.getTracks().forEach((track) => track.stop());
           this.mediaRecorder = null;
         };
-
-        this.mediaRecorder.start();
+        this.mediaRecorder.start(100); // Use timeSlice to ensure ondataavailable fires
       })
       .catch((err) => {
         console.error('Microphone access denied', err);
-        alert('Could not access microphone.');
+        alert('Could not access microphone. Please allow permissions.');
         this.isRecording = false;
       });
   }
 
+  // Stop Audio Recording
   stopRecording(): void {
-    console.log('Stopping recording...');
-    if (!this.mediaRecorder || !this.isRecording) {
-      console.warn('No active recording');
-      return;
-    }
+    if (!this.mediaRecorder || !this.isRecording) return;
 
     this.isRecording = false;
 
     try {
-      console.log('Requesting data...');
-      this.mediaRecorder.requestData(); // Forces ondataavailable
-      console.log('Calling stop()...');
-      this.mediaRecorder.stop();
+      this.mediaRecorder.requestData(); // Ensure last chunk is captured
+      this.mediaRecorder.stop(); // This triggers onstop
     } catch (error) {
       console.error('Error stopping:', error);
     }
   }
+
   selectContact(contact: ContactMessage): void {
     this.contactSelected.emit(contact);
   }
@@ -185,4 +198,5 @@ export class ChatComponent implements AfterViewChecked {
       modal.show();
     }
   }
+
 }

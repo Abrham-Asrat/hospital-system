@@ -5,6 +5,7 @@ export interface ChatMessage {
   fileUrl?: string;
   time: string;
   type: MessageType;
+  duration?: string; // For audio messages
 }
 
 export interface ContactMessage {

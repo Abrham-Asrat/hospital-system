@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ChatComponent } from '../../Reusable/chat/chat.component';
 import {
   ChatMessage,
@@ -12,7 +12,7 @@ import {
   templateUrl: './d-chat.component.html',
   styleUrls: ['./d-chat.component.css'],
 })
-export class DChatComponent {
+export class DChatComponent implements AfterViewInit {
   peerName = '';
   peerImage = '';
   chatMessages: ChatMessage[] = [];
@@ -21,7 +21,7 @@ export class DChatComponent {
     {
       id: 1,
       name: 'John Doe',
-      image: 'assets/images/patient1.png',
+      image: 'assets/images/image.png',
       specialty: 'Patient',
       unread: 1,
       messages: [
@@ -36,7 +36,7 @@ export class DChatComponent {
     {
       id: 2,
       name: 'Jane Smith',
-      image: 'assets/images/patient2.png',
+      image: 'assets/images/image2.png',
       specialty: 'Patient',
       unread: 0,
       messages: [
@@ -44,6 +44,9 @@ export class DChatComponent {
       ],
     },
   ];
+  ngAfterViewInit(): void {
+    this.onContactSelected(this.contactsList[0]);
+  }
 
   onContactSelected(contact: ContactMessage) {
     this.peerName = contact.name;

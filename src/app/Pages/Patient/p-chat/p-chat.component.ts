@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { ChatComponent } from '../../Reusable/chat/chat.component';
 import {
   ChatMessage,
@@ -12,7 +12,8 @@ import {
   templateUrl: './p-chat.component.html',
   styleUrls: ['./p-chat.component.css'],
 })
-export class PChatComponent {
+export class PChatComponent implements AfterViewInit {
+ 
   peerName = '';
   peerImage = '';
   chatMessages: ChatMessage[] = [];
@@ -37,7 +38,7 @@ export class PChatComponent {
     {
       id: 2,
       name: 'Dr. John',
-      image: 'assets/images/doctor2.png',
+      image: 'assets/images/image3.png',
       specialty: 'Cardiology',
       unread: 1,
       messages: [
@@ -50,7 +51,9 @@ export class PChatComponent {
       ],
     },
   ];
-
+  ngAfterViewInit(): void {
+       this.onContactSelected(this.contactsList[0]);
+  }
   onContactSelected(contact: ContactMessage) {
     this.peerName = contact.name;
     this.peerImage = contact.image;
