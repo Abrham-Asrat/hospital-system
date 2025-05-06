@@ -1,43 +1,65 @@
-<div class="container contact-page mb-5">
-  <!-- Header -->
-  <!-- <div class="header">
-    <h2>Contact Admin</h2>
-    <p>Feel free to reach out for appointments or medical inquiries.</p>
-  </div> -->
+<main>
+  <section class="contact-section">
+    <h2>Contact Us</h2>
+    <p class="faq-description" style="font-size: 25px;">Any questions or remarks? Just write us a message!</p>
 
-  <div class="row">
-    <!-- Contact Information -->
-    <div class="col-md-6 contact-info">
-      <h4>Contact Details</h4>
-      <p><strong>Phone:</strong> +251 912345678</p>
-      <p><strong>Email:</strong> dr.workabaexample.com</p>
-      <p><strong>Location:</strong> Addis Ababa, Ethiopia</p>
-      
-      <!-- Google Maps Embed (Optional) -->
-      <div class="map-container">
-        <iframe src="https://maps.google.com/maps?q=addis%20ababa&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-                width="100%" height="250" style="border:0;" allowfullscreen></iframe>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-information">
+          <h3>Contact Information</h3>
+          <p>Say something to start a live chat!</p>
+          <ul class="info-list">
+<<<<<<< HEAD
+            <li><i class="bi bi-telephone-fill">   +251 999 999 999</i></li>
+            <li><i class="bi bi-envelope"></i>   ehospital&#64;gmail.com</li>
+=======
+            <li><i class="bi bi-telephone-fill"></i>   +251 999 999 999</li>
+            <li><i class="bi bi-envelope"></i>   meee&#64;gmail.com</li>
+>>>>>>> f195d209e8344b26f2934f8db400dd430d10e174
+          </ul>
+          <div class="contact-bubbles-social">
+            <div class="bubbles">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <span></span>
+              </a>
+              <a href="https://reddit.com" target="_blank" rel="noopener noreferrer">
+                <span></span>
+              </a>
+              <a href="https://X.com" target="_blank" rel="noopener noreferrer">
+                <span></span>
+              </a>  
+            </div>
+            <div class="socials">
+              <i class="bi bi-instagram"></i>
+              <i class="bi bi-reddit"></i>
+              <i class="bi bi-twitter-x"></i>
+            </div> 
+            <div class="contact-circle-sm"></div>    
+          </div>
+          <div class="contact-circle"></div>    
+        </div>
       </div>
-    </div>
 
-    <!-- Contact Form -->
-    <div class="col-md-6 contact-form">
-      <h4 class="text-center">Send a Message</h4>
-      <form (submit)="sendMessage()">
-        <div class="mb-3">
-          <label>Name</label>
-          <input type="text" [(ngModel)]="contactForm.name" class="form-control" required>
+      <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+        <div class="form-group">
+          <input type="text" placeholder="First Name" name="firstName" ngModel />
+          <input type="text" placeholder="Last Name" name="lastName" ngModel />
         </div>
-        <div class="mb-3">
-          <label>Email</label>
-          <input type="email" [(ngModel)]="contactForm.email" class="form-control" required>
+        <div class="form-group">
+          <input type="email" placeholder="Email" name="email"
+           ngModel
+            required
+           #emailRef="ngModel" />
+          <input type="number" placeholder="Enter your Phone Number" name="phone" ngModel />
         </div>
-        <div class="mb-3">
-          <label>Message</label>
-          <textarea [(ngModel)]="contactForm.message" class="form-control" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
+        <textarea placeholder="Write your message.." name="message" ngModel></textarea>
+        <button type="submit">Send Message</button>
       </form>
-    </div>
-  </div>
-</div>
+      
+      @if (messageDelivered) {
+        <div class="message-container" >
+         <p>Message submitted successfully !</p> 
+        </div>
+      }
+      
+      

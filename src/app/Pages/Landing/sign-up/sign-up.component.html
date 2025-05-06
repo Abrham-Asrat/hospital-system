@@ -1,0 +1,210 @@
+<!-- Modal for signUp -->
+<div
+  class="modal fade"
+  id="SignUpModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-body row">
+        <!-- Left Section: Logo and Images -->
+        <div class="signUp-front col-4">
+          <div class="navbar-brand pt-5 ps-4">
+            <img
+              src="../../../../assets/images/Logo.jpg"
+              width="30"
+              alt=""
+              class="rounded-circle mb-2"
+            />
+            <span class="navbar-titleSign p-1">E~Hospital</span>
+          </div>
+          <div class="signUp-img">
+            @if (!isDoctor) {
+            <img
+              src="../../../../assets/images/PatientSignUp.png"
+              class="w-100"
+              alt="Image"
+            />
+            } @else {
+            <img
+              src="../../../../assets/images/signUpDoctor.png"
+              class="w-100 DoctorImage mt-5 mb-0"
+              alt="Doctor Image"
+            />
+            }
+          </div>
+        </div>
+
+        <!-- Middle Gradient Section -->
+        <div class="gradient-color col-4"></div>
+
+        <!-- Right Section: Form -->
+        <div class="signUp-info col-8 p-3 pe-5">
+          <div class="row pt-3">
+            <div class="col-10">
+              <h2 class="signUp-title">
+                Sign Up For
+                <span class="signUp-changer">{{ SignToggler }}</span>
+              </h2>
+            </div>
+            <div class="col-2 d-flex justify-content-end">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+          </div>
+
+          <!-- Reactive Form -->
+          <form #signUpForm="ngForm" (ngSubmit)="onSignUp()">
+            <div class="row me-5">
+              <!-- First Name -->
+              <div class="col-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control text-muted"
+                  id="firstName"
+                  name="firstName"
+                  [(ngModel)]="signUpData.firstName"
+                  placeholder="Your First Name"
+                />
+              </div>
+
+              <!-- Last Name -->
+              <div class="col-6">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control text-muted"
+                  id="lastName"
+                  name="lastName"
+                  [(ngModel)]="signUpData.lastName"
+                  placeholder="Your Father Name"
+                />
+              </div>
+              <!-- Gender -->
+              <div class="col-12 mt-2">
+                <label for="gender" class="form-label">Gender</label>
+                <select
+                  id="gender"
+                  class="form-control text-muted"
+                  name="gender"
+                  [(ngModel)]="signUpData.gender"
+                  required
+                >
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+
+              <!-- Email Address -->
+              <div [className]="isDoctor ? 'col-6 mt-2' : 'col-12 mt-2'">
+                <label for="email" class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  class="form-control text-muted"
+                  id="email"
+                  name="email"
+                  [(ngModel)]="signUpData.email"
+                  placeholder="Enter your email address"
+                />
+              </div>
+
+              <!-- CV Upload (Conditional for Doctors) -->
+
+              <div class="col-6 mt-2" *ngIf="isDoctor">
+                <label for="cv" class="form-label">Submit Your CV</label>
+                <input
+                  type="file"
+                  class="form-control text-muted"
+                  (change)="onFileSelected($event)"
+                  accept=".pdf,.doc,.docx"
+                  id="cv"
+                  placeholder="Upload your CV"
+                />
+              </div>
+
+              <!-- Password -->
+              <div class="col-6 mt-2">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control text-muted"
+                  id="password"
+                  name="password"
+                  [(ngModel)]="signUpData.password"
+                  placeholder="Enter new password"
+                />
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="col-6 mt-2">
+                <label for="confirmPassword" class="form-label"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control text-muted"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  [(ngModel)]="signUpData.confirmPassword"
+                  placeholder="Confirm your password"
+                />
+              </div>
+
+              <!-- Terms and Conditions -->
+              <div class="col-12 mt-2">
+                <input
+                  type="checkbox"
+                  class="navUser"
+                  name="terms"
+                  id=""
+                  name="terms"
+                  [(ngModel)]="signUpData.termsAccepted"
+                />
+                <span>
+                  I accept all
+                  <span style="color: #951095">terms and conditions</span>
+                </span>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="col-12 mt-3 d-flex justify-content-center ModalBtn">
+                <button
+                  type="submit"
+                  class="signUpBtn btn btn-center"
+                  [disabled]="!signUpForm.valid"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Login Link -->
+          <div
+            class="navLogin d-flex justify-content-center mt-3 pe-5 navUser ModalBtn text-muted"
+            data-bs-toggle="modal"
+            data-bs-target="#LogInModal"
+          >
+            Already have an account<span style="color: #951095">? Login</span>
+          </div>
+
+          <!-- Toggle Between Patient and Doctor -->
+          <p class="navUser" (click)="signUpChanger(!isDoctor)">
+            Sign up For <span class="signUp-changer">{{ signUpToggler }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OTP Component -->
+<!-- <app-otp *ngIf="otpVisible" [Logged]="SignToggler"></app-otp> -->

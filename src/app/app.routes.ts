@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-// Doctor Components
+// Doctor Role Components
 import { DHomeComponent } from './Pages/DoctorRole/d-home/d-home.component';
 import { DAppointmentComponent } from './Pages/DoctorRole/d-appointment/d-appointment.component';
 import { DBlogComponent } from './Pages/DoctorRole/d-blog/d-blog.component';
@@ -10,16 +10,16 @@ import { DNotificationComponent } from './Pages/DoctorRole/d-notification/d-noti
 import { DProfileComponent } from './Pages/DoctorRole/d-profile/d-profile.component';
 import { DLayoutComponent } from './Pages/DoctorRole/d-layout/d-layout.component';
 
-// Landing Components
+// Landing Page Components
 import { LLayoutComponent } from './Pages/Landing/l-layout/l-layout.component';
 import { LHomeComponent } from './Pages/Landing/l-home/l-home.component';
 import { LContactComponent } from './Pages/Landing/l-contact/l-contact.component';
 import { FaqComponent } from './Pages/Landing/l-faq/l-faq.component';
-import { LAboutComponent } from './Pages/Landing/l-about/l-about.component';
 import { LBlogComponent } from './Pages/Landing/l-blog/l-blog.component';
 import { LoginComponent } from './Pages/Landing/log-in/log-in.component';
+import { SignUpComponent } from './Pages/Landing/sign-up/sign-up.component';
 
-// Patient Components
+// Patient Role Components
 import { PLayoutComponent } from './Pages/Patient/p-layout/p-layout.component';
 import { PHomeComponent } from './Pages/Patient/p-home/p-home.component';
 import { PAppointmentComponent } from './Pages/Patient/p-appointment/p-appointment.component';
@@ -29,87 +29,75 @@ import { PContactUsComponent } from './Pages/Patient/p-contact-us/p-contact-us.c
 import { PNotificationComponent } from './Pages/Patient/p-notification/p-notification.component';
 import { PProfileComponent } from './Pages/Patient/p-profile/p-profile.component';
 
-// Admin Components
-import { AdminLayoutComponent } from './Pages/Admin/admin-layout/admin-layout.component';
-import { AdminDashboardComponent } from './Pages/Admin/admin-dashboard/admin-dashboard.component';
-import { UserManagementComponent } from './Pages/Admin/user-management/user-management.component';
-import { AppointmentsManagementComponent } from './Pages/Admin/appointments-management/appointments-management.component';
-import { BlogModerationComponent } from './Pages/Admin/blog-moderation/blog-moderation.component';
-import { PaymentsManagementComponent } from './Pages/Admin/payments-management/payments-management.component';
-import { SettingsComponent } from './Pages/Admin/settings/settings.component';
-import { AdminAuthGuard } from './guards/admin-auth.guard';
+// Admin Role Components
+import { ALayoutComponent } from './Pages/admin/a-layout/a-layout.component';
+import { AHomeComponent } from './Pages/admin/a-home/a-home.component';
+import { ABlogComponent } from './Pages/admin/a-blog/a-blog.component';
+import { AAppointmentComponent } from './Pages/admin/a-appointment/a-appointment.component';
+import { ASettingComponent } from './Pages/admin/a-setting/a-setting.component';
+import { APaymentComponent } from './Pages/admin/a-payment/a-payment.component';
+import { AUserComponent } from './Pages/admin/a-user/a-user.component';
+
+// Reusable
+import { PaymentComponent } from './Pages/Reusable/payment/payment.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'LHome',
+    redirectTo: 'Dashboard/Home',
     pathMatch: 'full',
   },
-  // Landing Routes
   {
-    path: '',
+    path: 'Dashboard',
     component: LLayoutComponent,
     children: [
-      { path: 'LHome', component: LHomeComponent },
-      { path: 'LBlog', component: LBlogComponent },
-      { path: 'LAbout', component: LAboutComponent },
-      { path: 'LContact', component: LContactComponent },
-      { path: 'LFAQ', component: FaqComponent },
-      { path: 'logIn', component: LoginComponent }
-    ]
+      { path: 'Home', component: LHomeComponent },
+      { path: 'Blog', component: LBlogComponent },
+      // Removed 'About' because LAboutComponent was invalid
+      { path: 'Contact', component: LContactComponent },
+      { path: 'FAQ', component: FaqComponent },
+      { path: 'logIn', component: LoginComponent },
+      { path: 'SignUp', component: SignUpComponent },
+      { path: 'payment', component: PaymentComponent },
+    ],
   },
-  // Patient Routes
   {
-    path: '',
-    component: PLayoutComponent,
-    children: [
-      { path: 'PHome', component: PHomeComponent },
-      { path: 'PAppointment', component: PAppointmentComponent },
-      { path: 'PBlog', component: PBlogComponent },
-      { path: 'PChat', component: PChatComponent },
-      { path: 'PContact', component: PContactUsComponent },
-      { path: 'PNotification', component: PNotificationComponent },
-      { path: 'PProfile', component: PProfileComponent }
-    ]
-  },
-  // Doctor Routes
-  {
-    path: '',
+    path: 'Doctor',
     component: DLayoutComponent,
     children: [
-      { path: 'DHome', component: DHomeComponent },
-      { path: 'DAppointment', component: DAppointmentComponent },
-      { path: 'DBlog', component: DBlogComponent },
-      { path: 'DChat', component: DChatComponent },
-      { path: 'DContact', component: DContactComponent },
-      { path: 'DNotification', component: DNotificationComponent },
-      { path: 'DProfile', component: DProfileComponent }
-    ]
+      { path: 'Home', component: DHomeComponent },
+      { path: 'Appointment', component: DAppointmentComponent },
+      { path: 'Blog', component: DBlogComponent },
+      { path: 'Chat', component: DChatComponent },
+      { path: 'Contact', component: DContactComponent },
+      { path: 'Notification', component: DNotificationComponent },
+      { path: 'Profile', component: DProfileComponent },
+      // Removed 'Signup' because DoctorSignupComponent was invalid
+    ],
   },
-  // Admin Routes (Protected)
   {
-    path: 'admin',
-    component: AdminLayoutComponent,
-    canActivate: [AdminAuthGuard],
+    path: 'Patient',
+    component: PLayoutComponent,
     children: [
-      { 
-        path: '', 
-        redirectTo: 'dashboard', 
-        pathMatch: 'full' 
-      },
-      { 
-        path: 'dashboard', 
-        component: AdminDashboardComponent 
-      },
-      { path: 'users', component: UserManagementComponent },
-      { path: 'appointments', component: AppointmentsManagementComponent },
-      { path: 'blogs', component: BlogModerationComponent },
-      { path: 'payments', component: PaymentsManagementComponent },
-      { path: 'settings', component: SettingsComponent },
-      // Ensure this is the last child route
-      { path: '**', redirectTo: 'dashboard' }
-    ]
+      { path: 'Home', component: PHomeComponent },
+      { path: 'Appointment', component: PAppointmentComponent },
+      { path: 'Blog', component: PBlogComponent },
+      { path: 'Chat', component: PChatComponent },
+      { path: 'Contact', component: PContactUsComponent },
+      { path: 'Notification', component: PNotificationComponent },
+      { path: 'Profile', component: PProfileComponent },
+    ],
   },
-  // Global Fallback Route
-  { path: '**', redirectTo: 'LHome' }
+  {
+    path: 'Admin',
+    component: ALayoutComponent,
+    children: [
+      { path: 'Home', component: AHomeComponent },
+      { path: 'Blog', component: ABlogComponent },
+      { path: 'Appointment', component: AAppointmentComponent },
+      { path: 'Setting', component: ASettingComponent },
+      { path: 'Payment', component: APaymentComponent },
+      { path: 'User', component: AUserComponent },
+    ],
+  },
 ];

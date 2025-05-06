@@ -1,60 +1,72 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { OTPComponent } from '../otp/otp.component';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, CommonModule, OTPComponent],
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css'],
 })
 export class LoginComponent {
-  loginForm: FormGroup;
-  signUpForm: FormGroup;
-  isSignupFormVisible: boolean = false; // Controls visibility of Signup form
+  isPatient: boolean = false;
+  toggle: string = 'Patient';
+  loginOTP!: string;
+  loginToggler: string = 'Doctor';
+  hider: boolean = true;
 
-  constructor(private fb: FormBuilder) {
-    // Initialize login form
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
+  loginData = {
+    email: '',
+    password: '',
+  };
 
-    // Initialize signup form
-    this.signUpForm = this.fb.group({
-      username: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
+  /**
+   * Toggle role between Patient and Doctor.
+   */
+  signUpChanger(toggler: boolean): void {
+    this.isPatient = toggler;
+    this.loginToggler = this.isPatient ? 'Patient' : 'Doctor';
+    this.toggle = this.isPatient ? 'Doctor' : 'Patient';
+
+    console.log('🌀 Role switched to:', this.toggle);
   }
 
-  // Getters for the form controls
-  get loginFormControls() {
-    return this.loginForm.controls;
+  /**
+   * Toggle password visibility.
+   */
+  hide(): void {
+    this.hider = !this.hider;
   }
 
-  get signUpFormControls() {
-    return this.signUpForm.controls;
-  }
-
-  // On Login submit
-  onLogin() {
-    if (this.loginForm.valid) {
-      console.log('Login Successful:', this.loginForm.value);
-    } else {
-      console.log('Invalid Login Form');
+  /**
+   * Submit login form.
+   */
+  onSubmit(): void {
+    this.loginOTP = this.toggle;
+    if (!this.loginData.email || !this.loginData.password) {
+      alert('Please enter both email and password.');
+      return;
     }
-  }
 
-  // On SignUp submit
-  onSignUp() {
-    if (this.signUpForm.valid) {
-      console.log('Sign Up Successful:', this.signUpForm.value);
+    if (
+      this.loginData.email === 'ab@gmail.com' &&
+      this.loginData.password === '123'
+    ) {
+      const loginModalEl = document.getElementById('LogInModal');
+      const loginModal = bootstrap.Modal.getInstance(loginModalEl);
+      loginModal?.hide();
+
+      setTimeout(() => {
+        const otpModalEl = document.getElementById('OtpModal');
+        const otpModal = new bootstrap.Modal(otpModalEl);
+        otpModal.show();        
+      }, 300);
     } else {
-      console.log('Invalid Sign Up Form');
+      alert('Invalid email or password.');
     }
-  }
-
-  // Toggle between Login and SignUp form
-  toggleForm() {
-    this.isSignupFormVisible = !this.isSignupFormVisible;
   }
 }

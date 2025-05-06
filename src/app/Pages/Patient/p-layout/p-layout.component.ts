@@ -9,11 +9,11 @@ import { FooterComponent } from "../../Reusable/footer/footer.component";
   styleUrl: './p-layout.component.css',
 })
 export class PLayoutComponent {
-  Links: string[] = ['PHome', 'PAppointment', 'PBlog', 'PContact'];
-  Chat: string = 'PChat';
-  Notification: string = 'PNotification';
-  profile: string = 'PProfile';
-  activeTab = 'PHome';
+  Links: string[] = ['Home', 'Appointment', 'Blog', 'Contact'];
+  Chat: string = 'Chat';
+  Notification: string = 'Notification';
+  profile: string = 'Profile';
+  activeTab = 'Home';
   setActive(link: string) {
     this.activeTab = link;
   }

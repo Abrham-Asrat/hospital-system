@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f8f9fa;
+  background: rgba(149,16,149,25%);
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -17,7 +17,7 @@
 }
 
 .notification-card.unread {
-  background: #c1bca79a;
+  background: rgba(149,16,149,10%);
 }
 
 .notification-content h5 {

@@ -1,0 +1,38 @@
+<!-- Rating Modal -->
+<div class="modal fade" id="ratingModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Rate Your Experience</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Star Rating -->
+        <div class="text-center mb-3">
+          <i
+            class="bi"
+            *ngFor="let star of [1, 2, 3, 4, 5]"
+            [class.bi-star-fill]="star <= rating"
+            [class.bi-star]="star > rating"
+            class="fs-3 text-warning me-1 pointer"
+            (click)="setRating(star)"
+          ></i>
+        </div>
+
+        <!-- Comment -->
+        <textarea
+          class="form-control"
+          rows="3"
+          [(ngModel)]="comment"
+          placeholder="Leave a comment..."
+        ></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" (click)="submitRating()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // <-- Keep this import
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrls: ['./contact.component.css'],
+  imports: [FormsModule], 
 })
-export class ContactComponent {
-  contactForm = { name: '', email: '', message: '' };
 
-  sendMessage() {
-    if (
-      this.contactForm.name &&
-      this.contactForm.email &&
-      this.contactForm.message
-    ) {
-      alert(`Thank you, ${this.contactForm.name}! Your message has been sent.`);
-      this.contactForm = { name: '', email: '', message: '' };
-    }
+export class ContactComponent {
+  messageDelivered = false;
+
+  onSubmit() {
+    this.messageDelivered = true;
+
+
+    setTimeout(() => {
+      this.messageDelivered = false;
+    }, 2000);
   }
 }
-

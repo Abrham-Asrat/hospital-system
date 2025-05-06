@@ -8,15 +8,16 @@
 .nav-tabs .nav-link {
 
   font-weight: bold;
-  color: white;
+  color: #00000091;
 }
 
 .nav-tabs .nav-link.active {
-  background: #6f42c1;
+  background: #951095;
+   color: #ffff;
 }
 
 .appointment-card {
-  background: #f8f9fa;
+  background: rgba(145,16,145,10%);
   padding: 15px;
   border-radius: 10px;
   margin-top: 10px;

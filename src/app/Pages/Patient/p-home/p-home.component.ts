@@ -1,27 +1,12 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { HomeComponent } from '../../Reusable/home/home.component';
 
 @Component({
   selector: 'app-p-home',
-  imports: [NgFor],
+  standalone: true,
+  imports: [HomeComponent],
   templateUrl: './p-home.component.html',
-  styleUrl: './p-home.component.css',
+  styleUrls: ['./p-home.component.css'],
 })
-export class PHomeComponent {
-  patientName = 'John Doe'; // Replace with dynamic user data
-
-  healthTips = [
-    'Drink plenty of water to stay hydrated.',
-    'Get at least 7-8 hours of sleep every night.',
-    'Exercise regularly for at least 30 minutes a day.',
-    'Eat a balanced diet rich in fruits and vegetables.',
-    'Manage stress with meditation and deep breathing.',
-  ];
-
-  constructor(private router: Router) {}
-
-  navigateTo(page: string) {
-    this.router.navigate([page]);
-  }
-}
+export class PHomeComponent {}

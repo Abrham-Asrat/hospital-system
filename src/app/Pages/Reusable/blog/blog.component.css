@@ -1,6 +1,7 @@
-.doctor-blog-page {
+.blog-page {
   margin-top: 20px;
   min-height: 60vh;
+  position: relative;
 }
 
 .categories {
@@ -20,15 +21,18 @@
   gap: 20px;
   align-items: start;
   margin: 0 2rem;
-  
+}
+h4 {
+  color: #951095;
 }
 
 .blog-card {
-  background: white;
-  border: 1px solid #ddd;
+
+  background-color: #fff;
+  border: 0.03px solid #00000022;
+  box-shadow: 0 4px 4px#00000022;
   border-radius: 10px;
   padding: 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   height: fit-content;
@@ -70,7 +74,7 @@
   transition: max-height 0.3s ease-in-out;
 }
 .blog-content.expanded {
-  max-height: 20rem;
+  max-height: fit-content;
 }
 .show-more-btn {
   background: none;
@@ -79,4 +83,13 @@
   cursor: pointer;
   text-align: left;
   padding-left: 0;
+}
+
+.blogWriting {
+  width: 10rem;
+  margin-top: 6rem;
+  margin-left: 85%;
+  outline-offset: 2px;
+  /* outline: 2px solid #951095;
+  color: #951095; */
 }

@@ -1,0 +1,89 @@
+.otp-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.logBtn {
+  background-color: #951095;
+  color: #fff;
+  padding: 0.456rem 2.5rem;
+  border-radius: 0.78rem;
+}
+.modal-body {
+  background-color: #d4d4d4;
+  padding: 0;
+  margin: auto 0;
+}
+.otpForm {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 1rem;
+}
+
+.modal-content {
+  border-radius: 3rem;
+  min-height: 90%;
+}
+.bi-arrow-left-circle-fill {
+  color: #951095;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.inputs {
+  width: 3rem;
+  border-radius: 0.5rem;
+  height: 2.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+.circle {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 3px solid #951095;
+  text-align: center;
+  color: #951095;
+  margin: 0 auto;
+  padding-top: 0.85rem;
+  font-size: 2rem;
+}
+.ModalBtn {
+  background-color: #951095;
+  color: #fff;
+  border-radius: 3rem;
+  margin: 0 auto;
+  width: 80%;
+  cursor: pointer;
+}
+
+.ModalBtn > p {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.arrow {
+  height: 3rem;
+}
+.otpInfo {
+  margin-bottom: 10rem;
+}
+.forgetInput {
+  background-color: #fff;
+  border-radius: 0.7rem;
+  border: 1px solid #28272894;
+}
+.form-control {
+  width: 100%;
+  border: none;
+}
+.otpImg {
+  width: 180px;
+}
+.loginBtn{
+  background-color: #951095;
+  color: #fff;
+  border-radius: 3rem;
+  margin: 0 auto;
+  width: 80%;
+  cursor: pointer;
+}

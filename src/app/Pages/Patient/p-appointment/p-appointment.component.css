@@ -3,7 +3,7 @@
 }
 
 .header {
-  background: #6f42c1;
+  background:#980aaf;;
   color: white;
   padding: 20px;
   border-radius: 10px;
@@ -12,13 +12,17 @@
 }
 
 .nav-tabs .nav-link {
-
+  
   color: white;
   font-weight: bold;
 }
 
+.nav-tabs .nav-link {
+  color: #020202;
+}
 .nav-tabs .nav-link.active {
-  background: #6f42c1;
+  color: #fff;
+  background: #980aaf;
 }
 
 .appointment-card {
@@ -45,12 +49,13 @@
 }
 
 .btn-primary {
-  background-color: #6f42c1;
+  background-color:#980aaf;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #5a32a3;
+  background-color:#990aafdd;
+
 }
 
 .booking{

@@ -1,10 +1,10 @@
 <nav
-  class="navbar navbar-expand-lg navMargin ps-5 pe-5"
-  [ngClass]="{ 'fixed-top shadow-sm bg-light': isScrolled }"
+  class="navbar navbar-expand-lg navMargin ps-5 pe-5 shadow-sm"
+  [ngClass]="{ 'fixed-top bg-light': isScrolled }"
 >
   <div class="navbar-brand">
     <img
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiVSHtxoIi9De-gEbgNj7MCmDd4D2ULQ-7oA&s"
+      src="../../../../assets/images/Logo.jpg"
       width="40"
       alt=""
       class="rounded-circle mb-2"
@@ -28,12 +28,13 @@
         <a
           [routerLink]="item"
           class="nav-item nav-link"
-          [ngStyle]="{ color: isScrolled ? '#010323' : '#fff' }"
           (click)="setActive(item)"
           [ngClass]="{ 'text-warning': activeTab === item }"
-          >{{ item.slice(1) | uppercase }}
+          >{{ item | uppercase }}
         </a>
-        }
+        } 
+      
+      
       </div>
       <div
         class="navbar-nav col-3 d-flex justify-content-end align-items-center profile"
@@ -44,28 +45,26 @@
             type="button"
             class="nav-item nav-link"
             (click)="setActive('notification')"
-            >
+          >
             <i
-            [ngClass]="{ 'text-warning': activeTab === 'notification' }"
-            class="fa-solid fa-bell"
-            [ngStyle]="{ color: isScrolled ? '#010323' : '#f2f2f2' }"
+              [ngClass]="{ 'text-warning': activeTab === 'notification' }"
+              class="fa-solid fa-bell"
             ></i>
           </button>
         </a>
         <a [routerLink]="message" class="pe-3">
           <button
-          type="button"
-          class="nav-item nav-link"
-          (click)="setActive('chat')"
-          
-            >
+            type="button"
+            class="nav-item nav-link"
+            (click)="setActive('chat')"
+          >
             <i
-            class="bi bi-chat-dots-fill"
-            [ngClass]="{ 'text-warning': activeTab === 'chat' }"
-              [ngStyle]="{ color: isScrolled ? '#010323' : '#f2f2f2' }"
+              class="bi bi-chat-dots-fill"
+              [ngClass]="{ 'text-warning': activeTab === 'chat' }"
             ></i>
           </button>
         </a>
+
         <div class="dropdown">
           <a
             href="#"
@@ -81,20 +80,46 @@
           </a>
           <div class="dropdown-menu">
             <a [routerLink]="profile" class="dropdown-item"
-              ><i class="fa-solid fa-user pe-1"  [ngClass]="{ 'text-warning': activeTab === 'profile' }"></i> Profile</a
+              ><i
+                class="fa-solid fa-user pe-1"
+                [ngClass]="{ 'text-warning': activeTab === 'profile' }"
+              ></i>
+              Profile</a
             >
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item"
-              ><i class="fas fa-sign-out-alt pe-1"></i>Logout</a
+              ><i class="fas fa-sign-out-alt pe-1" (click)="logOut()"></i
+              >Logout</a
             >
           </div>
         </div>
         } @else{
-        <a class="pe-5" routerLink="logIn"> SignUp | logIn </a>
+
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#LogInModal"
+        >
+          Login <i class="bi bi-person"></i>
+        </button>
+        <button
+          type="button"
+          class="btn ModalBtn"
+          data-bs-toggle="modal"
+          data-bs-target="#SignUpModal"
+        >
+          Sign Up
+        </button>
 
         }
       </div>
     </div>
   </div>
 </nav>
+
 <router-outlet></router-outlet>
+
+<app-sign-up></app-sign-up>
+<app-login></app-login>
+<app-otp></app-otp>

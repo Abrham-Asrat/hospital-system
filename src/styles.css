@@ -1,12 +1,4 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
-/* You can add global styles to this file, and also import other style files */
 body {
-  /* background-color: red;  */
-  background: linear-gradient(rgba(0, 0, 0, 0.293), rgba(219, 219, 219, 0.427)),
-    url("./assets/images/doc3.jpg") center/cover no-repeat fixed;
-  /* height: 100vh; */
-  /* height:100vh; */
-  height: 100%;
+  background-color: #ffffff; /* remote */
+  /* add any additional local changes here */
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

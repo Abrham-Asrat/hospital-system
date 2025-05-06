@@ -1,0 +1,38 @@
+# Ignore build output
+/dist
+/.angular
+
+# Ignore node_modules
+/node_modules
+
+# Ignore log files
+npm-debug.log
+yarn-error.log
+
+# Ignore IDE and editor-specific files
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Ignore Visual Studio Code config files (except specific ones)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Ignore other temporary or miscellaneous files
+.sass-cache/
+connect.lock
+coverage
+libpeerconnection.log
+testem.log
+.typings/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
