@@ -5,56 +5,59 @@
 
     <div class="contact-container">
       <div class="contact-info">
+        <!-- Contact info block -->
         <div class="contact-information">
           <h3>Contact Information</h3>
           <p>Say something to start a live chat!</p>
           <ul class="info-list">
-            <li><i class="bi bi-telephone-fill"></i>   +251 999 999 999</li>
-            <li><i class="bi bi-envelope"></i>   meee&#64;gmail.com</li>
+            <li><i class="bi bi-telephone-fill"></i> +251 999 999 999</li>
+            <li><i class="bi bi-envelope"></i> meee&#64;gmail.com</li>
           </ul>
           <div class="contact-bubbles-social">
             <div class="bubbles">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                <span></span>
-              </a>
-              <a href="https://reddit.com" target="_blank" rel="noopener noreferrer">
-                <span></span>
-              </a>
-              <a href="https://X.com" target="_blank" rel="noopener noreferrer">
-                <span></span>
-              </a>  
+              <a href="https://instagram.com" target="_blank"><span></span></a>
+              <a href="https://reddit.com" target="_blank"><span></span></a>
+              <a href="https://x.com" target="_blank"><span></span></a>
             </div>
             <div class="socials">
               <i class="bi bi-instagram"></i>
               <i class="bi bi-reddit"></i>
               <i class="bi bi-twitter-x"></i>
-            </div> 
-            <div class="contact-circle-sm"></div>    
+            </div>
+            <div class="contact-circle-sm"></div>
           </div>
-          <div class="contact-circle"></div>    
+          <div class="contact-circle"></div>
         </div>
       </div>
 
+      <!-- Contact Form -->
       <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <div class="form-group">
           <input type="text" placeholder="First Name" name="firstName" ngModel />
           <input type="text" placeholder="Last Name" name="lastName" ngModel />
         </div>
         <div class="form-group">
-          <input type="email" placeholder="Email" name="email"
-           ngModel
-            required
-           #emailRef="ngModel" />
+          
+          <input type="email"
+                  id="exampleInputemail"
+                 placeholder="Email"
+                 name="email"
+                 ngModel
+                 required="required"
+                 #emailRef="ngModel" />
           <input type="number" placeholder="Enter your Phone Number" name="phone" ngModel />
         </div>
-        <textarea placeholder="Write your message.." name="message" ngModel></textarea>
-        <button type="submit">Send Message</button>
+        <textarea placeholder="Write your message.." name="message" ngModel  required="required"
+        #messageRef="ngModel"></textarea>
+
+        <!-- Disable button unless email is valid -->
+        <button type="submit" [disabled]="emailRef.invalid">Send Message</button>
       </form>
-      
-      @if (messageDelivered) {
-        <div class="message-container" >
-         <p>Message submitted successfully !</p> 
-        </div>
-      }
-      
-      
+
+      <!-- Success Message -->
+      <div class="message-container" *ngIf="messageDelivered">
+        <p>Message submitted successfully!</p>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,18 +1,36 @@
 <div class="container">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
   <div class="sidebar">
     <div class="avatar-upload">
-      <label for="avatarInput">
-        <i class="bi bi-person"></i>
-       
-      </label>
-     
+      <div class="profile-pic-wrapper">
+        <img [src]="previewUrl || defaultImage" alt="Profile Picture" class="profile-pic" />
+    </div>
+        <!-- Plus icon button -->
+        <label for="avatarInput" class="upload-plus-btn">
+          <div class="camera-icon">
+          <i class="fas fa-camera"style="color:purple;"></i>
+          </div>
+        </label>
+      
+    
+      <!-- Hidden file input -->
+      <input
+        type="file"
+        id="avatarInput"
+        name="avatar"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+  
+    
     </div>
     <p class="welcome">Welcome, Doctor</p>
     <ul class="nav-links">
-      <li (click)="goToDhome()">Dashboard</li>
-  
+      <li (click)="goToDashboard()">Dashboard</li>
       <li>New Translation</li>
+      <li>Review</li>
     </ul>
     
     <button type="logout" class="logout-btn" (click)="logout()">Log Out</button>

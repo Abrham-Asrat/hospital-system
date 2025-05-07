@@ -10,6 +10,20 @@ body {
   color: #333;
   line-height: 1.6;
 }
+.profile-pic-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
 
 a {
   text-decoration: none;
