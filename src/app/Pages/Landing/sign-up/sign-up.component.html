@@ -87,9 +87,24 @@
                   placeholder="Your Father Name"
                 />
               </div>
+              <!-- Gender -->
+              <div class="col-12 mt-2">
+                <label for="gender" class="form-label">Gender</label>
+                <select
+                  id="gender"
+                  class="form-control text-muted"
+                  name="gender"
+                  [(ngModel)]="signUpData.gender"
+                  required
+                >
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
 
               <!-- Email Address -->
-              <div [className]="isDoctor ? 'col-6 mt-4' : 'col-12 mt-4'">
+              <div [className]="isDoctor ? 'col-6 mt-2' : 'col-12 mt-2'">
                 <label for="email" class="form-label">Email Address</label>
                 <input
                   type="email"
@@ -103,7 +118,7 @@
 
               <!-- CV Upload (Conditional for Doctors) -->
 
-              <div class="col-6 mt-4" *ngIf="isDoctor">
+              <div class="col-6 mt-2" *ngIf="isDoctor">
                 <label for="cv" class="form-label">Submit Your CV</label>
                 <input
                   type="file"
@@ -116,7 +131,7 @@
               </div>
 
               <!-- Password -->
-              <div class="col-6 mt-4">
+              <div class="col-6 mt-2">
                 <label for="password" class="form-label">Password</label>
                 <input
                   type="password"
@@ -129,7 +144,7 @@
               </div>
 
               <!-- Confirm Password -->
-              <div class="col-6 mt-4">
+              <div class="col-6 mt-2">
                 <label for="confirmPassword" class="form-label"
                   >Confirm Password</label
                 >
@@ -144,7 +159,7 @@
               </div>
 
               <!-- Terms and Conditions -->
-              <div class="col-12 mt-4">
+              <div class="col-12 mt-2">
                 <input
                   type="checkbox"
                   class="navUser"
@@ -160,7 +175,7 @@
               </div>
 
               <!-- Submit Button -->
-              <div class="col-12 mt-4 d-flex justify-content-center ModalBtn">
+              <div class="col-12 mt-3 d-flex justify-content-center ModalBtn">
                 <button
                   type="submit"
                   class="signUpBtn btn btn-center"
@@ -182,7 +197,7 @@
           </div>
 
           <!-- Toggle Between Patient and Doctor -->
-          <p class="navUser mt-4" (click)="signUpChanger(!isDoctor)">
+          <p class="navUser" (click)="signUpChanger(!isDoctor)">
             Sign up For <span class="signUp-changer">{{ signUpToggler }}</span>
           </p>
         </div>

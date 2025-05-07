@@ -1,1 +1,10 @@
-<app-chat></app-chat>
+<app-chat
+  [userRole]="'patient'"
+  [userName]="'John Doe'"
+  [userImage]="'assets/images/image11.png'"
+  [peerName]="peerName"
+  [peerImage]="peerImage"
+  [contacts]="contactsList"
+  [messages]="chatMessages"
+  (contactSelected)="onContactSelected($event)"
+></app-chat>

@@ -27,9 +27,10 @@ h4 {
 }
 
 .blog-card {
-  background: rgba(149, 16, 149, 10%);
 
-  border: 1px solid #ddd;
+  background-color: #fff;
+  border: 0.03px solid #00000022;
+  box-shadow: 0 4px 4px#00000022;
   border-radius: 10px;
   padding: 15px;
   display: flex;
