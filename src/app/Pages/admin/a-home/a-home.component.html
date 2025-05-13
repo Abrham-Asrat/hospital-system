@@ -48,7 +48,7 @@
             <i [class]="stat.icon" style="font-size: 1.8rem; opacity: 0.7;"></i>
           </div>
           <h3 class="mb-2">{{ stat.value }}</h3>
-          <p class="mb-0 small" [ngClass]="{'text-success': stat.trend === 'up', 'text-danger': stat.trend === 'down'}">
+          <p class="mb-0 small" [ngClass]="{'text-black': stat.trend === 'up', 'text-danger': stat.trend === 'down'}">
             <i class="bi" [ngClass]="{'bi-arrow-up': stat.trend === 'up', 'bi-arrow-down': stat.trend === 'down'}"></i>
             {{ stat.change }}% from last period
           </p>

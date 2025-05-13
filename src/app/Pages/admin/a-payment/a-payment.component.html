@@ -1,45 +1,243 @@
 <div class="container">
-  <h2>Admin Payment Management</h2>
+  <mat-card class="payment-card">
+    <mat-card-header class="payment-header">
+      <mat-card-title>Payment Center</mat-card-title>
+      <mat-card-subtitle>Secure and convenient payment processing</mat-card-subtitle>
+    </mat-card-header>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Doctor</th>
-        <th>Patient</th>
-        <th>Amount</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let payment of payments">
-        <td>{{ payment.paymentDate }}</td>
-        <td>{{ payment.doctor }}</td>
-        <td>{{ payment.patient }}</td>
-        <td>{{ payment.amount | currency }}</td>
-        <td>
-          <span class="badge"
-                [ngClass]="{
-                  'badge-success': payment.status === 'Paid',
-                  'badge-warning': payment.status === 'Pending',
-                  'badge-danger': payment.status === 'Rejected'
-                }">
-            {{ payment.status }}
-          </span>
-        </td>
-        <td>
-          <button class="btn btn-success" (click)="approvePayment(payment)" *ngIf="payment.status === 'Pending'">
-            Approve
-          </button>
-          <button class="btn btn-danger" (click)="rejectPayment(payment)" *ngIf="payment.status === 'Pending'">
-            Reject
-          </button>
-          <button class="btn btn-info" (click)="viewPaymentHistory(payment)">
-            View History
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <mat-divider></mat-divider>
+
+    <mat-card-content class="payment-content">
+      <div *ngIf="appointmentDetails" class="appointment-summary">
+        <div class="summary-header d-flex justify-content-between align-items-center">
+          <div>
+            <h3>{{ appointmentDetails.service }}</h3>
+            <p>{{ appointmentDetails.provider }}</p>
+          </div>
+          <div class="date-section text-end">
+            <p class="mb-0">Appointment Date</p>
+            <p class="fw-bold">{{ appointmentDetails.date | date:'mediumDate' }}</p>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="summary-footer d-flex justify-content-between align-items-center mt-2">
+          <p class="mb-0">Service Fee:</p>
+          <p class="amount fw-bold mb-0">{{ amount | currency:'ETB':'symbol':'1.2-2' }}</p>
+        </div>
+      </div>
+
+      <mat-tab-group [(selectedIndex)]="activeTab">
+        <mat-tab label="Make Payment">
+          <div class="tab-content">
+            <div *ngIf="isLoading" class="loading-spinner text-center my-4">
+              <mat-spinner diameter="50"></mat-spinner>
+            </div>
+
+            <form *ngIf="!isLoading" [formGroup]="paymentForm" (ngSubmit)="initiatePayment()">
+              <div class="form-section">
+                <h3>Select Payment Method</h3>
+                <div class="payment-methods d-flex flex-wrap gap-3">
+                  <button *ngFor="let method of paymentMethods" 
+                          type="button"
+                          class="payment-method"
+                          [style.border-color]="paymentForm.get('paymentMethod')?.value === method.value ? method.color : ''"
+                          [style.background]="paymentForm.get('paymentMethod')?.value === method.value ? method.color + '10' : ''"
+                          (click)="paymentForm.get('paymentMethod')?.setValue(method.value)">
+                    <mat-icon [style.color]="method.color">{{ method.icon }}</mat-icon>
+                    <h4>{{ method.label }}</h4>
+                    <p>{{ method.description }}</p>
+                  </button>
+                </div>
+                <mat-error *ngIf="paymentForm.get('paymentMethod')?.hasError('required') && paymentForm.get('paymentMethod')?.touched">
+                  Please select a payment method
+                </mat-error>
+              </div>
+
+              <div class="form-section payment-details mt-4">
+                <h3>Payment Details</h3>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Email for receipt</mat-label>
+                  <input matInput formControlName="email" type="email" placeholder="your@email.com">
+                  <mat-error *ngIf="paymentForm.get('email')?.hasError('required')">Email is required</mat-error>
+                  <mat-error *ngIf="paymentForm.get('email')?.hasError('email')">Please enter a valid email</mat-error>
+                </mat-form-field>
+
+                <div *ngIf="paymentForm.get('paymentMethod')?.value === 'mobile_money'" class="mobile-money-fields mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="phoneNumber" placeholder="0912345678">
+                    <mat-error *ngIf="paymentForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+                    <mat-error *ngIf="paymentForm.get('phoneNumber')?.hasError('pattern')">Please enter a valid phone number</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div *ngIf="paymentForm.get('paymentMethod')?.value === 'credit_card'" class="credit-card-fields mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Name on Card</mat-label>
+                    <input matInput formControlName="nameOnCard" placeholder="John Doe">
+                    <mat-error *ngIf="paymentForm.get('nameOnCard')?.hasError('required')">Name is required</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Card Number</mat-label>
+                    <input matInput formControlName="cardNumber" 
+                           placeholder="1234 5678 9012 3456" 
+                           (input)="formatCardNumber($event)">
+                    <mat-error *ngIf="paymentForm.get('cardNumber')?.hasError('required')">Card number is required</mat-error>
+                    <mat-error *ngIf="paymentForm.get('cardNumber')?.hasError('pattern')">Please enter a valid 16-digit card number</mat-error>
+                  </mat-form-field>
+
+                  <div class="card-details d-flex gap-3">
+                    <mat-form-field appearance="outline" class="flex-grow-1">
+                      <mat-label>Expiry Date</mat-label>
+                      <input matInput [matDatepicker]="picker" formControlName="expiryDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-error *ngIf="paymentForm.get('expiryDate')?.hasError('required')">Expiry date is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="flex-grow-1">
+                      <mat-label>CVV</mat-label>
+                      <input matInput formControlName="cvv" type="password" placeholder="123">
+                      <mat-error *ngIf="paymentForm.get('cvv')?.hasError('required')">CVV is required</mat-error>
+                      <mat-error *ngIf="paymentForm.get('cvv')?.hasError('pattern')">Invalid CVV</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <mat-checkbox formControlName="rememberDetails" color="primary" class="mt-3">
+                Save payment details for future use
+              </mat-checkbox>
+
+              <div class="payment-summary mt-4">
+                <div class="summary-row d-flex justify-content-between">
+                  <span>Amount:</span>
+                  <span>{{ amount | currency:'ETB':'symbol':'1.2-2' }}</span>
+                </div>
+                <div class="summary-row d-flex justify-content-between">
+                  <span>Payment Method:</span>
+                  <span class="capitalize">{{ paymentForm.get('paymentMethod')?.value || 'Not selected' }}</span>
+                </div>
+                <mat-divider class="my-2"></mat-divider>
+                <div class="summary-row total d-flex justify-content-between fw-bold">
+                  <span>Total:</span>
+                  <span class="total-amount">{{ amount | currency:'ETB':'symbol':'1.2-2' }}</span>
+                </div>
+              </div>
+
+              <div class="form-actions mt-4 d-flex justify-content-between">
+                <button mat-stroked-button type="button" (click)="activeTab = 1">
+                  View Payment History
+                </button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="isProcessing">
+                  <span *ngIf="!isProcessing">Pay Now</span>
+                  <span *ngIf="isProcessing" class="d-flex align-items-center gap-2">
+                    <mat-spinner diameter="20"></mat-spinner>
+                    Processing...
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Payment History">
+          <div class="tab-content">
+            <div *ngIf="isLoading" class="loading-spinner text-center my-4">
+              <mat-spinner diameter="50"></mat-spinner>
+            </div>
+
+            <div *ngIf="!isLoading" class="history-content">
+              <div class="history-header mb-3">
+                <h3>Your Payment History</h3>
+                <p>View and manage your past transactions</p>
+              </div>
+
+              <div *ngIf="paymentHistory.length === 0" class="empty-history text-center">
+                <mat-icon class="mb-2">payments</mat-icon>
+                <h4>No payment history found</h4>
+                <p>Your payment transactions will appear here</p>
+                <button mat-stroked-button (click)="activeTab = 0">Make a Payment</button>
+              </div>
+
+              <div *ngIf="paymentHistory.length > 0" class="history-table">
+                <table mat-table [dataSource]="paymentHistory" class="mat-elevation-z2 w-100">
+                  <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                    <td mat-cell *matCellDef="let payment">{{ payment.date | date:'medium' }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef>Amount</th>
+                    <td mat-cell *matCellDef="let payment">{{ payment.amount | currency:'ETB':'symbol':'1.2-2' }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="method">
+                    <th mat-header-cell *matHeaderCellDef>Method</th>
+                    <td mat-cell *matCellDef="let payment">
+                      <div class="d-flex align-items-center gap-2">
+                        <mat-icon>{{ getPaymentMethodIcon(payment.method) }}</mat-icon>
+                        {{ payment.method | titlecase }}
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>Status</th>
+                    <td mat-cell *matCellDef="let payment">
+                      <span [class]="paymentStatusColors[payment.status]">
+                        {{ payment.status | titlecase }}
+                      </span>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let payment">
+                      <button mat-icon-button (click)="viewReceipt(payment.id)" matTooltip="View receipt">
+                        <mat-icon>receipt</mat-icon>
+                      </button>
+                      <button mat-icon-button (click)="togglePaymentDetails(payment.id)" matTooltip="Details">
+                        <mat-icon>{{ expandedPaymentId === payment.id ? 'expand_less' : 'expand_more' }}</mat-icon>
+                      </button>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="expandedDetail">
+                    <td mat-cell *matCellDef="let payment" [attr.colspan]="displayedColumns.length">
+                      <div class="payment-detail" [@detailExpand]="expandedPaymentId === payment.id ? 'expanded' : 'collapsed'">
+                        <div *ngIf="payment.reference" class="detail-row">
+                          <span>Reference:</span>
+                          <span>{{ payment.reference }}</span>
+                        </div>
+                        <div *ngIf="payment.details" class="detail-row">
+                          <span>Details:</span>
+                          <span>{{ payment.details }}</span>
+                        </div>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+                      [class.expanded-row]="expandedPaymentId === row.id"
+                      (click)="togglePaymentDetails(row.id)"></tr>
+                  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+                </table>
+
+                <mat-paginator *ngIf="paymentHistory.length > 0"
+                              [length]="totalPayments"
+                              [pageSize]="pageSize"
+                              [pageIndex]="currentPage"
+                              [pageSizeOptions]="[5, 10, 25]"
+                              (page)="onPageChange($event)">
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
 </div>
