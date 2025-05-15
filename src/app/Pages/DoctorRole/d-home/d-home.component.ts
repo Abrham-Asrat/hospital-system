@@ -38,12 +38,7 @@ export class DHomeComponent {
       label: 'Clinic Consulting',
       color: 'rgb(225, 209, 35)',
     },
-    {
-      icon: '📞',
-      value: '28.0k',
-      label: 'Video Consulting',
-      color: 'rgb(74, 198, 198)',
-    },
+  
   ];
 
   // Appointment requests data

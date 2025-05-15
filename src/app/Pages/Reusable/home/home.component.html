@@ -147,7 +147,7 @@
     <!-- Loop through visible doctors -->
     <div class="doctor-card" *ngFor="let doctor of visibleDoctors">
       <div class="available p-3 d-flex align-items-center">
-        <p class="DoctorActive me-2"></p>
+        <p class="DoctorActive me-2" [ngClass]="doctor.available?'DoctorActive':'DoctorUnActive'"></p>
         <p class="">available</p>
       </div>
       <img [src]="doctor.image" [alt]="doctor.name" />

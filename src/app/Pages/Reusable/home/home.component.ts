@@ -50,6 +50,7 @@ export class HomeComponent {
       specialty: 'Cardiologist',
       ratings: '★★★★★',
       reviews: '(102)',
+      available: true,
     },
     {
       image: 'assets/images/image2.png',
@@ -57,6 +58,7 @@ export class HomeComponent {
       specialty: 'Neurologist',
       ratings: '★★★★★',
       reviews: '(97)',
+      available: true,
     },
     {
       image: 'assets/images/image3.png',
@@ -64,10 +66,13 @@ export class HomeComponent {
       specialty: 'Gynecologist',
       ratings: '★★★★★',
       reviews: '(115)',
+      available: false,
+      
     },
     {
       image: 'assets/images/image4.png',
       name: 'Dr. Sanjeev Kapoor',
+      available: false,
       specialty: 'Child Specialist',
       ratings: '★★★★★',
       reviews: '(73)',
@@ -78,6 +83,8 @@ export class HomeComponent {
       specialty: 'Dermatologist',
       ratings: '★★★★☆',
       reviews: '(85)',
+      available: false,
+     
     },
     {
       image: 'assets/images/image4.png',
@@ -85,6 +92,7 @@ export class HomeComponent {
       specialty: 'Orthopedic Surgeon',
       ratings: '★★★★★',
       reviews: '(120)',
+      available:true,
     },
   ];
   // Track whether to show all cards or just the first 4
@@ -210,7 +218,7 @@ export class HomeComponent {
     {
       name: 'Dr. Michael Wilson',
       speciality: 'Pediatrician',
-      available: true,
+      available: false,
       image: 'assets/images/doctor1.png',
     },
     {
