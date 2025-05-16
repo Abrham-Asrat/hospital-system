@@ -1,5 +1,6 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface Payment {
   id: number;
@@ -9,56 +10,80 @@ interface Payment {
   amount: number;
   status: 'Pending' | 'Paid' | 'Rejected';
 }
+
 @Component({
   selector: 'app-a-payment',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './a-payment.component.html',
-  styleUrl: './a-payment.component.css'
+  styleUrls: ['./a-payment.component.css']
 })
 export class APaymentComponent implements OnInit {
-
   payments: Payment[] = [
-    {
-      id: 1,
-      paymentDate: '2025-04-10',
-      doctor: 'Dr. John Doe',
-      patient: 'Jane Smith',
-      amount: 50,
-      status: 'Pending',
-    },
-    {
-      id: 2,
-      paymentDate: '2025-04-09',
-      doctor: 'Dr. Emily Clark',
-      patient: 'Michael Brown',
-      amount: 75,
-      status: 'Paid',
-    },
+    { id: 1, paymentDate: '2025-05-15', doctor: 'Dr. John Doe', patient: 'Jane Smith', amount: 500, status: 'Pending' },
+    { id: 2, paymentDate: '2025-05-14', doctor: 'Dr. Emily Clark', patient: 'Michael Brown', amount: 750, status: 'Paid' },
+    { id: 3, paymentDate: '2025-05-13', doctor: 'Dr. Ahmed Ali', patient: 'Sara Yilma', amount: 600, status: 'Rejected' },
   ];
 
-  constructor() {}
+  filteredPayments: Payment[] = [];
+  searchTerm = '';
+  selectedStatus = '';
 
-  ngOnInit(): void {}
+  totalRevenue = 0;
+  totalPending = 0;
+  totalPaid = 0;
+  todayTransactions = 0;
+
+  ngOnInit(): void {
+    this.sortPaymentsByDate();
+    this.calculateSummary();
+    this.applyFilter();
+  }
+
+  sortPaymentsByDate(): void {
+    this.payments.sort((a, b) => b.paymentDate.localeCompare(a.paymentDate));
+  }
+
+  calculateSummary(): void {
+    const today = new Date().toISOString().split('T')[0];
+    this.totalRevenue = this.payments.filter(p => p.status === 'Paid').reduce((sum, p) => sum + p.amount, 0);
+    this.totalPending = this.payments.filter(p => p.status === 'Pending').length;
+    this.totalPaid = this.payments.filter(p => p.status === 'Paid').length;
+    this.todayTransactions = this.payments.filter(p => p.paymentDate === today).length;
+  }
+
+  applyFilter(): void {
+    this.filteredPayments = this.payments.filter(payment => {
+      const matchesSearch = payment.doctor.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                            payment.patient.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const matchesStatus = this.selectedStatus ? payment.status === this.selectedStatus : true;
+      return matchesSearch && matchesStatus;
+    });
+  }
 
   approvePayment(payment: Payment): void {
     if (payment.status !== 'Pending') return;
-    payment.status = 'Paid';
-    this.showMessage(`${payment.patient}'s payment has been approved.`);
+    if (confirm(`Are you sure you want to approve ${payment.patient}'s payment?`)) {
+      payment.status = 'Paid';
+      this.calculateSummary();
+      this.applyFilter();
+    }
   }
 
   rejectPayment(payment: Payment): void {
     if (payment.status !== 'Pending') return;
-    payment.status = 'Rejected';
-    this.showMessage(`${payment.patient}'s payment has been rejected.`);
+    if (confirm(`Are you sure you want to reject ${payment.patient}'s payment?`)) {
+      payment.status = 'Rejected';
+      this.calculateSummary();
+      this.applyFilter();
+    }
   }
 
   viewPaymentHistory(payment: Payment): void {
-    this.showMessage(`Showing payment history for ${payment.patient}.`);
-    // Placeholder for actual history logic
+    alert(`Viewing history for ${payment.patient}`);
   }
 
-  private showMessage(message: string): void {
-    // Later: Replace with modal/toast/snackbar for better UX
-    alert(message);
+  initiateTelebirrPayout(): void {
+    alert('Initiating manual Telebirr payout... (integrate API call here)');
   }
 }

@@ -1,35 +1,67 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+
+interface BlogPost {
+  id: number;
+  title: string;
+  author: string;
+  category: string;
+  status: 'Published' | 'Pending' | 'Rejected';
+  createdAt: Date;
+}
+
 @Component({
   selector: 'app-a-blog',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './a-blog.component.html',
-  styleUrl: './a-blog.component.css'
+  styleUrls: ['./a-blog.component.css']
 })
+export class ABlogComponent {
+  searchTerm: string = '';
 
-export class  ABlogComponent {
-  blogs = [
-    { id: 1, title: 'Heart Health Tips', author: 'Dr. John Doe', status: 'Pending' },
-    { id: 2, title: 'How to Manage Diabetes', author: 'Dr. Jane Smith', status: 'Approved' },
-    { id: 3, title: 'Mental Health Awareness', author: 'Dr. Emily Rose', status: 'Pending' },
-    { id: 4, title: 'Healthy Eating Habits', author: 'Dr. Mike Tyson', status: 'Rejected' },
+  blogPosts: BlogPost[] = [
+    { id: 1, title: 'welcome to hospital blog', author: 'Admin', category: 'Health', status: 'Published', createdAt: new Date('2025-01-10') },
+    { id: 2, title: 'covid-19 updates', author: 'Editor', category: 'News', status: 'Pending', createdAt: new Date('2025-05-01') },
+    { id: 3, title: 'mental health tips', author: 'Admin', category: 'Health', status: 'Rejected', createdAt: new Date('2025-03-15') },
   ];
 
-  approveBlog(blogId: number): void {
-    const blog = this.blogs.find(b => b.id === blogId);
-    if (blog) {
-      blog.status = 'Approved';
+  filteredPosts(): BlogPost[] {
+    if (!this.searchTerm) {
+      return this.blogPosts;
     }
+    const term = this.searchTerm.toLowerCase();
+    return this.blogPosts.filter(post =>
+      post.title.toLowerCase().includes(term) ||
+      post.author.toLowerCase().includes(term) ||
+      post.category.toLowerCase().includes(term)
+    );
   }
 
-  rejectBlog(blogId: number): void {
-    const blog = this.blogs.find(b => b.id === blogId);
-    if (blog) {
-      blog.status = 'Rejected';
-    }
+  editPost(post: BlogPost) {
+    alert(`Edit post: "${post.title}" (id: ${post.id})`);
+    // Here you can navigate to edit page or open modal
   }
 
-  deleteBlog(blogId: number): void {
-    this.blogs = this.blogs.filter(b => b.id !== blogId);
+  approvePost(post: BlogPost) {
+    post.status = 'Published';
+    alert(`Post "${post.title}" approved.`);
+    // Call backend API to update status here
+  }
+
+  rejectPost(post: BlogPost) {
+    post.status = 'Rejected';
+    alert(`Post "${post.title}" rejected.`);
+    // Call backend API to update status here
+  }
+
+  deletePost(post: BlogPost) {
+    if (confirm(`Are you sure you want to delete "${post.title}"?`)) {
+      this.blogPosts = this.blogPosts.filter(p => p.id !== post.id);
+      alert(`Post "${post.title}" deleted.`);
+      // Call backend API to delete post here
+    }
   }
 }

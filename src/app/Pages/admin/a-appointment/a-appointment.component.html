@@ -1,57 +1,69 @@
-<div class="container py-4">
-  <h2 class="mb-4">Appointments Management</h2>
-
+<div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <input
-      [(ngModel)]="searchTerm"
-      class="form-control w-50"
-      placeholder="Search by patient or doctor..."
-    />
+    <h4 class="page-title">Appointment Management</h4>
   </div>
 
-  <div class="table-responsive shadow rounded">
-    <table class="table table-hover table-striped align-middle">
-      <thead class="table-dark">
-        <tr>
-          <th>#</th>
-          <th>Patient</th>
-          <th>Doctor</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Type</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let appt of filterAppointments(); let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ appt.patient }}</td>
-          <td>{{ appt.doctor }}</td>
-          <td>{{ appt.date }}</td>
-          <td>{{ appt.time }}</td>
-          <td>
-            <span class="badge bg-info">{{ appt.type }}</span>
-          </td>
-          <td>
-            <span
-              class="badge"
-              [ngClass]="{
-                'bg-warning': appt.status === 'Pending',
-                'bg-success': appt.status === 'Approved',
-                'bg-danger': appt.status === 'Declined'
-              }"
-            >
-              {{ appt.status }}
-            </span>
-          </td>
-          <td>
-            <button class="btn btn-outline-success btn-sm me-1" (click)="changeStatus(appt.id, 'Approved')">Approve</button>
-            <button class="btn btn-outline-danger btn-sm" (click)="changeStatus(appt.id, 'Declined')">Decline</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Filters -->
+  <div class="row search-container mb-3">
+    <div class="col-md-6">
+      <input
+        class="form-control"
+        [(ngModel)]="searchText"
+        (input)="filterAppointments()"
+        placeholder="Search by patient or doctor"
+      />
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" [(ngModel)]="selectedStatus" (change)="filterAppointments()">
+        <option value="">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
   </div>
+
+  <!-- Table -->
+  <table class="table table-hover table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+        <th style="width: 180px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of filteredAppointments">
+        <td>{{ app.patientName }}</td>
+        <td>{{ app.doctorName }}</td>
+        <td>{{ app.date }}</td>
+        <td>{{ app.time }}</td>
+        <td>
+          <span class="badge"
+                [ngClass]="{
+                  'bg-warning': app.status === 'Pending',
+                  'bg-success': app.status === 'Confirmed',
+                  'bg-danger': app.status === 'Cancelled',
+                  'bg-secondary': app.status === 'Completed'
+                }">
+            {{ app.status }}
+          </span>
+        </td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-sm btn-success" (click)="changeStatus(app, 'Confirmed')">Confirm</button>
+            <button class="btn btn-sm btn-secondary" (click)="changeStatus(app, 'Completed')">Complete</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteAppointment(app.id)">Delete</button>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="filteredAppointments.length === 0">
+        <td colspan="6" class="text-center">No appointments found.</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-

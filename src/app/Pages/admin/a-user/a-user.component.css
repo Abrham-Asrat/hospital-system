@@ -1,80 +1,87 @@
-.table td, .table th {
-  vertical-align: middle;
+/* Container padding & font */
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 960px; /* keep container tidy */
 }
 
-.table th {
-  cursor: pointer;
+/* Top header: User Management title + Add User button */
+.d-flex.justify-content-between.align-items-center.mb-3 {
+  padding: 0 8px;
 }
 
-.table th:hover {
-  background-color: #f1f1f1;
+.d-flex.justify-content-between.align-items-center.mb-3 h4 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #222;
 }
 
-.badge {
-  font-size: 0.9rem;
-  padding: 0.5em 0.75em;
-}
-
-.modal-header, .modal-footer {
-  background-color: #f8f9fa;
-}
-
-.modal-title {
+/* Add User button styling */
+.d-flex.justify-content-between.align-items-center.mb-3 .btn-primary {
+  padding: 0.55rem 1.3rem;
   font-weight: 600;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.pagination {
-  justify-content: center;
-}
-
-.page-item.disabled .page-link {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.page-item.active .page-link {
-  background-color: #007bff;
-  color: white;
-}
-
-.page-item .page-link {
-  cursor: pointer;
-}
-
-.table-hover tbody tr:hover {
-  background-color: #f1f1f1;
-}
-
-.table th {
-  background-color: #e9ecef;
-  font-weight: 600;
-}
-
-.modal-dialog {
-  max-width: 500px;
-}
-
-.search-container {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.search-container input {
-  width: 60%;
-  padding: 0.5rem;
   font-size: 1rem;
-  border-radius: 0.25rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4a90e2, #357ABD);
+  box-shadow: 0 4px 10px rgba(53, 122, 189, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  border: none;
 }
 
-.search-container select {
-  width: 30%;
-  padding: 0.5rem;
+.d-flex.justify-content-between.align-items-center.mb-3 .btn-primary:hover {
+  background: linear-gradient(135deg, #357ABD, #2a5a9d);
+  box-shadow: 0 6px 14px rgba(42, 90, 157, 0.6);
+}
+
+/* Filters row adjustments */
+.row.mb-3 {
+  gap: 12px; /* more breathing room between cols */
+  padding: 0 8px;
+}
+
+/* Search input - take full width in col-md-6 */
+.form-control {
+  padding: 0.55rem 1rem;
   font-size: 1rem;
-  border-radius: 0.25rem;
+  border-radius: 8px;
+  border: 1.5px solid #ced4da;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #495057;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+/* Select input */
+.form-select {
+  padding: 0.55rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #ced4da;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #495057;
+  background-color: white;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+/* Responsive fix - on small screens make filters stack nicely */
+@media (max-width: 575.98px) {
+  .row.mb-3 {
+    display: flex;
+    flex-direction: column;
+  }
+  .row.mb-3 > div {
+    width: 100% !important;
+    margin-bottom: 12px;
+  }
 }
