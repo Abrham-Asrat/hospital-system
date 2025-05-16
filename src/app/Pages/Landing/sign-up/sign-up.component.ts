@@ -30,6 +30,7 @@ export class SignUpComponent implements OnInit {
   signUpData = {
     firstName: '',
     lastName: '',
+    gender:'',
     email: '',
     password: '',
     confirmPassword: '',
@@ -56,6 +57,7 @@ export class SignUpComponent implements OnInit {
     const formData = new FormData();
     formData.append('firstName', this.signUpData.firstName);
     formData.append('lastName', this.signUpData.lastName);
+    formData.append('gender', this.signUpData.gender);
     formData.append('email', this.signUpData.email);
     formData.append('password', this.signUpData.password);
     if (this.selectedCVFile) {

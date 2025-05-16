@@ -1,5 +1,5 @@
 <nav
-  class="navbar navbar-expand-lg navMargin ps-5 pe-5  shadow-sm "
+  class="navbar navbar-expand-lg navMargin ps-5 pe-5 shadow-sm"
   [ngClass]="{ 'fixed-top bg-light': isScrolled }"
 >
   <div class="navbar-brand">
@@ -32,7 +32,9 @@
           [ngClass]="{ 'text-warning': activeTab === item }"
           >{{ item | uppercase }}
         </a>
-        }
+        } 
+      
+      
       </div>
       <div
         class="navbar-nav col-3 d-flex justify-content-end align-items-center profile"
@@ -62,6 +64,7 @@
             ></i>
           </button>
         </a>
+
         <div class="dropdown">
           <a
             href="#"
@@ -85,7 +88,8 @@
             >
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item"
-              ><i class="fas fa-sign-out-alt pe-1" (click)="logOut()"></i>Logout</a
+              ><i class="fas fa-sign-out-alt pe-1" (click)="logOut()"></i
+              >Logout</a
             >
           </div>
         </div>

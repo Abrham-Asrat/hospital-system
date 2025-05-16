@@ -1,13 +1,15 @@
 <div class="blog-page">
-  <!-- Blog Post Form -->
+ 
   <button
-    class="btn fixed-top blogWriting btn-primary"
+    class="btn fixed-top blogWriting btn-outline-primary"
     (click)="toggleBlogForm()"
     *ngIf="btnFromDoctor"
   >
-    {{ isBlogForm ? "new" : "show" }} blog
+    {{ isBlogForm ? "New" : "Show" }} Blog
   </button>
 
+
+ <!-- Blog Post Form -->
   <div class="blog-form container" *ngIf="btnFromDoctor && !isBlogForm">
     <h3>Write a New Blog</h3>
     <input
@@ -23,12 +25,6 @@
       [(ngModel)]="newBlog.content"
       required
     ></textarea>
-
-    <select class="form-control mt-2" [(ngModel)]="newBlog.category">
-      @for (category of blogs; track $index) {
-      <option [value]="category">{{ category }}</option>
-      }
-    </select>
 
     <button class="btn btn-primary mt-3" (click)="postBlog()">Post Blog</button>
   </div>
@@ -69,7 +65,8 @@
       <!-- Blog Footer -->
       <div class="blog-footer">
         <button class="btn btn-outline-danger" (click)="likeBlog(blog)">
-          <i class="fa-solid fa-thumbs-up"></i> {{ blog.likes }}
+          <i class="bi bi-heart-fill"></i> {{ blog.likes }}
+          <!-- <i class="bi bi-heart"></i> -->
         </button>
         <button
           class="btn btn-outline-secondary"
