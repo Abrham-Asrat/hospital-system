@@ -8,17 +8,28 @@
     <form (submit)="bookAppointment()">
     <div class="container">
       <div class="row justify-content-md-center">
-        <div class="col-md-6">
-          <label>Doctor</label>
-          <select
-            [(ngModel)]="newAppointment.doctor"
-            class="form-control"
-            required
-          >
-            <option *ngFor="let doctor of doctors" [value]="doctor">
-              {{ doctor }}
-            </option>
-          </select>
+                        <div class="col-md-6">
+          <label for="doctorSearchInput">Search or Select a Doctor</label>
+          <div class="input-group">
+            <input
+              type="text"
+              id="doctorSearchInput"
+              [(ngModel)]="newAppointment.doctor"
+              name="doctor"
+              class="form-control"
+              placeholder="Type or select doctor's name"
+              required
+              aria-label="Search for a doctor by name"
+              list="doctorsDatalist" 
+            />
+            <datalist id="doctorsDatalist">
+              <option *ngFor="let doctor of doctors" [value]="doctor"></option>
+            </datalist>
+            <button type="button" (click)="onSearch()" class="btn btn-outline-secondary">Search</button> <!-- Updated button styling -->
+          </div>
+        </div>
+        </div>
+          
         </div>
         <div class="col-md-6">
           <label>Date</label>
@@ -29,15 +40,21 @@
             required
           />
         </div>
-        <div class="col-md-6">
-          <label>Reason</label>
-          <input
-            type="text"
+                        <div class="col-md-6">
+          <label for="appointmentTypeSelect" class="form-label">Appointment Type</label>
+          <select
+            id="appointmentTypeSelect"
+            name="reason" 
             [(ngModel)]="newAppointment.reason"
-            class="form-control"
+            class="form-select" 
             required
-          />
+          >
+            <option value="" disabled selected>-- Select Type --</option> <!-- Default, non-selectable prompt -->
+            <option value="In-Person">In-Person</option>
+            <option value="Online">Online</option>
+          </select>
         </div>
+
         <div class="col-md-6">
           <label>Time</label>
           <input
@@ -50,11 +67,10 @@
         <button type="submit" class="btn btn-primary mt-3 col-5">
           Book Appointment
         </button>
-      </div>
+      
     
-    </div>
-    </form>
-  </div>
+  </form>
+  <div class="upcoming">
   <div class="col-7">
     <!-- Tabs for Upcoming & Past Appointments -->
     <ul class="nav nav-tabs" id="appointmentTabs">
@@ -95,15 +111,23 @@
                 }}</span>
               </p>
             </div>
-            <div class="col-md-4 text-end">
-              <button
-                *ngIf="appointment.status === 'Pending'"
-                class="btn btn-danger"
-                (click)="cancelAppointment(appointment.id)"
-              >
-                Cancel
-              </button>
-            </div>
+            <!-- In the upcoming appointments loop -->
+<div class="col-md-4 text-md-end mt-2 mt-md-0 d-flex flex-column flex-md-row justify-content-md-end align-items-start">
+  <button
+    *ngIf="appointment.status === 'Pending'"
+    class="btn btn-sm btn-outline-primary mb-2 mb-md-0 me-md-2"
+    (click)="startEditAppointment(appointment)" 
+  >
+    Edit
+  </button>
+  <button
+    *ngIf="appointment.status === 'Pending'"
+    class="btn btn-sm btn-danger"
+    (click)="cancelAppointment(appointment.id)"
+  >
+    Cancel
+  </button>
+</div>
           </div>
         </div>
       </div>
@@ -126,5 +150,5 @@
   <!-- Book New Appointment -->
  
   </div>
-
 </div>
+
