@@ -6,8 +6,11 @@ import {
   Input,
   QueryList,
   ViewChildren,
+  OnInit,
+  AfterViewChecked
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-blog',
@@ -15,9 +18,15 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css',
 })
-export class BlogComponent implements AfterViewInit {
-  @Input () btnFromDoctor: boolean = false; 
+export class BlogComponent implements AfterViewInit, OnInit, AfterViewChecked {
+  @Input() btnFromDoctor: boolean = false;
   @ViewChildren('blogContent') blogContentElements!: QueryList<ElementRef>;
+
+  isEditing: boolean = false;
+  editingBlog: any = null;
+  isBlogForm: boolean = true;
+  currentDoctorName: string = 'Dr. Workaba';
+  newTag: string = '';
 
   newBlog = {
     title: '',
@@ -33,6 +42,7 @@ export class BlogComponent implements AfterViewInit {
     Image: '',
     expanded: false,
     showMoreButton: false,
+    tags: [] as string[]
   };
 
   blogs: any[] = [
@@ -50,6 +60,7 @@ export class BlogComponent implements AfterViewInit {
       Image: '',
       expanded: false,
       showMoreButton: false,
+      tags: ['#HeartDisease', '#Cardiology', '#Health']
     },
     {
       title: 'Understanding Heart',
@@ -70,7 +81,7 @@ export class BlogComponent implements AfterViewInit {
     {
       title: 'Understanding Heart',
       content:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellenduolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendusr, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellenduLorem ipsum dolor, sit met consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus,👩🏾orem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus,👩🏾.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus,👩🏾.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendusLorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellenduor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus, quo quos possimus quaerat.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque cumque quos! Libero odit amet provident ad corporis? Quod inventore, expedita iure quibusdam tempore deserunt soluta qui voluptates ea repellat in obcaecati enim nulla incidunt debitis eum necessitatibus animi, tenetur architecto ducimus nemo quae. Blanditiis dolores, laboriosam quibusdam explicabo excepturi vitae magni ratione qui, expedita numquam labore cum, iste dolor ullam vel. Voluptas laboriosam voluptatum magnam nobis, odit similique optio animi repellendus,👩🏾.',
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia obcaecati ipsum ipsam dolor voluptatum eligendi tempora ratione veritatis dolore aspernatur inventore dolorem exercitationem nam quam laboriosam a laborum sequi dicta, reiciendis modi numquam eaque ,👩🏾.',
       category: 'Cardiology',
       author: 'Dr. Workaba',
       specialty: 'Cardiologist',
@@ -115,6 +126,34 @@ export class BlogComponent implements AfterViewInit {
       showMoreButton: false,
     },
   ];
+   i: number; // ✅ Property declared
+  title: string;
+
+  constructor() {
+    this.title = "My Angular Blog";
+    this.i = 0; // ✅ Now works fine
+  }
+
+  ngOnInit() {
+    // Initialize dropdowns
+    this.initializeDropdowns();
+  }
+
+  ngAfterViewChecked() {
+    // Re-initialize dropdowns after view changes
+    this.initializeDropdowns();
+  }
+
+  private initializeDropdowns() {
+    const dropdownButtons = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+    dropdownButtons.forEach(button => {
+      const dropdown = new bootstrap.Dropdown(button, {
+        offset: [0, 2],
+        boundary: 'viewport',
+        autoClose: true
+      });
+    });
+  }
 
   filteredBlogs = [...this.blogs];
 
@@ -122,15 +161,61 @@ export class BlogComponent implements AfterViewInit {
     blog.expanded = !blog.expanded;
   }
 
+  onImageSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.newBlog.Image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  addTag() {
+    if (this.newTag.trim()) {
+      const tag = this.newTag.trim();
+      // Remove any existing # from the tag
+      const cleanTag = tag.replace(/^#+/, '');
+      const formattedTag = `#${cleanTag}`;
+      if (!this.newBlog.tags.includes(formattedTag)) {
+        this.newBlog.tags.push(formattedTag);
+        this.newTag = '';
+      }
+    }
+  }
+
+  removeTag(tag: string) {
+    this.newBlog.tags = this.newBlog.tags.filter(t => t !== tag);
+  }
+
   postBlog() {
     if (this.newBlog.title && this.newBlog.content) {
       this.newBlog.date = new Date().toDateString();
-      this.newBlog.likes = 0;
-      this.newBlog.comments = [];
-      this.newBlog.showComments = false;
-      this.newBlog.newComment = '';
+      
+      if (this.isEditing) {
+        // Update existing blog
+        const index = this.blogs.findIndex(b => b === this.editingBlog);
+        if (index !== -1) {
+          this.blogs[index] = { ...this.newBlog };
+        }
+        this.isEditing = false;
+        this.editingBlog = null;
+      } else {
+        // Add new blog
+        const newBlogPost = {
+          ...this.newBlog,
+          likes: 0,
+          comments: [],
+          showComments: false,
+          newComment: '',
+          expanded: false,
+          showMoreButton: false,
+          tags: [...this.newBlog.tags] // Ensure tags are copied
+        };
+        this.blogs.unshift(newBlogPost);
+      }
 
-      this.blogs.unshift({ ...this.newBlog });
       this.filteredBlogs = [...this.blogs];
 
       // Reset the new blog form
@@ -148,7 +233,9 @@ export class BlogComponent implements AfterViewInit {
         Image: '',
         expanded: false,
         showMoreButton: false,
+        tags: [] // Reset tags array
       };
+      this.newTag = '';
     }
   }
 
@@ -182,8 +269,34 @@ export class BlogComponent implements AfterViewInit {
   }
 
   // blog toggler show and hidder
-  isBlogForm: boolean = true;
   toggleBlogForm() {
-    this.isBlogForm = !this.isBlogForm;
+    this.isBlogForm = !this.isBlogForm;  };
+     blog = {
+    title: 'My first blog',
+    author: 'Alice',
+    content: 'Lorem ipsum...'
+
+
+
   }
+  
+
+deleteBlog(blog: any) {
+  if (confirm('Are you sure you want to delete this blog?')) {
+    const index = this.blogs.findIndex(b => b === blog);
+    if (index !== -1) {
+      this.blogs.splice(index, 1);
+      this.filteredBlogs = [...this.blogs];
+    }
+  }
+}
+
+editBlog(blog: any) {
+  this.editingBlog = blog;
+  this.newBlog = { ...blog };
+  this.isBlogForm = false;
+  this.isEditing = true;
+}
+
+
 }
