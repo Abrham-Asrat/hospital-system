@@ -11,7 +11,7 @@ import { FooterComponent } from "../../Reusable/footer/footer.component";
   styleUrl: './l-layout.component.css',
 })
 export class LLayoutComponent {
-  Links: string[] = ['Home', 'Blog', 'About', 'Contact', 'FAQ'];
+  Links: string[] = ['Home', 'Blog', 'About', 'Contact us', 'FAQ'];
 
   activeTab = 'Home';
   setActive(link: string) {

@@ -9,7 +9,7 @@ import { FooterComponent } from "../../Reusable/footer/footer.component";
   styleUrl: './p-layout.component.css',
 })
 export class PLayoutComponent {
-  Links: string[] = ['Home', 'Appointment', 'Blog', 'Contact'];
+  Links: string[] = ['Home', 'Appointment', 'Blog', 'Contact us'];
   Chat: string = 'Chat';
   Notification: string = 'Notification';
   profile: string = 'Profile';

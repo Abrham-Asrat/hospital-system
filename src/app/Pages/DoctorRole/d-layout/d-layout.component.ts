@@ -11,7 +11,7 @@ import { FooterComponent } from "../../Reusable/footer/footer.component";
   styleUrl: './d-layout.component.css',
 })
 export class DLayoutComponent {
-  Links: string[] = ['Home', 'Appointment', 'Blog', 'Contact'];
+  Links: string[] = ['Home', 'Appointment', 'Blog', 'Contact Us'];
   Chat: string = 'Chat';
   Notification: string = 'Notification';
   profile: string = 'Profile';
