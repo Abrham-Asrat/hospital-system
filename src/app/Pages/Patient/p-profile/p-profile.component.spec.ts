@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PProfileComponent } from './p-profile.component';
 
-describe('PProfileComponent', () => {
+describe('ProfileComponent', () => {
   let component: PProfileComponent;
   let fixture: ComponentFixture<PProfileComponent>;
 

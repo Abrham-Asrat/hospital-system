@@ -1,0 +1,214 @@
+
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+} 
+html, body {
+  height: 100%;
+  overflow: hidden; /* No page scroll */
+
+
+}
+input, select, textarea {
+   background-color: #f5f5f5; /* or any light gray */
+  color: #333; /* standard text color */
+  border: 1px solid #bdbcbc;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+
+
+.camera-icon{
+  border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 40px;
+height: 40px;
+cursor: pointer;
+font-size:25px;
+
+}
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+  
+
+.profile-pic-wrapper {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #934097;
+  top:-5px; /* Adjust to move it up/down */
+  left:-15px;
+  background-color: #f5f5f5;
+  display: block;
+  object-fit: cover;
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay plus button */
+.upload-plus-btn {
+  position: absolute;
+  top:230px; /* Adjust to move it up/down */
+  left:255px;  /* Adjust to center/side */
+  background-color:rgb(247, 244, 248);
+border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  font-size: 50px;
+  z-index: 50;
+  padding: 15px;
+}
+.profile-wrapper {
+  display: flex;
+  height: 100vh;
+  background: #f5f7fa;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 200px;
+  background: #a73697;
+  color: white;
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius:  30px 30px ;
+  flex-shrink: 10;
+  height:63ch;
+}
+
+.avatar-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.welcome {
+  bottom: 20px;
+  left: 5000px;
+  font-weight: 600;
+  font-size: 20px;
+  white-space: nowrap;
+
+}
+
+.nav-links {
+  list-style:none;
+  margin-bottom: auto;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.nav-links li {
+  margin: 1px ;
+  cursor: pointer;
+}
+
+.logout-btn {
+  background: #7e0278;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+
+}
+
+.profile-content {
+  flex: 1;
+  background: white;
+  padding: 20px 30px;
+  overflow-y: auto;
+}
+
+.profile-content h2 {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.profile-form h3 {
+  color: #810777;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #bdbcbc;
+  border-radius: 5px;
+  background: #f5f5f5;
+  font-size: 14px;
+  min-width: none;
+  
+  
+}
+.password-section {
+  max-width: 400px;
+  padding: 15px;
+}
+
+
+.save-btn {
+  background: #7e0278;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .profile-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    align-items: center;
+  }
+
+  .profile-content {
+    padding: 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}

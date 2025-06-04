@@ -5,6 +5,9 @@ import { importProvidersFrom } from '@angular/core';
 import { routes } from './app.routes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
+importProvidersFrom(ReactiveFormsModule);
+
+import { AppComponent } from './app.component';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,4 +16,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     importProvidersFrom(ReactiveFormsModule), // ✅ Enables reactive forms
   ],
+  
 };

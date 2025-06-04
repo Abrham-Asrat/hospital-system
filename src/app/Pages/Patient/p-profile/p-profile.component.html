@@ -1,1 +1,105 @@
-<app-profile></app-profile>
+<div class="container">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <div class="sidebar">
+    <div class="avatar-upload">
+      <div class="profile-pic-wrapper">
+        <img [src]="previewUrl || defaultImage" alt="Profile Picture" class="profile-pic" />
+    </div>
+        <!-- Plus icon button -->
+        <label for="avatarInput" class="upload-plus-btn">
+          <div class="camera-icon">
+          <i class="fas fa-pen"style="color:purple;"></i>
+          </div>
+        </label>
+      
+    
+      <!-- Hidden file input -->
+      <input
+        type="file"
+        id="avatarInput"
+        name="avatar"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+  
+    
+    </div>
+    <p class="welcome">Welcome, </p>
+    <ul class="nav-links">
+      <li (click)="goToDashboard()">Dashboard</li>
+      
+      <li>Review</li>
+    </ul>
+    
+    <button type="logout" class="logout-btn" (click)="logout()">Log Out</button>
+  </div>
+  
+  
+  
+    <div class="profile-content">
+      <h2>Your personal profile info</h2>
+  
+      <form class="profile-form">
+        <section class="profile-section">
+          <h3>1. Profile</h3>
+          <div class="form-row">
+            <input type="text" placeholder="First name">
+            <input type="number" placeholder="Personal phone number">
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Last name">
+            <input type="text"name="email" class="form-control2" placeholder="Email" required="required">
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Username (not your email)">
+            <input type="date" name="dob" class="form-control2" placeholder="Date of Birth" required="required">
+          
+           </div>
+         <div class="form-row">
+  <select id="gender" name="Gender" class="form-control">
+    <option value="">Select Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+  </select>
+
+  <select id="region" name="Region" class="form-control">
+    <option value="">Select address</option>
+    <option value="addis_ababa">Addis Ababa</option>
+    <option value="amhara">Amhara</option>
+    <option value="afar">Afar</option>
+    <option value="benishangul">Benishangul-Gumuz</option>
+    <option value="dire_dawa">Dire Dawa</option>
+    <option value="gambela">Gambela</option>
+    <option value="harari">Harari</option>
+    <option value="oromia">Oromia</option>
+    <option value="sidama">Sidama</option>
+    <option value="somali">Somali</option>
+    <option value="southern">SNNPR</option>
+    <option value="tigray">tigray</option>
+     </select>
+    </div>
+
+  </section>
+        
+  
+        <section class="password-section">
+          <h3>2. Password</h3>
+          <div class="form-row">
+            <input type="password" placeholder="Old password *">
+          </div>
+          <div class="form-row">
+            <input type="password" placeholder="New password *">
+          </div>
+          <div class="form-row">
+            <input type="password" placeholder="Confirm new password *">
+          </div>
+          <button type="submit" class="save-btn">Save info</button>
+        </section>
+      </form>
+    </div>
+  </div>
+
+  
